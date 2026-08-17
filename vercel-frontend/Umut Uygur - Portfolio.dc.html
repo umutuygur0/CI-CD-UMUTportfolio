@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Umut Uygur | Computer Engineer Portfolio</title>
+<meta name="description" content="Umut Uygur portfolio: computer engineering, AI, backend, DevOps, cloud, CI/CD and software projects.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Umut Uygur">
+<link rel="canonical" href="https://umut-uygur.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Umut Uygur | Computer Engineer Portfolio">
+<meta property="og:description" content="Computer engineering, AI, backend, DevOps, cloud, CI/CD and software projects by Umut Uygur.">
+<meta property="og:url" content="https://umut-uygur.vercel.app/">
+<meta property="og:image" content="https://umut-uygur.vercel.app/og-image.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Umut Uygur | Computer Engineer Portfolio">
+<meta name="twitter:description" content="Computer engineering, AI, backend, DevOps, cloud, CI/CD and software projects by Umut Uygur.">
+<meta name="twitter:image" content="https://umut-uygur.vercel.app/og-image.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Umut Uygur",
+  "jobTitle": "Computer Engineer",
+  "url": "https://umut-uygur.vercel.app/",
+  "sameAs": [
+    "https://github.com/umutuygur0",
+    "https://www.linkedin.com/in/umut-uygur-24b920249"
+  ],
+  "knowsAbout": ["Computer Engineering", "Backend Development", "Artificial Intelligence", "DevOps", "CI/CD", "Cloud Computing"]
+}
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/classical-04ad2311-3518-408e-a060-60adbc0ba87c/styles.css">
+<script src="_ds/classical-04ad2311-3518-408e-a060-60adbc0ba87c/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lora:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:wght@400&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f2f2; --surface:#eae9e9; --ink:#201f1d; --muted:#444141;
+  --rule:rgba(32,31,29,.16); --rule-strong:rgba(32,31,29,.34);
+  --accent:#b68235; --accent-ink:#7d5411; --tint:rgba(182,130,53,.08);
+  --plate:#e4e2e0;
+  --fh:'Libre Franklin',system-ui,sans-serif;
+  --fb:'Libre Franklin',system-ui,sans-serif;
+  --hw:600; --hls:-.02em;
+}
+[data-theme="dark"]{
+  --bg:#1a1918; --surface:#242220; --ink:#f4f1ec; --muted:#cdc7c0;
+  --rule:rgba(239,236,231,.18); --rule-strong:rgba(239,236,231,.36);
+  --accent:#c28d41; --accent-ink:#e1ad66; --tint:rgba(226,173,102,.09);
+  --plate:#2d2b29;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#f3f2f2;font-weight:500}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+::selection{background:rgba(182,130,53,.22)}
+@keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes sweepX{0%{transform:translateX(-108%)}100%{transform:translateX(108%)}}
+@keyframes sweepY{0%{transform:translateY(-115%)}100%{transform:translateY(115%)}}
+@keyframes ghostPulse{0%{opacity:.10;transform:scale(1)}100%{opacity:.22;transform:scale(1.06)}}
+@keyframes markDrift{0%{opacity:0;transform:translateY(10px)}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="min-height:100vh;background:var(--bg);color:var(--ink);font-family:var(--fb);transition:background .35s ease,color .35s ease;{{ typeVars }}">
+
+  <header style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 34px;border-bottom:1px solid var(--rule);background:var(--bg);">
+    <span style="font-family:var(--fh);font-weight:600;font-size:19px;letter-spacing:.16em;text-transform:uppercase;">Umut Uygur</span>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="display:flex;border:1px solid var(--rule-strong);border-radius:2px;overflow:hidden;">
+        <button onClick="{{ setTr }}" style="{{ trBtn }}">TR</button>
+        <button onClick="{{ setEn }}" style="{{ enBtn }}">EN</button>
+      </div>
+      <button onClick="{{ toggleTheme }}" style="font-family:var(--fb);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:7px 14px;background:transparent;color:var(--ink);border:1px solid var(--rule-strong);border-radius:2px;cursor:pointer;" style-hover="background:var(--tint);border-color:var(--accent);color:var(--accent-ink)">{{ ui.themeLabel }}</button>
+      <a href="{{ cvUrl }}" target="_blank" rel="noopener" style="font-family:var(--fb);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:7px 15px;border:1px solid var(--accent);border-radius:2px;color:var(--accent-ink);text-decoration:none;" style-hover="background:var(--tint);text-decoration:none">{{ ui.cv }}</a>
+    </div>
+  </header>
+
+  <main style="max-width:1220px;margin:0 auto;padding:0 34px 120px;">
+
+    <section style="padding:26px 0 18px;animation:riseIn .7s ease both;">
+      <div style="position:relative;border:1px solid var(--rule);border-radius:28px;overflow:hidden;min-height:clamp(290px,36vw,430px);display:flex;align-items:flex-end;">
+        <div style="position:absolute;inset:0;">
+          <image-slot id="uu-hero" shape="rect" placeholder="portre / çalışma fotoğrafı"></image-slot>
+        </div>
+        <div style="position:absolute;inset:0;background:var(--bg);opacity:.6;pointer-events:none;"></div>
+        <div style="position:relative;padding:30px 34px 30px;pointer-events:none;">
+          <h1 style="font-family:var(--fh);font-weight:700;font-size:clamp(44px,7.4vw,116px);line-height:.92;letter-spacing:-.03em;margin:0;">Umut Uygur</h1>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;">
+            <span style="border:1px solid var(--rule-strong);border-radius:999px;padding:7px 16px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;">{{ ui.role }}</span>
+            <a href="{{ cvUrl }}" target="_blank" rel="noopener" style="pointer-events:auto;border:1px solid var(--accent);border-radius:999px;padding:7px 16px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;" style-hover="background:var(--tint);text-decoration:none">{{ ui.cvLine }}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="display:flex;align-items:center;gap:10px;padding:0 0 26px;">
+      <span style="width:7px;height:7px;border-radius:999px;background:var(--accent);flex:0 0 auto;"></span>
+      <span style="border:1px solid var(--rule-strong);border-radius:999px;padding:8px 18px;font-size:13.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:min(100%,540px);transition:opacity .3s ease;opacity:{{ tickerOpacity }};">{{ tickerName }}</span>
+    </section>
+
+    <section style="padding:6px 0 0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:14px;">
+        <h2 style="font-family:var(--fh);font-weight:700;font-size:15px;letter-spacing:.18em;text-transform:uppercase;margin:0;">{{ ui.projects }}</h2>
+        <span style="border:1px solid var(--rule);border-radius:999px;padding:5px 13px;font-size:11.5px;font-weight:600;letter-spacing:.14em;color:var(--muted);font-variant-numeric:tabular-nums;">{{ projectCount }}</span>
+      </div>
+
+      <div style="position:relative;">
+        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+          <div onClick="{{ p.open }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="position:relative;border:1px solid var(--rule);border-radius:22px;margin-bottom:9px;cursor:pointer;overflow:hidden;" style-hover="border-color:var(--accent)">
+            <sc-if value="{{ p.isHovered }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;background:var(--plate);overflow:hidden;">
+                <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 21px,var(--rule) 21px 22px);opacity:.6;"></div>
+                <div style="position:absolute;left:0;right:0;top:34%;height:1px;background:var(--accent);opacity:.6;animation:sweepX 3.4s linear infinite;"></div>
+                <div style="position:absolute;left:0;right:0;top:66%;height:1px;background:var(--accent);opacity:.35;animation:sweepX 4.8s linear infinite .7s;"></div>
+                <div style="position:absolute;top:0;bottom:0;left:41%;width:1px;background:var(--rule-strong);animation:sweepY 5.4s linear infinite;"></div>
+                <span style="position:absolute;right:26px;top:50%;transform:translateY(-50%);font-family:var(--fh);font-size:76px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;color:var(--accent);animation:ghostPulse 3.6s ease-in-out infinite alternate;">{{ p.no }}</span>
+                <span style="position:absolute;left:12px;bottom:9px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;letter-spacing:.06em;color:var(--muted);animation:markDrift 4.2s ease-in-out infinite;">{{ p.motionLabel }}</span>
+                {{ p.videoEl }}
+                <div style="position:absolute;inset:0;background:var(--bg);opacity:.7;"></div>
+              </div>
+            </sc-if>
+            <div style="position:relative;display:grid;grid-template-columns:42px minmax(0,1fr) minmax(0,34%);gap:8px 22px;align-items:center;padding:17px 24px;">
+              <span style="font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--accent-ink);font-variant-numeric:tabular-nums;">{{ p.no }}</span>
+              <div style="display:flex;flex-direction:column;gap:5px;min-width:0;">
+                <h3 style="font-family:var(--fh);font-weight:700;font-size:clamp(20px,2.3vw,31px);line-height:1.1;letter-spacing:-.015em;margin:0;transition:color .25s ease;color:{{ p.nameColor }};">{{ p.name }}</h3>
+                <span style="font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);">{{ p.meta }}</span>
+              </div>
+              <p style="margin:0;font-size:14px;font-weight:500;line-height:1.55;color:var(--muted);text-wrap:pretty;">{{ p.one }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="padding:44px 0 0;display:flex;flex-wrap:wrap;gap:9px;align-items:center;">
+      <span style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-right:6px;">{{ ui.elsewhere }}</span>
+      <a href="mailto:umuttuygurr@gmail.com" style="border:1px solid var(--rule-strong);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--ink);" style-hover="border-color:var(--accent);background:var(--tint);text-decoration:none">umuttuygurr@gmail.com</a>
+      <a href="https://github.com/umutuygur0" target="_blank" rel="noopener" style="border:1px solid var(--rule-strong);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--ink);" style-hover="border-color:var(--accent);background:var(--tint);text-decoration:none">github.com/umutuygur0</a>
+      <a href="https://www.linkedin.com/in/umut-uygur-24b920249" target="_blank" rel="noopener" style="border:1px solid var(--rule-strong);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--ink);" style-hover="border-color:var(--accent);background:var(--tint);text-decoration:none">linkedin.com/in/umut-uygur</a>
+      <span style="border:1px solid var(--rule);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:500;color:var(--muted);">Ankara, {{ ui.turkey }}</span>
+    </section>
+  </main>
+
+  <sc-if value="{{ active }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:80;background:var(--bg);overflow-y:auto;animation:riseIn .32s ease both;">
+      <div style="position:sticky;top:0;display:flex;justify-content:flex-end;padding:16px 34px;background:var(--bg);border-bottom:1px solid var(--rule);">
+        <button onClick="{{ close }}" style="font-family:var(--fb);font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:8px 16px;background:transparent;color:var(--ink);border:1px solid var(--rule-strong);border-radius:2px;cursor:pointer;" style-hover="background:var(--tint);border-color:var(--accent);color:var(--accent-ink)">{{ ui.close }}</button>
+      </div>
+      <article style="max-width:880px;margin:0 auto;padding:56px 34px 130px;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.18em;color:var(--accent-ink);font-variant-numeric:tabular-nums;">{{ active.no }}</span>
+          <span style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">{{ active.meta }}</span>
+        </div>
+        <h2 style="font-family:var(--fh);font-weight:600;font-size:clamp(38px,6vw,74px);line-height:1;letter-spacing:-.015em;margin:14px 0 0;">{{ active.name }}</h2>
+        <p style="margin:20px 0 0;font-size:18px;font-weight:600;line-height:1.55;color:var(--ink);max-width:60ch;text-wrap:pretty;">{{ active.one }}</p>
+
+        <div style="margin:38px 0 0;padding:9px;background:var(--surface);border:1px solid var(--rule);border-radius:4px;">
+          <div style="position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--plate);">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 26px,var(--rule) 26px 27px);opacity:.6;"></div>
+            <div style="position:absolute;left:0;right:0;top:38%;height:1px;background:var(--accent);opacity:.6;animation:sweepX 3.8s linear infinite;"></div>
+            <div style="position:absolute;left:0;right:0;top:70%;height:1px;background:var(--accent);opacity:.32;animation:sweepX 5.2s linear infinite .9s;"></div>
+            <div style="position:absolute;top:0;bottom:0;left:44%;width:1px;background:var(--rule-strong);animation:sweepY 6s linear infinite;"></div>
+            <span style="position:absolute;right:34px;top:50%;transform:translateY(-50%);font-family:var(--fh);font-size:190px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;color:var(--accent);animation:ghostPulse 3.6s ease-in-out infinite alternate;">{{ active.no }}</span>
+            <span style="position:absolute;left:16px;bottom:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;letter-spacing:.06em;color:var(--muted);animation:markDrift 4.6s ease-in-out infinite;">{{ active.motionLabel }}</span>
+            {{ active.videoEl }}
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr;gap:30px;margin:46px 0 0;padding-top:30px;border-top:1px solid var(--rule);">
+          <sc-for list="{{ active.paras }}" as="para" hint-placeholder-count="3">
+            <p style="margin:0;font-size:16.5px;font-weight:500;line-height:1.78;text-align:justify;hyphens:auto;text-wrap:pretty;">{{ para }}</p>
+          </sc-for>
+        </div>
+
+        <div style="margin:48px 0 0;padding-top:24px;border-top:1px solid var(--rule);">
+          <p style="margin:0 0 14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);">{{ ui.stack }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:9px;">
+            <sc-for list="{{ active.stack }}" as="s" hint-placeholder-count="5">
+              <span style="font-size:12px;letter-spacing:.06em;padding:5px 11px;border:1px solid var(--rule-strong);border-radius:2px;color:var(--ink);">{{ s }}</span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="margin:40px 0 0;padding-top:24px;border-top:1px solid var(--rule);">
+          <p style="margin:0 0 14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);">{{ ui.links }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <sc-for list="{{ active.links }}" as="l" hint-placeholder-count="2">
+              <a href="{{ l.url }}" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border:1px solid var(--accent);border-radius:2px;color:var(--accent-ink);text-decoration:none;" style-hover="background:var(--tint);text-decoration:none">{{ l.label }}</a>
+            </sc-for>
+          </div>
+        </div>
+      </article>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;typeface&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Franklin&quot;,&quot;Grotesk&quot;,&quot;Mono&quot;,&quot;Serif&quot;,&quot;Klasik&quot;],&quot;default&quot;:&quot;Franklin&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Type&quot;},&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Türkçe&quot;,&quot;English&quot;],&quot;default&quot;:&quot;English&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Defaults&quot;},&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Gündüz&quot;,&quot;Gece&quot;],&quot;default&quot;:&quot;Gündüz&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Defaults&quot;},&quot;cvUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;uploads/Resume_umutuygur.pdf&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+const CV = "uploads/Resume_umutuygur.pdf";
+const GH = "https://github.com/umutuygur0";
+
+const DATA = [
+  {
+    slug: "ubeb-5g-road-safety", year: "2026", kind: { tr: "Teknofest", en: "Teknofest" },
+    name: "UBEB — 5G Road Safety AI",
+    one: {
+      tr: "Yol videosu üzerinde araç, plaka ve araç içi riskli nesne tespiti yapan, gecikme ve FPS metriklerini raporlayan YOLO tabanlı sistem.",
+      en: "YOLO-based system detecting vehicles, plates and in-cabin risk objects on road video, with latency and FPS reporting."
+    },
+    stack: ["Python", "Ultralytics YOLOv8", "OpenCV", "OCR", "PyTorch"],
+    paras: {
+      tr: [
+        "TEKNOFEST 2026 5G ve Yapay Zekâ ile Akıllı Yol Güvenliği yarışması için Final Tasarım Raporu aşamasında geliştirilen çözüm. Verilen ya da canlı alınan video üzerinde araç tespiti, plaka tespiti, plaka OCR ve araç içi riskli nesne tespiti (telefon, sigara) yapılıyor; sürücü davranışı ve yorgunluk göstergeleri ayrı modüller olarak ekleniyor.",
+        "Çekirdek MVP, YOLO tabanlı nesne tespiti üzerine kurulu. OCR, nesne takibi ve yorgunluk analizi bağımsız bileşenler halinde pipeline'a bağlanıyor; çıktı, zaman damgalı işaretli video olarak üretiliyor.",
+        "Raporlanabilirlik projenin ayrılmaz parçası: her koşu için model güven skoru, FPS, uçtan uca gecikme ve doğruluk metrikleri veri seti split raporlarıyla birlikte üretiliyor. Repo; konfigürasyon, eğitim betikleri, model ağırlıkları ve metrik raporlarını tek pakette tutuyor."
+      ],
+      en: [
+        "Built for the TEKNOFEST 2026 5G & AI Smart Road Safety competition during the Final Design Report stage. On recorded or live video the pipeline detects vehicles, license plates, reads plate text via OCR, and flags in-cabin risk objects such as phone and cigarette; driver behaviour and fatigue indicators come in as separate modules.",
+        "The core MVP is YOLO object detection. OCR, tracking and fatigue analysis attach as independent components, and the output is a timestamped annotated video.",
+        "Measurability is part of the deliverable: every run reports model confidence, FPS, end-to-end latency and accuracy alongside dataset split reports. The repository keeps configuration, training scripts, model weights and metric reports in one package."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "ulak101-rag", year: "2026", kind: { tr: "Kurumsal RAG", en: "Enterprise RAG" },
+    name: "ULAK101 RAG",
+    one: {
+      tr: "Kurumsal telekom arşivi üzerinde tamamen local çalışan, hibrit aramalı Türkçe soru-cevap sistemi.",
+      en: "Fully local Turkish question-answering system over a corporate telecom archive, with hybrid retrieval."
+    },
+    stack: ["Python", "Flask", "ChromaDB", "BM25", "BAAI/bge-m3", "Ollama", "React"],
+    paras: {
+      tr: [
+        "ULAK Haberleşme arşivi için kurulan RAG tabanlı Türkçe soru-cevap sistemi. Varsayılan kurulumda hiçbir veri dışarı çıkmıyor: embedding modeli, vektör veritabanı ve LLM aynı makinede çalışıyor.",
+        "Erişim katmanı hibrit: ChromaDB üzerinde dense arama (BAAI/bge-m3) ile BM25 lexical arama, Reciprocal Rank Fusion ile birleştiriliyor. Sorguda geçen kurum adına göre kapsam dışı kaynakları eleyen bir org-scoping filtresi ekleniyor. Konuşma hafızası ve query-rewriting katmanı, takip sorularını bağımsız sorgulara çeviriyor.",
+        "Halüsinasyonu engellemek kod seviyesinde ele alındı: sistem promptu modeli yalnızca verilen bağlama bağlıyor, üretim sonrası tekrar-döngü kesme ve \"bulamadım\" cevabını sabitleme adımları çalışıyor, kaynak dosya adları modelden değil gerçek metadata'dan ekleniyor. Backend NDJSON stream eden bir Flask API, arayüz ayrı bir React uygulaması."
+      ],
+      en: [
+        "A RAG-based Turkish QA system over the ULAK Haberleşme corporate archive. In the default configuration no data leaves the machine: embedding model, vector store and LLM all run locally.",
+        "Retrieval is hybrid — dense search over ChromaDB (BAAI/bge-m3) fused with BM25 lexical search via Reciprocal Rank Fusion, plus an org-scoping filter that drops out-of-scope sources based on the organisation named in the query. A conversation memory and query-rewriting layer turns follow-up questions into standalone queries.",
+        "Anti-hallucination is handled in code: the system prompt binds the model to the provided context only, post-generation steps cut repetition loops and pin a fixed \"not found\" answer, and citations are built from real metadata rather than model output. The backend is a Flask API streaming NDJSON; the front end is a separate React app."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "local-rag-foundry", year: "2026", kind: { tr: "Offline yapay zekâ", en: "Offline AI" },
+    name: "Local RAG Foundry",
+    one: {
+      tr: "Foundry Local üzerinde çalışan, dışarıya tek istek atmayan, diller arası arama yapabilen offline RAG asistanı.",
+      en: "Offline RAG assistant on Foundry Local — zero outbound calls, cross-lingual retrieval."
+    },
+    stack: ["Python", "Foundry Local", "Qwen2.5-7B", "TF-IDF", "SQLite", "Streamlit"],
+    paras: {
+      tr: [
+        "Yerel bir doküman koleksiyonu üzerinde çalışan, model indirildikten sonra hiçbir ağ isteği yapmayan RAG asistanı. Model servisi Microsoft Foundry Local, cevap üreten model Qwen2.5-7B-Instruct.",
+        "Erişim katmanı TF-IDF ile başlıyor, opsiyonel semantik embedding'lerle güçleniyor; embedding modeli yoksa sistem sessizce TF-IDF'e düşüyor. Çok dilli embedding sayesinde İngilizce bir dokümana Türkçe soru sorulabiliyor, arada çeviri adımı yok. Markdown, txt, PDF ve DOCX dosyaları chunk'lanmadan önce düz metne çevriliyor; vektörler tek dosyalık SQLite'ta tutuluyor.",
+        "Arayüz Streamlit: sohbet, kaynak atıfları, dil seçimi ve doküman yükleme. Repo; proje planı, otomatik test raporu ve bilinen kısıtların dürüst listesini içeren bir kapanış raporu ile birlikte geliyor."
+      ],
+      en: [
+        "A RAG assistant over a local document collection that makes no network calls after the initial model download. Serving runs on Microsoft Foundry Local with Qwen2.5-7B-Instruct.",
+        "Retrieval starts at TF-IDF and improves with optional semantic embeddings, degrading gracefully to TF-IDF alone when the embedding model is absent. Multilingual embeddings let a Turkish question hit an English document with no translation step. Markdown, txt, PDF and DOCX are converted to plain text before chunking; vectors live in a single-file SQLite store.",
+        "The UI is Streamlit: chat, source citations, language selector and document upload. The repo ships with a design plan, an automated test report, and a closing report listing known limitations honestly."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "pokemon-tcg-agent", year: "2026", kind: { tr: "Kaggle yarışması", en: "Kaggle competition" },
+    name: "Pokémon TCG AI Battle Agent",
+    one: {
+      tr: "Eksik bilgili kart oyununda karar veren, kural tabanlı temelin üzerine MCTS ve pekiştirmeli öğrenme koyan ajan.",
+      en: "An agent for an imperfect-information card game, layering MCTS and reinforcement learning over a rule-based core."
+    },
+    stack: ["Python", "MCTS", "Reinforcement Learning", "Kaggle SDK", "Jupyter"],
+    paras: {
+      tr: [
+        "The Pokémon Company'nin PTCG AI Battle Challenge simülasyon yarışması için geliştirilen ajan. Oyun eksik bilgili: rakibin eli bilinmiyor, kart çekimi ve yazı-tura ek rastlantısallık getiriyor, binlerce kart kombinasyonu farklı deste stratejileri üretiyor.",
+        "Kural tabanlı bir taban ajanla başlanıp üzerine arama ve öğrenme eklendi: Monte Carlo Tree Search ile hamle değerlendirme, pekiştirmeli öğrenme ile poliçe iyileştirme. Farklı destelere (Dragapult ex, Mega Lucario ex, Iono) karşı yerel maçlar JSON replay olarak kaydedilip karşılaştırmalı analiz edildi.",
+        "Değerlendirme, benzer seviyeli ajanlara karşı sürekli oynanan bölümler üzerinden Gaussian skill rating ile yapılıyor; bu nedenle geliştirme döngüsü yerel simülatörde toplu maç koşturma, submission paketleme ve leaderboard'daki iki aktif ajanı izleme üzerine kuruldu."
+      ],
+      en: [
+        "An agent for The Pokémon Company's PTCG AI Battle Challenge simulation competition. The game is imperfect-information: the opponent's hand is hidden, draws and coin flips add variance, and thousands of card combinations produce very different deck strategies.",
+        "Development started from a rule-based baseline and added search and learning on top: Monte Carlo Tree Search for move evaluation, reinforcement learning for policy improvement. Local matches against several decks (Dragapult ex, Mega Lucario ex, Iono) were logged as JSON replays and compared.",
+        "Scoring uses a Gaussian skill rating over episodes continuously played against similar-rated agents, so the development loop centred on batch local simulation, submission packaging, and tracking the two active ladder agents."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "trendyol-datathon", year: "2026", kind: { tr: "Kaggle yarışması", en: "Kaggle competition" },
+    name: "Trendyol E-Ticaret Datathon",
+    one: {
+      tr: "Arama terimi ile ürün arasındaki alaka düzeyini tahmin eden, negatif örneklemesi sızıntısız kurulmuş ikili sınıflandırma modeli.",
+      en: "Binary relevance model for (search term, product) pairs, built on a leak-free negative sampling scheme."
+    },
+    stack: ["Python", "Transformers", "LightGBM", "Pandas", "Kaggle"],
+    paras: {
+      tr: [
+        "Trendyol E-Ticaret Yarışması 2026: verilen (arama terimi, ürün) çifti için ürünün terimle alakalı olup olmadığını tahmin etmek. Eğitim verisi yalnızca pozitif çiftlerden oluşuyor, test seti ise hem alakalı hem alakasız çiftleri içeriyor — negatif durumların modele nasıl öğretileceği tamamen katılımcıya bırakılmış.",
+        "Çözüm; arama terimi, ürün ismi, kategori hiyerarşisi ve materyal/renk/stil gibi detaylı ürün özniteliklerini birlikte kullanıyor. Negatif örnekler kategori ve popülerlik dengeli biçimde üretildi; eğitim kurgusu, public leaderboard'a sızıntı bırakmayacak şekilde kuruldu (leak-free submission ayrı bir varyant olarak tutuldu).",
+        "Metrik macro-averaged F1 — iki sınıf ayrı hesaplanıp eşit ağırlıkla ortalandığı için eşik seçimi ve sınıf dengesi modelin kendisi kadar belirleyici oldu. Deneyler notebook seviyesinde versiyonlandı, her submission skoruyla birlikte arşivlendi."
+      ],
+      en: [
+        "Trendyol E-Commerce Competition 2026: predict whether a product is relevant to a given search term. Training data contains positive pairs only while the test set holds both relevant and irrelevant pairs — how to teach the model the negative case is left entirely to the participant.",
+        "The solution combines search term, product title, category hierarchy and detailed attributes such as material, colour and style. Negatives were sampled with category and popularity balance, and the training setup was arranged to leak nothing into the public leaderboard (a leak-free submission is kept as a separate variant).",
+        "The metric is macro-averaged F1, computed per class and averaged equally, so threshold choice and class balance mattered as much as the model. Experiments were versioned at notebook level and every submission archived with its score."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "weapon-detection", year: "2026", kind: { tr: "Bitirme projesi", en: "Senior project" },
+    name: { tr: "Video Üzerinde Silah Tespiti", en: "Weapon Detection on Video" },
+    one: {
+      tr: "Seyrek etiketten tüm kareleri üreten yarı-otomatik etiketleme hattı ve üzerine kurulu silah tespiti modeli.",
+      en: "A semi-automatic labelling pipeline that propagates sparse labels to every frame, and the weapon detector trained on it."
+    },
+    stack: ["Python", "OpenCV", "YOLO", "NumPy"],
+    paras: {
+      tr: [
+        "Bitirme projesinin en maliyetli kısmı veri etiketlemeydi: video kareleri üzerinde kişi ve silah kutularının tek tek işaretlenmesi. Çözüm, seyrek olarak etiketlenmiş anahtar kareleri alıp aradaki tüm kareler için kutuları üreten bir yarı-otomatik etiketleme hattı oldu.",
+        "Hat, sekans bazlı kural desteğiyle çalışıyor: öznenin hareketsiz kaldığı aralıklarda kutu interpolasyon yerine sabit tutuluyor, böylece bekleme anlarında kayan kutular oluşmuyor. Üretilen etiketler hem YOLO formatında yazılıyor hem de görsel önizleme ve etiketli video olarak çıkarılıyor, yani her etiket gözle doğrulanabiliyor.",
+        "Ortaya çıkan veri seti üzerinde iki sınıflı (person, gun) tespit modeli eğitildi; çıktı, kutuların ve güven skorlarının basıldığı işaretli video."
+      ],
+      en: [
+        "The expensive part of this senior project was annotation: drawing person and weapon boxes frame by frame. The answer was a semi-automatic labelling pipeline that takes sparsely labelled key frames and generates boxes for every frame in between.",
+        "The pipeline is rule-aware per sequence: across intervals where the subject stands still, boxes are held rather than interpolated, so waiting moments don't produce drifting boxes. Generated labels are written in YOLO format and also rendered as image previews and labelled videos, so every label can be checked by eye.",
+        "A two-class detector (person, gun) was trained on the resulting dataset; the output is annotated video with boxes and confidence scores."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "ir-anomaly-pipeline", year: "2026", kind: { tr: "Bilgisayarlı görü", en: "Computer vision" },
+    name: { tr: "Kızılötesi Anomali Hattı", en: "Infrared Anomaly Pipeline" },
+    one: {
+      tr: "Kızılötesi görüntüdeki anomaliyi YOLO ile bulup, yerel bir VLM/LLM'e yorumlatan uçtan uca hat.",
+      en: "Finds anomalies in infrared imagery with YOLO, then has a local VLM/LLM interpret the result."
+    },
+    stack: ["Python", "YOLO", "Ollama", "llama.cpp", "YAML config"],
+    paras: {
+      tr: [
+        "Kızılötesi görüntülerde anomali tespiti yapan ve sonucu yerel bir görsel-dil modeline aktaran hat. Tek görüntü ya da dizin üzerinde çalışıyor; her şey yerelde koşuyor, ücretli servis gerekmiyor.",
+        "Akış: özel YOLO ağırlıklarıyla çıkarım, güven eşiğinin üzerinde tespit varsa iki yoldan biri — metin özetinin bir LLM'e gönderilmesi ya da görüntünün (ve istenirse kırpılmış bölgelerin) bir VLM'e gönderilip daha zengin analiz alınması. Backend olarak Ollama veya llama.cpp'nin OpenAI uyumlu sunucusu seçilebiliyor.",
+        "Tüm davranış tek bir config.yaml üzerinden ayarlanıyor: ağırlık yolu, eşik, backend ve model adı. Ayrıca ground-truth beyaz listesi ve çıktı doğrulama betiği ile tespitlerin referansa göre kontrolü yapılıyor."
+      ],
+      en: [
+        "A pipeline that detects anomalies in infrared images and forwards the result to a local vision-language model. It runs on a single image or a directory, entirely locally, with no paid service.",
+        "Flow: inference with custom YOLO weights; if a detection clears the confidence threshold, one of two routes — a text summary sent to an LLM, or the image (optionally with crops) sent to a VLM for richer analysis. The backend can be Ollama or llama.cpp's OpenAI-compatible server.",
+        "All behaviour is set from a single config.yaml: weights path, threshold, backend and model name. A ground-truth whitelist plus an output validation script check detections against reference."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "gps-free-positioning", year: "2026", kind: { tr: "Savunma / SSB", en: "Defence / SSB" },
+    name: { tr: "GPS Kullanmadan Konum Tahmini", en: "GPS-Free Position Estimation" },
+    one: {
+      tr: "Ham IMU, barometre ve hava hızı verisinden GPS olmadan konum tahmini — 120 gerçek uçuş üzerinde.",
+      en: "Estimating position without GPS from raw IMU, barometer and airspeed data across 120 real flights."
+    },
+    stack: ["Python", "Pandas", "Time-series ML", "Pixhawk logs"],
+    paras: {
+      tr: [
+        "GPS sinyali olmadığında konumu tahmin etme problemi. Ana veri seti Holybro Pixhawk kayıtları: 120 uçuş, uçuş başına 1046 sütun ham telemetri; dış doğrulama için ayrı bir Speedybee veri seti kullanıldı.",
+        "Veri seti seçimi projenin ilk kararıydı ve gerekçelendirildi: hazır Kaggle UAV veri seti sentetik, dakika aralıklı ve yalnızca görev seviyesinde tablosal olduğu için elendi — ihtiyaç, zamanla sıralanmış gerçek uçuşlar ve ham ivmeölçer/jiroskop/manyetometre/barometre/hava hızı sinyalleri ile GPS ground truth idi.",
+        "Çalışma iki fazlı: önce veri analizi ve sinyal kalitesi incelemesi, sonra GPS'i etiket olarak kullanan model eğitimi. Değerlendirme, GPS'in kesintiye uğradığı senaryolarda sapmanın zamanla nasıl büyüdüğü üzerinden yapılıyor."
+      ],
+      en: [
+        "The problem: estimate position when the GPS signal is gone. The primary dataset is Holybro Pixhawk logs — 120 flights, 1046 columns of raw telemetry per flight — with a separate Speedybee dataset used for external validation.",
+        "Dataset choice was the project's first decision and it was argued explicitly: an off-the-shelf Kaggle UAV set was rejected as synthetic, minute-interval and only mission-level tabular — what the work needed was time-ordered real flights with raw accelerometer, gyro, magnetometer, barometer and airspeed signals plus GPS ground truth.",
+        "The work runs in two phases: data analysis and signal quality review, then model training that uses GPS as the label. Evaluation looks at how drift grows over time in scenarios where GPS drops out."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "portfolio-decision-engine", year: "2025", kind: { tr: "Finansal modelleme", en: "Financial modelling" },
+    name: { tr: "Portföy Karar Motoru", en: "Portfolio Decision Engine" },
+    one: {
+      tr: "Risk profiline göre varlık ağırlığı öneren, kriz modu tetikleyicileri olan skorlama ve karar motoru.",
+      en: "A scoring and decision engine that proposes asset weights per risk profile, with hard crisis-mode triggers."
+    },
+    stack: ["Python", "Pandas", "NumPy", "Matplotlib", "CLI"],
+    paras: {
+      tr: [
+        "Varlık sınıfları için skor üreten ve risk profiline göre portföy ağırlığı öneren karar motoru. Altı sürüm boyunca gerçek veriyle test edilerek düzeltildi; her sürüm notu hangi davranışın neden değiştiğini yazıyor.",
+        "Öne çıkan tasarım kararları: nötr eşiğin daraltılarak motorun kararsız bölgeye sıkışmasının engellenmesi, varlık başına min/max sınırlar ve düzeltme sonrası yeniden normalizasyon, ve yüzdelik sıralamanın sabit geçmiş yerine 252 günlük kayan pencere üzerinden hesaplanması.",
+        "Kriz modu iki yoldan tetikleniyor: bileşik risk skoru eşiği ya da VIX > 40 / CDS > 700 gibi sert tetikler. Motor komut satırından profil ve tarih ile çalıştırılabiliyor, istatistiksel rapor ve karar şeması PDF/PNG olarak üretiliyor."
+      ],
+      en: [
+        "A decision engine that scores asset classes and proposes portfolio weights per risk profile. It was corrected across six versions against real data, each version noting which behaviour changed and why.",
+        "Notable design decisions: narrowing the neutral threshold so the engine can't get stuck in the undecided band; per-asset min/max bounds with re-normalisation after adjustment; and percentile ranking computed over a rolling 252-day window instead of full history.",
+        "Crisis mode fires two ways: a composite risk-score threshold, or hard triggers such as VIX > 40 or CDS > 700. The engine runs from the CLI with a profile and date, and emits a statistical report plus a decision schema as PDF/PNG."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "library-occupancy", year: "2025", kind: { tr: "Gömülü / IoT", en: "Embedded / IoT" },
+    name: { tr: "Kütüphane Masa Doluluk Takibi", en: "Library Desk Occupancy Tracking" },
+    one: {
+      tr: "Kütüphanedeki masaların anlık doluluk durumunu kameradan çıkarıp gösteren sistem tasarımı.",
+      en: "A system that reads live desk occupancy in a library from camera feeds and surfaces it."
+    },
+    stack: ["Python", "Computer Vision", "PoE kamera", "Sistem tasarımı"],
+    paras: {
+      tr: [
+        "Kütüphanede boş masa arayarak dolaşma problemini çözmeyi hedefleyen sistem: kameradan alınan görüntü üzerinde masa bölgeleri tanımlanıyor, her bölgenin dolu/boş durumu çıkarılıyor ve anlık doluluk kullanıcıya gösteriliyor.",
+        "Çalışma yalnızca modelden ibaret değil: PoE kamera yerleşimi, kablolama ve donanım maliyeti dahil kurulum planı da çıkarıldı — yani kampüste gerçekten kurulabilir bir teklif olarak sunuldu.",
+        "Sunum ve demo videosu ile birlikte teslim edildi."
+      ],
+      en: [
+        "A system aimed at the problem of wandering a library looking for a free desk: desk regions are defined on the camera view, each region is classified occupied or free, and live occupancy is surfaced to the user.",
+        "The work isn't only the model: an installation plan covering PoE camera placement, cabling and hardware cost was produced — presented as a proposal that could actually be deployed on campus.",
+        "Delivered with a presentation deck and a demo video."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "cicd-spring-pipeline", year: "2026", kind: { tr: "DevOps", en: "DevOps" },
+    name: { tr: "CI/CD Dağıtım Hattı", en: "CI/CD Deployment Pipeline" },
+    one: {
+      tr: "Spring uygulamasını her push'ta derleyip test eden, imaj üretip yayınlayan GitHub Actions hattı.",
+      en: "A GitHub Actions pipeline that builds, tests, images and publishes a Spring app on every push."
+    },
+    stack: ["Java", "Spring Boot", "Maven", "Docker", "GitHub Actions"],
+    paras: {
+      tr: [
+        "Bir Spring Boot uygulamasının etrafına kurulmuş sürekli entegrasyon ve dağıtım hattı. Amaç uygulamanın kendisi değil, teslim sürecinin otomatikleştirilmesi.",
+        "Her push'ta GitHub Actions workflow'u Maven ile derleme ve testleri koşuyor, ardından Dockerfile üzerinden imaj üretiyor; docker-compose ile yerel çalıştırma senaryosu da repoda tanımlı.",
+        "Bu portfolyonun kaynak deposu da bu repo; portfolyo aynı hattan yayına gidiyor."
+      ],
+      en: [
+        "A continuous integration and delivery pipeline built around a Spring Boot application. The point isn't the app — it's automating the delivery process.",
+        "On every push a GitHub Actions workflow compiles and tests with Maven, then builds an image from the Dockerfile; a docker-compose setup for local runs is defined in the repo as well.",
+        "This repository is also the source repo of this portfolio — the site ships through the same pipeline."
+      ]
+    },
+    links: [
+      { label: { tr: "Depo", en: "Repository" }, url: "https://github.com/umutuygur0/CI-CD-UMUTportfolio" },
+      { label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }
+    ]
+  },
+  {
+    slug: "pile-capacity-ml", year: "2026", kind: { tr: "Akademik / ML", en: "Academic / ML" },
+    name: { tr: "Kazık Taşıma Kapasitesi Tahmini", en: "Pile Bearing Capacity Prediction" },
+    one: {
+      tr: "Zemin ve kazık verisinden taşıma kapasitesi tahmin eden gradient boosting deney seti ve raporlama hattı.",
+      en: "Gradient boosting experiments and a reporting pipeline that predict pile bearing capacity from soil data."
+    },
+    stack: ["Python", "CatBoost", "scikit-learn", "Pandas", "Jupyter"],
+    paras: {
+      tr: [
+        "Geoteknik veriden kazık taşıma kapasitesi tahmini üzerine yürütülen deney seti. Zemin parametreleri ve kazık geometrisi öznitelik olarak kullanılıp CatBoost başta olmak üzere ağaç tabanlı modeller karşılaştırıldı.",
+        "Çalışma, deneme sayısı kadar rapor üretiyor: veri analiz raporu, model çıktı raporları ve akademik gönderim metni birlikte tutuluyor. Amaç tek bir skordan çok, hangi özniteliğin kapasiteyi ne kadar açıkladığının gösterilmesi."
+      ],
+      en: [
+        "An experiment set on predicting pile bearing capacity from geotechnical data. Soil parameters and pile geometry were used as features and tree-based models — CatBoost above all — were compared.",
+        "The work produces as many reports as runs: a data analysis report, per-model output reports and an academic submission text are kept together. The goal is less a single score than showing which features explain capacity."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "softmax-pipeline", year: "2025", kind: { tr: "Makine öğrenmesi", en: "Machine learning" },
+    name: { tr: "Softmax Regresyon Hattı", en: "Softmax Regression Pipeline" },
+    one: {
+      tr: "Veri bölme, k-fold ile derece seçimi ve 9 modelin karşılaştırılmasını uçtan uca kuran eğitim hattı.",
+      en: "An end-to-end training pipeline: splits, k-fold degree selection and a nine-model comparison."
+    },
+    stack: ["Python", "PyTorch", "NumPy", "scikit-learn", "Matplotlib"],
+    paras: {
+      tr: [
+        "Modülleri ayrılmış bir eğitim hattı: veri yükleme ve 70/15/15 bölme, polinom öznitelik üretimi, softmax regresyon modeli, eğitim ve değerlendirme ayrı dosyalarda.",
+        "Hat önce 3-katlı çapraz doğrulama ile polinom derecesini seçiyor, ardından üç düzenlileştirme (ridge, lasso, elasticnet) ile üç öğrenme oranının çaprazından 9 model eğitiyor; en düşük doğrulama kaybını veren model raporlanıyor ve eğitim/doğrulama/test kayıp eğrileri çiziliyor."
+      ],
+      en: [
+        "A training pipeline with separated modules: data loading and a 70/15/15 split, polynomial feature generation, the softmax regression model, training and evaluation each in their own file.",
+        "It first selects the polynomial degree by 3-fold cross-validation, then trains nine models across three regularisers (ridge, lasso, elasticnet) and three learning rates; the lowest validation-loss model is reported and train/val/test loss curves are plotted."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "mnist-classifier", year: "2025", kind: { tr: "Makine öğrenmesi", en: "Machine learning" },
+    name: { tr: "MNIST-784 Sınıflandırıcı", en: "MNIST-784 Classifier" },
+    one: {
+      tr: "El yazısı rakam sınıflandırması: eğitim döngüsü, kayıp eğrileri ve hata analizi elle kurulmuş.",
+      en: "Handwritten digit classification with a hand-built training loop, loss curves and error analysis."
+    },
+    stack: ["Python", "PyTorch", "NumPy", "Matplotlib"],
+    paras: {
+      tr: [
+        "MNIST-784 veri seti üzerinde sınıflandırma çalışması. Eğitim döngüsü, kayıp takibi ve değerlendirme hazır bir üst seviye API'ye bırakılmadan yazıldı.",
+        "Çıktı olarak eğitim ve doğrulama kayıp eğrileri üretiliyor; amaç doğruluk kovalamaktan çok öğrenme oranı ve model kapasitesinin eğriler üzerindeki etkisini görmek."
+      ],
+      en: [
+        "A classification study on the MNIST-784 dataset. The training loop, loss tracking and evaluation were written out rather than delegated to a high-level API.",
+        "It outputs train and validation loss curves; the point is less chasing accuracy than seeing how learning rate and model capacity move those curves."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "kmeans-gmm-segmentation", year: "2025", kind: { tr: "Bilgisayarlı görü", en: "Computer vision" },
+    name: { tr: "K-Means ve GMM ile Görüntü Bölütleme", en: "K-Means & GMM Image Segmentation" },
+    one: {
+      tr: "Kütüphane kullanmadan, sıfırdan yazılmış K-Means ve Gaussian Mixture ile görüntü bölütleme.",
+      en: "Image segmentation with K-Means and Gaussian Mixture Models written from scratch."
+    },
+    stack: ["Python", "NumPy", "Pillow", "Matplotlib"],
+    paras: {
+      tr: [
+        "CMPE 442 ödevi olarak K-Means ve Gaussian Mixture Model sıfırdan yazıldı — hazır kümeleme fonksiyonu kullanılmadı; atama, merkez güncelleme ve EM adımları elle kuruldu.",
+        "Aynı görüntüler iki yöntemle bölütlenip sabit bir renk paletiyle görselleştirildi, böylece sert atama (K-Means) ile olasılıksal atama (GMM) arasındaki fark doğrudan karşılaştırılabiliyor."
+      ],
+      en: [
+        "For a CMPE 442 assignment, K-Means and a Gaussian Mixture Model were written from scratch — no off-the-shelf clustering; assignment, centroid updates and the EM steps were all built by hand.",
+        "The same images are segmented by both methods and rendered with a fixed palette, so hard assignment (K-Means) and probabilistic assignment (GMM) can be compared directly."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "log-retrieval", year: "2025", kind: { tr: "Bilgi erişimi", en: "Information retrieval" },
+    name: { tr: "Web Trafiği Log Arama Motoru", en: "Web Traffic Log Search" },
+    one: {
+      tr: "Temizlenmiş sunucu loglarında sorgu genişletmeli TF-IDF ve yaklaşık en yakın komşu aramasıyla erişim.",
+      en: "Retrieval over cleaned server logs with query expansion, TF-IDF and approximate nearest-neighbour search."
+    },
+    stack: ["Python", "scikit-learn", "hnswlib", "NLTK", "TensorFlow"],
+    paras: {
+      tr: [
+        "Ham web trafiği logları temizlenip her satır tek bir metin alanına çevrildi; IP, zaman damgası, HTTP metodu, URL, durum kodu ve içerik boyutu birlikte indeksleniyor.",
+        "Sorgu tarafında WordNet ile eş anlamlı genişletme ve durak kelime/lemma temizliği var; vektörler TF-IDF ile üretiliyor, arama hnswlib üzerinde yaklaşık en yakın komşu ile yapılıyor. Ayrıca TensorFlow embedding'leri ile karşılaştırma ve test betikleri mevcut."
+      ],
+      en: [
+        "Raw web traffic logs are cleaned and each row collapsed into a single text field; IP, timestamp, HTTP method, URL, status code and content size are indexed together.",
+        "On the query side there is WordNet synonym expansion plus stop-word and lemma normalisation; vectors come from TF-IDF and search runs as approximate nearest-neighbour over hnswlib. A TensorFlow embedding variant and test scripts sit alongside for comparison."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "retail-warehouse", year: "2025", kind: { tr: "Veri modelleme", en: "Data modelling" },
+    name: { tr: "Perakende Veri Modeli ve ABC Analizi", en: "Retail Data Model & ABC Analysis" },
+    one: {
+      tr: "On iki tablolu perakende şeması, otomatik üretilen ER diyagramı ve ürün segmentasyonu analizi.",
+      en: "A twelve-table retail schema, an auto-generated ER diagram and product segmentation analysis."
+    },
+    stack: ["Python", "Pandas", "Graphviz", "SQL", "Matplotlib"],
+    paras: {
+      tr: [
+        "Satış, satın alma, tedarikçi, ürün, kanal, takvim ve günlük stok tablolarından oluşan perakende veri modeli. Tablolar CSV olarak üretilip ilişkileriyle birlikte tutuluyor.",
+        "ER diyagramı elle çizilmiyor, koddan üretiliyor (Türkçe ve İngilizce iki sürüm). Model üzerinde ABC segmentasyonu ve özel gün etkisi gibi analizler çalıştırılıyor."
+      ],
+      en: [
+        "A retail data model of sales, purchasing, supplier, product, channel, calendar and daily stock tables, generated as CSVs and kept with their relationships.",
+        "The ER diagram isn't drawn by hand — it's generated from code, in Turkish and English versions. On top of the model, analyses such as ABC segmentation and special-day effects are run."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "etkim-ai", year: "2026", kind: { tr: "Ürün / Web", en: "Product / Web" },
+    name: { tr: "Etkim AI", en: "Etkim AI" },
+    one: {
+      tr: "React ve Vite üzerine kurulu, yapay zekâ destekli etkinlik uygulaması arayüzü.",
+      en: "An AI-assisted event application interface built on React and Vite."
+    },
+    stack: ["React", "Vite", "JavaScript", "ESLint"],
+    paras: {
+      tr: [
+        "Yapay zekâ destekli etkinlik ürünü için kurulan ön yüz uygulaması: React 18 ve Vite tabanlı, hızlı yenileme ve lint kurallarıyla birlikte yapılandırıldı.",
+        "Aynı ürün ailesinin tanıtım sayfası ayrı bir projede (PDR360) yürüyor; bu repo uygulamanın kendisine odaklanıyor."
+      ],
+      en: [
+        "The front-end application for an AI-assisted event product: React 18 on Vite, configured with fast refresh and lint rules.",
+        "The marketing page for the same product family lives in a separate project (PDR360); this repo is the application itself."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "pdr360-landing", year: "2026", kind: { tr: "Ürün / Web", en: "Product / Web" },
+    name: { tr: "PDR360 Tanıtım Sayfası", en: "PDR360 Landing Page" },
+    one: {
+      tr: "Eğitim odaklı, tek sayfalık tanıtım sitesi — React, Vite ve Tailwind ile.",
+      en: "An education-focused single-page marketing site built with React, Vite and Tailwind."
+    },
+    stack: ["React", "Vite", "Tailwind CSS", "PostCSS"],
+    paras: {
+      tr: [
+        "Rehberlik ve eğitim odaklı bir ürün için güven veren, tek sayfalık tanıtım sitesi. Bölümler tek akışta ilerliyor; mesaj sıralaması dönüşüm hedefine göre kuruldu.",
+        "React 18 + Vite üzerinde Tailwind ile yazıldı, statik olarak derlenip yayınlanıyor."
+      ],
+      en: [
+        "A single-page marketing site for a guidance and education product, built to read as trustworthy. Sections run in one flow, ordered around the conversion goal.",
+        "Written with Tailwind on React 18 + Vite, compiled statically for deployment."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "job-clinic-landing", year: "2026", kind: { tr: "Web / Statik", en: "Web / Static" },
+    name: { tr: "Job Clinic Tanıtım Sayfası", en: "Job Clinic Landing Page" },
+    one: {
+      tr: "Kendi alan adında yayınlanan, varlıkları kodla üretilmiş statik tanıtım sayfası.",
+      en: "A static landing page on its own domain, with assets generated by code."
+    },
+    stack: ["HTML", "CSS", "JavaScript", "Python", "GitHub Pages"],
+    paras: {
+      tr: [
+        "Derleme adımı olmayan, tek dosyalık statik tanıtım sayfası; kendi alan adıyla (CNAME) GitHub Pages üzerinden yayınlanıyor.",
+        "Sayfadaki e-posta ve yorum görselleri elle hazırlanmıyor: bir Python betiği referans SVG'leri üretiyor, böylece içerik değiştiğinde varlıklar yeniden üretilebiliyor."
+      ],
+      en: [
+        "A build-step-free static landing page, served from GitHub Pages on its own domain via CNAME.",
+        "The email and review visuals aren't hand-made: a Python script generates the reference SVGs, so assets can be regenerated when the content changes."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "software-dev-chatbot", year: "2025", kind: { tr: "GenAI / IBM", en: "GenAI / IBM" },
+    name: { tr: "Yazılım Geliştirme Sohbet Botu", en: "Software Development Chatbot" },
+    one: {
+      tr: "Node sunucusu üzerinden LLM API'sine bağlanan, geliştirici sorularına yanıt veren sohbet botu.",
+      en: "A chatbot answering developer questions through an LLM API behind a Node server."
+    },
+    stack: ["Node.js", "Express", "OpenAI API", "JavaScript"],
+    paras: {
+      tr: [
+        "IBM üretken yapay zekâ eğitimi kapsamında geliştirilen sohbet botu: istemci arayüzü statik dosyalarda, model çağrıları anahtarı sızdırmayacak şekilde Node sunucusunda tutuluyor.",
+        "Sistem promptu botu yazılım geliştirme sorularına odaklıyor; API anahtarı ortam değişkeninden okunuyor."
+      ],
+      en: [
+        "A chatbot built during IBM's generative AI course: the client sits in static files while model calls stay on the Node server so the key is never exposed.",
+        "A system prompt keeps the bot on software development questions; the API key is read from the environment."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "spring-docker-course", year: "2026", kind: { tr: "Backend", en: "Backend" },
+    name: { tr: "Spring Boot ve Docker Servisi", en: "Spring Boot & Docker Service" },
+    one: {
+      tr: "Maven ile derlenen, Docker imajı ve compose dosyasıyla birlikte gelen küçük Spring servisi.",
+      en: "A small Spring service built with Maven and shipped with a Docker image and compose file."
+    },
+    stack: ["Java", "Spring Boot", "Maven", "Docker"],
+    paras: {
+      tr: [
+        "Spring Boot ile yazılmış küçük bir HTTP servisi; asıl çalışma uygulamanın kendisi değil, paketleme ve çalıştırma zincirinin kurulması.",
+        "Maven wrapper ile derleme, Dockerfile ile imaj üretimi ve docker-compose ile yerel ayağa kaldırma tek repoda tanımlı — CI/CD hattının temelini bu kurulum oluşturuyor."
+      ],
+      en: [
+        "A small HTTP service in Spring Boot where the real work is the packaging and run chain rather than the app itself.",
+        "Maven wrapper builds, Dockerfile image creation and docker-compose local startup are all defined in one repo — this setup is the base the CI/CD pipeline builds on."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "sorting-analysis", year: "2025", kind: { tr: "Algoritma", en: "Algorithms" },
+    name: { tr: "Sıralama Algoritmaları Analizi", en: "Sorting Algorithm Analysis" },
+    one: {
+      tr: "Sıralama algoritmalarının ölçülen çalışma süreleriyle teorik karmaşıklığa karşı karşılaştırılması.",
+      en: "Sorting algorithms compared by measured runtime against their theoretical complexity."
+    },
+    stack: ["Java", "Benchmarking", "Rapor"],
+    paras: {
+      tr: [
+        "Birden fazla sıralama algoritması uygulanıp artan girdi boyutlarında ölçüldü; sonuçlar teorik karmaşıklık eğrileriyle birlikte raporlandı.",
+        "Rapor, hangi girdi büyüklüğünde hangi algoritmanın öne geçtiğini ve sabit çarpanların pratikte neden önemli olduğunu gösteriyor."
+      ],
+      en: [
+        "Several sorting algorithms were implemented and timed across growing input sizes, then reported against their theoretical complexity curves.",
+        "The report shows at which input size each algorithm takes the lead, and why constant factors matter in practice."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "lms-database", year: "2025", kind: { tr: "Veritabanı", en: "Database" },
+    name: { tr: "Öğrenme Yönetim Sistemi Veritabanı", en: "Learning Management System Database" },
+    one: {
+      tr: "Ders, öğrenci ve değerlendirme akışını taşıyan ilişkisel şema ve sorgu seti.",
+      en: "A relational schema and query set carrying course, student and assessment flows."
+    },
+    stack: ["SQL", "İlişkisel modelleme", "Java"],
+    paras: {
+      tr: [
+        "Bir öğrenme yönetim sistemi için ilişkisel şema: ders, kayıt, içerik ve değerlendirme tabloları normalize edilerek kuruldu.",
+        "Şemanın yanında raporlama sorguları yazıldı — ders bazlı ilerleme, teslim durumu ve not dağılımı gibi çıktılar doğrudan SQL ile alınıyor."
+      ],
+      en: [
+        "A relational schema for a learning management system: course, enrolment, content and assessment tables, normalised.",
+        "Reporting queries accompany the schema — per-course progress, submission state and grade distribution come straight out of SQL."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "network-assignments", year: "2025", kind: { tr: "Ağlar", en: "Networking" },
+    name: { tr: "Ağ Programlama Çalışmaları", en: "Network Programming Assignments" },
+    one: {
+      tr: "Soket seviyesinde istemci-sunucu iletişimi ve protokol davranışının incelenmesi.",
+      en: "Client-server communication at socket level and a study of protocol behaviour."
+    },
+    stack: ["Python", "Sockets", "TCP/UDP"],
+    paras: {
+      tr: [
+        "Soket seviyesinde istemci ve sunucu uygulamaları yazılarak bağlantı kurulumu, mesaj çerçeveleme ve hata durumları incelendi.",
+        "İki ödev halinde ilerliyor; ikincisi güvenilirlik ve kayıp senaryolarına odaklanıyor."
+      ],
+      en: [
+        "Client and server programs written at socket level to examine connection setup, message framing and error cases.",
+        "It runs as two assignments; the second focuses on reliability and loss scenarios."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  },
+  {
+    slug: "personal-cv-site", year: "2025", kind: { tr: "Web", en: "Web" },
+    name: { tr: "Kişisel CV Sitesi", en: "Personal CV Site" },
+    one: {
+      tr: "Özgeçmişin tek sayfada, derleme adımı olmadan yayınlanan HTML/CSS sürümü.",
+      en: "A single-page HTML/CSS version of the résumé, published with no build step."
+    },
+    stack: ["HTML", "CSS"],
+    paras: {
+      tr: [
+        "Özgeçmişin web sürümü: tek sayfa, harici bağımlılık yok, PDF sürümü de aynı klasörden indirilebiliyor.",
+        "Bu portfolyonun ilk hâli sayılabilir; buradaki içerik güncel portfolyoya taşındı."
+      ],
+      en: [
+        "The web version of the résumé: one page, no external dependencies, with the PDF downloadable from the same folder.",
+        "It can be read as the first version of this portfolio; its content moved into the current one."
+      ]
+    },
+    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+  }
+];
+
+const CVDATA = {
+  education: {
+    title: { tr: "Eğitim", en: "Education" },
+    items: [
+      { head: { tr: "TED Üniversitesi", en: "TED University" }, sub: { tr: "Bilgisayar Mühendisliği (BSc) · 2022–2026", en: "BSc Computer Engineering · 2022–2026" } },
+      { head: { tr: "Python Programlama Temelleri", en: "Python Programming Fundamentals" }, sub: { tr: "Tamamlanan ders programı · 2023", en: "Completed coursework · 2023" } }
+    ]
+  },
+  skills: {
+    title: { tr: "Yetkinlikler", en: "Skills" },
+    items: [
+      { head: { tr: "Java · Python", en: "Java · Python" }, sub: { tr: "Uygulama geliştirme, veri ve model çalışmaları", en: "Application development, data and model work" } },
+      { head: { tr: "Veritabanı · HTML/CSS", en: "Database · HTML/CSS" }, sub: { tr: "SQL şeması, sorgu ve arayüz kurulumu", en: "SQL schema, queries and interface setup" } },
+      { head: { tr: "Takım çalışması · Liderlik", en: "Team collaboration · Leadership" }, sub: { tr: "Hızlı öğrenen, organizasyon ve koordinasyon deneyimi", en: "Fast learner with organisation and coordination experience" } }
+    ]
+  },
+  experience: {
+    title: { tr: "Deneyim", en: "Experience" },
+    items: [
+      { head: { tr: "Herräng Dance Camp", en: "Herräng Dance Camp" }, sub: { tr: "Kamp yönetimi / yapım-onarım ekibi · 2023, 2024 · 35+ kişilik uluslararası ekip", en: "Camp management / construction team · 2023, 2024 · 35+ international team members" } },
+      { head: { tr: "Angora Dance Studio", en: "Angora Dance Studio" }, sub: { tr: "Eğitmen · 10/2023–01/2024 · 25 kişiye kadar sınıflar", en: "Instructor · 10/2023–01/2024 · classes of up to 25" } },
+      { head: { tr: "SANATEDU FEST, TED Üniversitesi", en: "SANATEDU FEST, TED University" }, sub: { tr: "Koordinatör · 12/2023 · 3 günlük festival, 700+ katılımcı", en: "Coordinator · 12/2023 · 3-day festival, 700+ attendees" } },
+      { head: { tr: "TEDU Partner Dansları Topluluğu", en: "TEDU Partner Dances Society" }, sub: { tr: "Kurucu başkan ve eğitmen · 2022–", en: "Founder, president and instructor · 2022–" } }
+    ]
+  }
+};
+
+const TYPE = {
+  "Grotesk": "--fh:'Space Grotesk','Libre Franklin',system-ui,sans-serif;--fb:'IBM Plex Sans',system-ui,sans-serif;",
+  "Franklin": "--fh:'Libre Franklin',system-ui,sans-serif;--fb:'Libre Franklin',system-ui,sans-serif;",
+  "Mono": "--fh:'JetBrains Mono',ui-monospace,monospace;--fb:'IBM Plex Sans',system-ui,sans-serif;",
+  "Serif": "--fh:'Instrument Serif',Georgia,serif;--fb:'IBM Plex Sans',system-ui,sans-serif;",
+  "Klasik": "--fh:'Cormorant Garamond',Garamond,serif;--fb:'Lora',Georgia,serif;"
+};
+
+const UI = {
+  tr: {
+    role: "Bilgisayar Mühendisi", cv: "CV", cvLine: "CV'yi görüntüle",
+    themeLabel: "Gece", themeLabelAlt: "Gündüz",
+    tickerLabel: "Seçilmiş çalışmalar", projects: "Projeler",
+    close: "Kapat", stack: "Teknolojiler", links: "Bağlantılar", elsewhere: "İletişim",
+    cvTitle: "Özgeçmiş", turkey: "Türkiye", motion: "hareket etüdü"
+  },
+  en: {
+    role: "Computer Engineer", cv: "CV", cvLine: "View CV",
+    themeLabel: "Dark", themeLabelAlt: "Light",
+    tickerLabel: "Selected work", projects: "Projects",
+    close: "Close", stack: "Stack", links: "Links", elsewhere: "Contact",
+    cvTitle: "Résumé", turkey: "Turkey", motion: "motion study"
+  }
+};
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: (props.defaultLang === "Türkçe") ? "tr" : "en",
+      theme: (props.defaultTheme === "Gece") ? "dark" : "light",
+      hover: null, open: null, tick: 0, tickOpacity: 1, media: {}, ready: {}
+    };
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      this.setState({ tickOpacity: 0 });
+      setTimeout(() => this.setState(s => ({ tick: (s.tick + 1) % DATA.length, tickOpacity: 1 })), 330);
+    }, 2800);
+    this.onKey = (e) => { if (e.key === "Escape") this.setState({ open: null }); };
+    window.addEventListener("keydown", this.onKey);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    window.removeEventListener("keydown", this.onKey);
+  }
+
+  loc(v, lang) { return (v && typeof v === "object" && (v.tr || v.en)) ? v[lang] : v; }
+
+  ensureMedia(slug) {
+    if (this.state.media[slug] !== undefined) return;
+    const media = Object.assign({}, this.state.media); media[slug] = null;
+    this.setState({ media });
+    (async () => {
+      let found = false;
+      for (const ext of [".mp4", ".webm", ".mov"]) {
+        const url = "videos/" + slug + ext;
+        try {
+          const r = await fetch(url, { method: "HEAD" });
+          if (r.ok) { found = url; break; }
+        } catch (e) { /* keep probing */ }
+      }
+      this.setState(s => ({ media: Object.assign({}, s.media, { [slug]: found }) }));
+    })();
+  }
+
+  videoEl(slug, controls) {
+    const url = this.state.media[slug];
+    if (!url) return null;
+    const ready = !!this.state.ready[slug];
+    const mark = () => { if (!this.state.ready[slug]) this.setState(s => ({ ready: Object.assign({}, s.ready, { [slug]: true }) })); };
+    return React.createElement("video", {
+      key: slug + (controls ? "-full" : "-row"),
+      src: url,
+      autoPlay: true, muted: true, loop: true, playsInline: true, controls: !!controls,
+      onLoadedData: mark, onPlaying: mark,
+      ref: (el) => { if (el) { el.muted = true; const pr = el.play(); if (pr && pr.catch) pr.catch(() => {}); } },
+      onError: () => this.setState(s => ({ media: Object.assign({}, s.media, { [slug]: false }) })),
+      style: {
+        position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover",
+        opacity: ready ? 1 : 0, transition: "opacity .35s ease"
+      }
+    });
+  }
+
+  renderVals() {
+    const lang = this.state.lang;
+    const ui = Object.assign({}, UI[lang]);
+    ui.themeLabel = this.state.theme === "dark" ? UI[lang].themeLabelAlt : UI[lang].themeLabel;
+
+    const segOn = "font-family:var(--fb);font-size:11px;letter-spacing:.14em;padding:7px 13px;border:0;cursor:pointer;background:var(--accent);color:#f8f4f4;";
+    const segOff = "font-family:var(--fb);font-size:11px;letter-spacing:.14em;padding:7px 13px;border:0;cursor:pointer;background:transparent;color:var(--muted);";
+
+    const projects = DATA.map((p, i) => {
+      const slug = p.slug;
+      return {
+        slug,
+        no: String(i + 1).padStart(2, "0"),
+        name: this.loc(p.name, lang),
+        one: this.loc(p.one, lang),
+        meta: this.loc(p.kind, lang) + " · " + p.year,
+        video: "videos/" + slug + ".mp4",
+        col: i % 2 === 0 ? "1" : "2",
+        align: i % 2 === 0 ? "right" : "left",
+        just: i % 2 === 0 ? "flex-end" : "flex-start",
+        isHovered: this.state.hover === slug,
+        videoEl: this.state.hover === slug ? this.videoEl(slug, false) : null,
+        motionLabel: UI[lang].motion + " — " + (typeof this.state.media[slug] === "string" ? this.state.media[slug] : "videos/" + slug + ".mp4"),
+        nameColor: this.state.hover === slug ? "var(--accent-ink)" : "var(--ink)",
+        open: () => { this.ensureMedia(slug); this.setState({ open: slug, hover: null }); },
+        enter: () => { this.ensureMedia(slug); this.setState({ hover: slug }); },
+        leave: () => this.setState(s => (s.hover === slug ? { hover: null } : null))
+      };
+    });
+
+    let active = null;
+    if (this.state.open) {
+      const i = DATA.findIndex(p => p.slug === this.state.open);
+      const p = DATA[i];
+      active = {
+        no: String(i + 1).padStart(2, "0"),
+        name: this.loc(p.name, lang),
+        one: this.loc(p.one, lang),
+        meta: this.loc(p.kind, lang) + " · " + p.year,
+        video: "videos/" + p.slug + ".mp4",
+        videoEl: this.videoEl(p.slug, true),
+        motionLabel: UI[lang].motion + " — " + (typeof this.state.media[p.slug] === "string" ? this.state.media[p.slug] : "videos/" + p.slug + ".mp4"),
+        paras: p.paras[lang],
+        stack: p.stack,
+        links: p.links.map(l => ({ label: this.loc(l.label, lang), url: l.url }))
+      };
+    }
+
+    return {
+      ui, active, projects,
+      theme: this.state.theme,
+      typeVars: TYPE[this.props.typeface] || TYPE["Franklin"],
+      cvUrl: CV,
+      projectCount: String(DATA.length).padStart(2, "0"),
+      tickerName: this.loc(DATA[this.state.tick].name, lang),
+      tickerOpacity: this.state.tickOpacity,
+      trBtn: lang === "tr" ? segOn : segOff,
+      enBtn: lang === "en" ? segOn : segOff,
+      setTr: () => this.setState({ lang: "tr" }),
+      setEn: () => this.setState({ lang: "en" }),
+      toggleTheme: () => this.setState(s => ({ theme: s.theme === "dark" ? "light" : "dark" })),
+      close: () => this.setState({ open: null })
+    };
+  }
+}
+</script>
+</body>
+</html>
