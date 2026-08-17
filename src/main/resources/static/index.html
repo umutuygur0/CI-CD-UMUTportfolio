@@ -5,135 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Umut Uygur portfolio sitesi. Bilgisayar Muhendisi, backend, cloud ve CI/CD projeleri."
+      content="Umut Uygur portfolio. Computer Engineer, backend, AI, cloud and CI/CD projects."
     />
     <title>Umut Uygur | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lora:wght@400;500;600&family=Libre+Franklin:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
+    <script src="portfolio-data.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
-    <header class="site-header" aria-label="Main navigation">
-      <a class="brand" href="#home">Umut Uygur</a>
-      <nav class="nav-links">
-        <a href="#projects">Projeler</a>
-        <a href="#contact">Iletisim</a>
-      </nav>
-    </header>
-
-    <main>
-      <section id="home" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-          <p class="eyebrow">Bilgisayar Muhendisi</p>
-          <h1>Umut Uygur</h1>
-          <p class="focus-line" aria-live="polite">
-            <span id="focus-line">Backend Development</span>
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#projects">Projeler</a>
-            <a class="button secondary" href="assets/umut-uygur-cv.pdf">CV</a>
+    <div class="page-shell" data-theme="light">
+      <header class="site-header">
+        <a class="brand" href="/">Umut Uygur</a>
+        <div class="header-actions">
+          <div class="segmented" aria-label="Language">
+            <button class="seg-option active" type="button" data-lang="tr">TR</button>
+            <button class="seg-option" type="button" data-lang="en">EN</button>
           </div>
+          <button class="outline-button" type="button" data-theme-toggle>Gece</button>
+          <a class="outline-button accent" href="assets/umut-uygur-cv.pdf" target="_blank" rel="noopener">CV</a>
         </div>
-      </section>
+      </header>
 
-      <section id="projects" class="section projects-section">
-        <div class="section-heading compact">
-          <p class="eyebrow">Selected Work</p>
-          <h2>Projeler</h2>
-        </div>
+      <main class="page-main">
+        <section class="hero">
+          <div class="hero-plate">
+            <img src="assets/portfolio-hero.png" alt="" />
+            <div class="hero-wash"></div>
+            <div class="hero-copy">
+              <h1>Umut Uygur</h1>
+              <div class="hero-meta">
+                <span data-i18n="role">Bilgisayar Muhendisi</span>
+                <a href="assets/umut-uygur-cv.pdf" target="_blank" rel="noopener" data-i18n="cvLine">CV'yi goruntule</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <div class="project-timeline">
-          <article class="project-row">
-            <a class="project-card wide" href="projects/project-1.html">
-              <div class="project-media">
-                <video
-                  class="project-video"
-                  muted
-                  loop
-                  playsinline
-                  preload="metadata"
-                  poster="assets/portfolio-hero.png"
-                >
-                  <source src="assets/projects/project-1.mp4" type="video/mp4" />
-                </video>
-                <span class="project-number">01</span>
-              </div>
-              <div class="project-copy">
-                <div class="project-topline">
-                  <span>Spring Boot</span>
-                  <span>AWS</span>
-                </div>
-                <h3>CI/CD Backend Deployment</h3>
-                <p>Docker, ECR ve EC2 uzerinde yayinlanan Spring Boot backend projesi.</p>
-              </div>
-            </a>
-          </article>
+        <section class="ticker-row" aria-live="polite">
+          <span class="ticker-dot"></span>
+          <span class="ticker-label" data-i18n="tickerLabel">Secilmis calismalar</span>
+          <span class="ticker-name" data-ticker>CI/CD Dagitim Hatti</span>
+        </section>
 
-          <article class="project-row">
-            <a class="project-card wide" href="projects/project-2.html">
-              <div class="project-media">
-                <video
-                  class="project-video"
-                  muted
-                  loop
-                  playsinline
-                  preload="metadata"
-                  poster="assets/portfolio-hero.png"
-                >
-                  <source src="assets/projects/project-2.mp4" type="video/mp4" />
-                </video>
-                <span class="project-number">02</span>
-              </div>
-              <div class="project-copy">
-                <div class="project-topline">
-                  <span>Frontend</span>
-                  <span>Portfolio</span>
-                </div>
-                <h3>Portfolio Interface</h3>
-                <p>Kisisel projeleri sade, hizli ve odakli gosteren web arayuzu.</p>
-              </div>
-            </a>
-          </article>
+        <section class="projects-section" id="projects">
+          <div class="section-head">
+            <h2 data-i18n="projects">Projeler</h2>
+            <span class="project-count" data-project-count>00</span>
+          </div>
+          <div class="project-list" data-project-list></div>
+        </section>
 
-          <article class="project-row">
-            <a class="project-card wide" href="projects/project-3.html">
-              <div class="project-media">
-                <video
-                  class="project-video"
-                  muted
-                  loop
-                  playsinline
-                  preload="metadata"
-                  poster="assets/portfolio-hero.png"
-                >
-                  <source src="assets/projects/project-3.mp4" type="video/mp4" />
-                </video>
-                <span class="project-number">03</span>
-              </div>
-              <div class="project-copy">
-                <div class="project-topline">
-                  <span>Cloud</span>
-                  <span>Automation</span>
-                </div>
-                <h3>Cloud Automation</h3>
-                <p>Sunucu kurulumu, image dagitimi ve deployment adimlarini toparlayan calisma.</p>
-              </div>
-            </a>
-          </article>
-        </div>
-      </section>
-
-      <section id="contact" class="section contact-section">
-        <div>
-          <p class="eyebrow">Contact</p>
-          <h2>Iletisim</h2>
-          <p>Projeler, kodlar ve profesyonel baglantilar tek yerde.</p>
-        </div>
-        <div class="contact-actions">
-          <a class="button primary" href="https://github.com/umutuygur0">GitHub</a>
-          <a class="button secondary" href="assets/umut-uygur-cv.pdf">CV</a>
-        </div>
-      </section>
-    </main>
+        <section class="contact-strip" id="contact">
+          <span data-i18n="elsewhere">Iletisim</span>
+          <a href="mailto:umuttuygurr@gmail.com">umuttuygurr@gmail.com</a>
+          <a href="https://github.com/umutuygur0" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/umut-uygur-24b920249" target="_blank" rel="noopener">LinkedIn</a>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
