@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Umut Uygur | Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="Main navigation">
+      <a class="brand" href="#home">Umut Uygur</a>
+      <nav class="nav-links">
+        <a href="#projects">Projeler</a>
+        <a href="#about">Hakkimda</a>
+        <a href="/swagger-ui/index.html">API</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Software Developer</p>
+          <h1>Umut Uygur</h1>
+          <p class="hero-copy">
+            Backend, cloud ve CI/CD odakli projeler gelistiren bir yazilim
+            gelistirici portfolio sayfasi.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">Projeleri Gor</a>
+            <a class="button secondary" href="/swagger-ui/index.html">Swagger API</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Work</p>
+          <h2>Projeler</h2>
+          <p>
+            Bu alanlari daha sonra kendi proje aciklamalarin, GitHub linklerin
+            ve canli demo adreslerinle guncelleyebilirsin.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-topline">
+              <span>Project 01</span>
+              <span>Spring Boot</span>
+            </div>
+            <h3>Proje 1</h3>
+            <p>
+              REST API, Docker ve AWS uzerinden yayinlanan backend projesi icin
+              kisa aciklama alani.
+            </p>
+            <a href="/swagger-ui/index.html">API dokumanini ac</a>
+          </article>
+
+          <article class="project-card">
+            <div class="project-topline">
+              <span>Project 02</span>
+              <span>Frontend</span>
+            </div>
+            <h3>Proje 2</h3>
+            <p>
+              Web arayuzu, kullanici deneyimi veya portfolio calismalari icin
+              guncellenebilir proje karti.
+            </p>
+            <a href="#contact">Detay eklenecek</a>
+          </article>
+
+          <article class="project-card">
+            <div class="project-topline">
+              <span>Project 03</span>
+              <span>Cloud</span>
+            </div>
+            <h3>Proje 3</h3>
+            <p>
+              CI/CD pipeline, Amazon ECR ve EC2 deployment surecini anlatmak
+              icin kullanabilecegin alan.
+            </p>
+            <a href="#contact">Detay eklenecek</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="about-band">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2>Backend ve cloud tarafinda ureten bir gelistirici.</h2>
+        </div>
+        <p>
+          Bu portfolio Spring Boot uygulamasinin icinden servis ediliyor.
+          GitHub Actions ile build edilip Docker image olarak AWS uzerinde
+          calistirilacak sekilde hazirlandi.
+        </p>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Iletisim</h2>
+          <p>
+            Buraya LinkedIn, GitHub, e-posta veya CV linklerini ekleyebilirsin.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a class="button primary" href="/greeting">Backend Test</a>
+          <a class="button secondary" href="/swagger-ui/index.html">Swagger UI</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
