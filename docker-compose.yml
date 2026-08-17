@@ -3,4 +3,4 @@ services:
     build: .
     image: coursera-spring-hello-world
     ports:
-      - "8081:80"
+      - "80:80"
