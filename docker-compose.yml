@@ -1,6 +1,6 @@
 services:
   app:
     build: .
-    image: coursera-spring-hello-world
+    image: umut-spring-hello-world
     ports:
       - "80:80"

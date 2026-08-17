@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.upwork</groupId>
-    <artifactId>coursera</artifactId>
+    <artifactId>umut</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>coursera</name>
+    <name>umut</name>
     <description>Hello World Application</description>
     <properties>
         <java.version>21</java.version>

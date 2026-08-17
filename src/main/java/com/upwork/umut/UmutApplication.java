@@ -1,4 +1,4 @@
-package com.upwork.coursera;
+package com.upwork.umut;
 
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -13,25 +13,25 @@ import org.springframework.context.annotation.Bean;
 
 
 @SpringBootApplication
-public class CourseraApplication {
-    private static final Logger log = LoggerFactory.getLogger(CourseraApplication.class);
+public class UmutApplication {
+    private static final Logger log = LoggerFactory.getLogger(UmutApplication.class);
 
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(CourseraApplication.class, args);
+        ApplicationContext ctx = SpringApplication.run(UmutApplication.class, args);
         if (log.isInfoEnabled()) {
             log.info(ApplicationStartupTraces.of(ctx));
         }
     }
 
     @Bean
-    public OpenAPI courseraOpenAPI() {
+    public OpenAPI umutOpenAPI() {
         return new OpenAPI().info(swaggerInfo()).externalDocs(swaggerExternalDoc());
     }
 
     private Info swaggerInfo() {
         return new Info()
-                .title("Project API")
-                .description("Project description API")
+                .title("Umut API")
+                .description("Umut portfolio backend API")
                 .version("1.0")
                 .license(new License().name("No license").url(""));
     }
