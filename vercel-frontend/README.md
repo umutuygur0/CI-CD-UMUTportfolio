@@ -4,7 +4,7 @@ This folder is the Vercel frontend project. Deploy only this directory to Vercel
 
 Recommended Vercel settings:
 
-- Production URL: `https://ci-cd-umu-tportfolio.vercel.app/`
+- Production URL: `https://umut-uygur.vercel.app/`
 - Framework preset: Other
 - Root directory: `vercel-frontend`
 - Build command: leave empty
