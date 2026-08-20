@@ -284,25 +284,25 @@ const DATA = [
     ]
   },
   {
-    slug: "nurol-supplychain-ai", year: "2026", kind: { tr: "Nurol / Teslim Edilen Sistem", en: "Nurol / Delivered System" },
-    name: { tr: "Nurol Supply Chain AI", en: "Nurol Supply Chain AI" },
+    slug: "nurol-supplychain-ai", year: "2025", kind: { tr: "Nurol Teknoloji / Teslim Edilen Sistem", en: "Nurol Teknoloji / Delivered System" },
+    name: { tr: "AI-Powered Demand Forecasting & Inventory Optimization System", en: "AI-Powered Demand Forecasting & Inventory Optimization System" },
     one: {
-      tr: "Tamamlanıp teslim edilen; satış, stok, tedarik ve dış faktör verilerinden talep tahmini, stok optimizasyonu ve otomatik sipariş önerisi üreten supply chain AI sistemi.",
-      en: "Completed and delivered supply-chain AI system that turns sales, inventory, procurement and external-context data into demand forecasts, inventory optimization and automatic order recommendations."
+      tr: "Endüstriyel supply-chain verisiyle talep tahmini, stok optimizasyonu ve otomatik sipariş önerisi üreten; kıdemli AI ve yazılım mühendisliği mentorluğu altında geliştirilen kurumsal karar destek sistemi.",
+      en: "Enterprise decision-support system developed under senior AI and software-engineering mentorship, using industrial supply-chain data for demand forecasting, inventory optimization and automatic reorder recommendations."
     },
-    stack: ["Python", "Pandas", "NumPy", "PostgreSQL", "SQL", "LightGBM", "Gradient Boosting", "Optuna", "FastAPI", "Streamlit", "Metabase", "Time Series", "ABC Analysis"],
+    stack: ["Python", "LightGBM", "Pandas", "NumPy", "Scikit-learn", "FastAPI", "PostgreSQL", "SQLAlchemy", "Docker", "React", "Streamlit", "APScheduler", "Alembic", "Optuna", "Agile"],
     paras: {
       tr: [
-        "Nurol Supply Chain AI projesi, geçmiş satış, stok, satın alma, tedarik süresi, takvim, hava durumu ve özel olay verilerini tek bir analitik hatta birleştiren tamamlanmış bir karar destek sistemi olarak teslim edildi. Sistem; stok maliyetini azaltma, stockout riskini düşürme, fazla stok oranını kontrol etme ve sipariş planlamasını otomatik önerilerle destekleme hedefleriyle geliştirildi.",
-        "Veri tarafında 13 tabloluk PostgreSQL / star-schema mimarisi hayata geçirildi: URUN, TEDARIKCI, SATIS, SATIN_ALMA, STOKGUNLUK, TAKVIM, HAVA_DURUMU, OZEL_OLAYLAR, ABC_SEGMENT ve TEDARIK_YOLU gibi tablolar satış, satın alma, günlük stok snapshot'ı, rota/lead time ve dış faktörleri aynı veri modelinde topluyor. Gerçek veri erişimi kısıtlı olduğunda geliştirme ve test için Faker/NumPy tabanlı, mevsimsellik, kanal etkisi, kampanya, hava ve gürültü içeren sentetik veri üretim hattı kuruldu.",
-        "Modelleme öncesinde kapsamlı EDA tamamlandı: IQR ve Z-score ile aykırı değer capping, eksik veri kontrolü, fiyat/indirim/satış korelasyonları, haftalık döngüler, hava etkisi, özel olaylar, müşteri segmentleri, lead time dağılımı, tedarikçi performansı ve lojistik mod/maliyet analizi incelendi. Feature engineering hattında lag özellikleri (t-1, t-7, t-14, t-28), rolling mean/std, ABC segment kodlaması, takvim ve dış faktör sinyalleri modele hazır hale getirildi.",
-        "Tahmin katmanında LightGBM / Gradient Boosting yaklaşımı, walk-forward cross-validation ve Optuna ile hiperparametre optimizasyonu kullanıldı. ML çıktısı stok motoruna bağlanarak Safety Stock, Reorder Point ve EOQ hesaplarıyla otomatik sipariş önerisi üretti; FastAPI tabanlı tahmin/stok API'si, dashboard entegrasyonu, model monitoring ve drift detection yaklaşımıyla sistem raporlarıyla birlikte tamamlanıp teslim edildi. Genel plan, sistem mimarisi, EDA ve ABC raporları portfolyoda local dosya olarak yer alıyor."
+        "Nurol Teknoloji için 10/2025 döneminde geliştirilen bu sistem, satış, stok, satın alma, tedarik süresi, takvim, hava durumu ve özel olay verilerini tek bir analitik hatta birleştiren tamamlanmış bir kurumsal supply-chain AI çözümü olarak teslim edildi. Amaç; stok maliyetini azaltmak, stockout riskini düşürmek, fazla stok oranını kontrol etmek ve sipariş planlamasını otomatik önerilerle desteklemekti.",
+        "Veri tarafında PostgreSQL üzerinde 13 tabloluk star-schema mimarisi kuruldu. Ürün, tedarikçi, satış, satın alma, günlük stok snapshot'ı, takvim, hava durumu, özel olay, ABC segmenti ve tedarik rotası tabloları aynı modelde toplandı. Gerçek veri erişimi kısıtlandığında Faker/NumPy tabanlı sentetik veri üretim hattı kurularak mevsimsellik, kanal etkisi, kampanya, hava ve kontrollü gürültü senaryoları üretildi.",
+        "Modelleme katmanında LightGBM / Gradient Boosting, walk-forward cross-validation, Scikit-learn metrikleri ve Optuna hiperparametre optimizasyonu kullanıldı. Feature engineering hattı lag değişkenleri, rolling mean/std, ABC segment kodlaması, takvim ve dış faktör sinyallerini modele hazırladı; çıktı Safety Stock, Reorder Point ve EOQ hesaplarıyla stok motoruna bağlandı.",
+        "Teslim paketi yalnızca notebook/model değil, kurumsal iş akışına yakın bir sistemdi: FastAPI tahmin ve stok servisleri, SQLAlchemy/Alembic veri katmanı, APScheduler ile periyodik işler, Docker tabanlı çalışma ortamı, React/Streamlit dashboardları, model monitoring ve drift detection planı birlikte tamamlandı. Proje, kıdemli AI ve yazılım mühendisleriyle yapılan mentorluk sürecinde gerçek ürünleşme pratikleriyle geliştirildi."
       ],
       en: [
-        "The Nurol Supply Chain AI project was completed and delivered as a decision-support system that combines historical sales, inventory, procurement, lead time, calendar, weather and special-event data into a single analytical pipeline. The system was built to reduce inventory cost, lower stockout risk, control excess inventory and support order planning with automatic recommendations.",
-        "On the data side, a 13-table PostgreSQL / star-schema architecture was implemented. Tables such as PRODUCT, SUPPLIER, SALES, PURCHASE_ORDER, DAILY_STOCK, CALENDAR, WEATHER, SPECIAL_EVENTS, ABC_SEGMENT and SUPPLY_ROUTE connect sales, purchasing, daily stock snapshots, route/lead-time parameters and external context in one model. When real data access was limited, a Faker/NumPy synthetic-data pipeline was built with seasonality, channel effects, promotions, weather and controlled noise.",
-        "Before modelling, a broad EDA layer was completed: IQR and Z-score outlier capping, missing-value checks, price/discount/sales correlations, weekly cycles, weather effects, special events, customer segments, lead-time distribution, supplier performance and logistics mode/cost trade-offs. The feature pipeline prepares lag features (t-1, t-7, t-14, t-28), rolling mean/std values, ABC segment encodings, calendar fields and external-factor signals for the model.",
-        "The forecasting layer used LightGBM / Gradient Boosting, walk-forward cross-validation and Optuna hyperparameter optimization. Model output feeds an inventory engine that calculates Safety Stock, Reorder Point and EOQ to generate automatic order recommendations; FastAPI prediction/inventory APIs, dashboard integration, model monitoring and drift detection formed the delivered system package. The general plan, system architecture, EDA and ABC reports are included as local portfolio files."
+        "Built for Nurol Teknoloji in 10/2025, this system was delivered as an enterprise supply-chain AI solution combining sales, inventory, procurement, lead-time, calendar, weather and special-event data into one analytical pipeline. The goal was to reduce inventory cost, lower stockout risk, control excess inventory and support order planning through automatic recommendations.",
+        "The data layer used a 13-table PostgreSQL star schema. Product, supplier, sales, purchase order, daily stock snapshot, calendar, weather, special event, ABC segment and supply route tables were connected in one model. When real-data access was limited, a Faker/NumPy synthetic-data pipeline generated seasonality, channel effects, promotions, weather signals and controlled noise scenarios.",
+        "The modeling layer used LightGBM / Gradient Boosting, walk-forward cross-validation, Scikit-learn metrics and Optuna hyperparameter optimization. Feature engineering prepared lag variables, rolling mean/std values, ABC segment encodings, calendar fields and external-factor signals; predictions fed an inventory engine calculating Safety Stock, Reorder Point and EOQ.",
+        "The delivered package was not just a notebook or model, but a system close to enterprise workflow: FastAPI prediction and inventory services, SQLAlchemy/Alembic data layer, APScheduler jobs, Docker runtime, React/Streamlit dashboards, plus model monitoring and drift-detection planning. It was developed under senior AI and software-engineering mentorship with a strong productization focus."
       ]
     },
     links: [
@@ -351,46 +351,77 @@ const DATA = [
         "SSB TEKNOFEST GPS-free navigasyon problemi için tamamlanan proje: UAV'nin GPS sinyali kesildiğinde konumunu koruyabilmesi için yalnızca IMU, manyetometre, barometre ve hava hızı sensörlerinden ΔNorth, ΔEast, ΔUp NED yer değiştirmesi tahmin ediliyor. GPS/EKF konum kolonları modele girdi olarak verilmedi; yalnızca ground-truth etiket olarak kullanıldı.",
         "Veri hattı Holybro Pixhawk PX4 uLog kayıtları üzerinde kuruldu: 120 uçuşun 118'i geçerli kabul edildi, yaklaşık 2 Hz örnekleme ve 250-360 saniyelik gerçek uçuşlar kullanıldı. PX4 topic instance kaymalarını yakalayan adaptif f-index eşleme, 12 sensör feature'ı, 40 adımlık yani 20 saniyelik pencereler, uçuş bazlı 80/16/22 train-val-test ayrımı ve mag/baro için per-window detrend normalizasyonu uygulandı.",
         "Model tarafında GRU, LSTM, AttentionGRU, Dilated CNN ve Dead Reckoning baseline karşılaştırıldı. Ana model GRU oldu: test setinde 4.124 m ortalama HPE, 1.549 m medyan HPE ve 3.800 m RMSE 3D elde etti; Dead Reckoning ortalaması 8.551 m seviyesinde kaldı. CNN uç hatalarda daha düşük p95 üretse de genel ortalamada GRU en dengeli çözüm olarak seçildi.",
-        "GPS kesintisi simülasyonu projenin karar verici kısmıydı: 22 test uçuşunda 3 farklı başlangıç noktası ve 4 farklı süreyle toplam 264 senaryo koşuldu. GRU, %20 başlangıçta 10 saniyelik kesintide 51.1 m, 30 saniyelik kesintide 95.4 m final HPE verdi; aynı senaryolarda Dead Reckoning 152.3 m ve 437.7 m hata üretti. Sensör ablasyonunda manyetometrenin çıkarılması hatayı %31.2, barometrenin çıkarılması %26.3 artırdı; bu yüzden sensör füzyonu projenin kritik çıktısı oldu."
+        "GPS kesintisi simülasyonu projenin karar verici kısmıydı: 22 test uçuşunda 3 farklı başlangıç noktası ve 4 farklı süreyle toplam 264 senaryo koşuldu. GRU, %20 başlangıçta 10 saniyelik kesintide 51.1 m, 30 saniyelik kesintide 95.4 m final HPE verdi; aynı senaryolarda Dead Reckoning 152.3 m ve 437.7 m hata üretti.",
+        "Bu proje aynı zamanda T.C. Sanayi ve Teknoloji Bakanlığı Yapay Zeka Uzmanlık Programı'nda ilk 100 öğrenci arasına girerek Uzmanlık Aşamasına geçmemle örtüşen teknik gelişim sürecimin güçlü çıktılarından biri oldu. 24+ saatlik temel eğitim, sınav ve performans değerlendirmesi sonrası uzmanlık aşamasına geçmek; gerçek dünya problemlerine yönelik derin öğrenme projeleri üretme hedefimi daha da somutlaştırdı."
       ],
       en: [
         "Completed for the SSB TEKNOFEST GPS-free navigation problem: when a UAV loses GPS, the system estimates ΔNorth, ΔEast and ΔUp NED displacement from IMU, magnetometer, barometer and airspeed sensors only. GPS/EKF position columns were never used as model inputs; they were kept strictly as ground-truth labels.",
         "The pipeline was built on Holybro Pixhawk PX4 uLog recordings: 118 valid flights out of 120, around 2 Hz sampling and 250-360 second real flights. It includes adaptive f-index matching for PX4 topic shifts, a 12-feature sensor set, 40-step / 20-second windows, flight-level 80/16/22 train-val-test splitting and per-window detrending for magnetometer and barometer signals.",
         "Modeling compared GRU, LSTM, AttentionGRU, Dilated CNN and a Dead Reckoning baseline. GRU became the main model, reaching 4.124 m mean HPE, 1.549 m median HPE and 3.800 m 3D RMSE on the test set, while Dead Reckoning stayed at 8.551 m mean HPE. CNN reduced some tail errors, but GRU was the most balanced real-time candidate overall.",
-        "The decisive experiment was GPS-outage simulation: 264 scenarios across 22 test flights, 3 outage start points and 4 outage durations. At the 20% flight start point, GRU produced 51.1 m final HPE for 10s outages and 95.4 m for 30s outages; Dead Reckoning produced 152.3 m and 437.7 m in the same cases. Sensor ablation showed magnetometer removal increased error by 31.2% and barometer removal by 26.3%, making sensor fusion one of the key project findings."
+        "The decisive experiment was GPS-outage simulation: 264 scenarios across 22 test flights, 3 outage start points and 4 outage durations. At the 20% flight start point, GRU produced 51.1 m final HPE for 10s outages and 95.4 m for 30s outages; Dead Reckoning produced 152.3 m and 437.7 m in the same cases.",
+        "This project also fits the same technical growth path as my selection into the top 100 of the Republic of Türkiye Ministry of Industry and Technology AI Specialization Program. After completing 24+ hours of foundational AI training and passing the exam/performance evaluation, the specialization phase strengthened my focus on building deep-learning projects for real-world problems."
       ]
     },
     links: [
       { label: { tr: "GitHub reposu", en: "GitHub repository" }, url: "https://github.com/umutuygur0/SSB_KONUMTESP-T" },
-      { label: { tr: "Final teknik rapor", en: "Final technical report" }, url: "uploads/ssb-gps-free-final-report.md" },
-      { label: { tr: "Proje planı", en: "Project plan" }, url: "uploads/ssb-gps-free-project-plan.md" },
-      { label: { tr: "Model raporu", en: "Model report" }, url: "uploads/ssb-gps-free-phase2-model-report.md" },
-      { label: { tr: "GPS kesintisi raporu", en: "GPS outage report" }, url: "uploads/ssb-gps-free-phase3-outage-report.md" },
-      { label: { tr: "Sunum akışı", en: "Presentation outline" }, url: "uploads/ssb-gps-free-presentation-outline.md" },
-      { label: { tr: "Sunum metni", en: "Presentation script" }, url: "uploads/ssb-gps-free-presentation-script.md" }
+      { label: { tr: "Final teknik rapor", en: "Final technical report" }, url: "reports/ssb-report.html?doc=final" },
+      { label: { tr: "Proje planı", en: "Project plan" }, url: "reports/ssb-report.html?doc=plan" },
+      { label: { tr: "Model raporu", en: "Model report" }, url: "reports/ssb-report.html?doc=phase2" },
+      { label: { tr: "GPS kesintisi raporu", en: "GPS outage report" }, url: "reports/ssb-report.html?doc=phase3" },
+      { label: { tr: "Sunum akışı", en: "Presentation outline" }, url: "reports/ssb-report.html?doc=outline" },
+      { label: { tr: "Sunum metni", en: "Presentation script" }, url: "reports/ssb-report.html?doc=script" }
     ]
   },
   {
-    slug: "ubeb-5g-road-safety", year: "2026", kind: { tr: "Teknofest", en: "Teknofest" },
-    name: "UBEB — 5G Road Safety AI",
+    slug: "ubeb-5g-road-safety", year: "2026", kind: { tr: "TEKNOFEST / Turkcell", en: "TEKNOFEST / Turkcell" },
+    name: "UBEB — 5G & AI Smart Road Safety",
     one: {
-      tr: "Yol videosu üzerinde araç, plaka ve araç içi riskli nesne tespiti yapan, gecikme ve FPS metriklerini raporlayan YOLO tabanlı sistem.",
-      en: "YOLO-based system detecting vehicles, plates and in-cabin risk objects on road video, with latency and FPS reporting."
+      tr: "Video akışından araç, plaka ve sürücü kabinindeki riskli davranışları tespit eden; OCR, sürücü analizi, risk skorlaması ve JSON çıktı üretimini tek inference pipeline içinde birleştiren çalışan 5G/AI yol güvenliği sistemi.",
+      en: "Working 5G/AI road-safety system that detects vehicles, plates and risky in-cabin driver behaviour from video, combining OCR, driver analysis, risk scoring and JSON output in one inference pipeline."
     },
-    stack: ["Python", "Ultralytics YOLOv8", "OpenCV", "OCR", "PyTorch"],
+    stack: ["Python", "PyTorch", "Ultralytics YOLOv8", "OpenCV", "EasyOCR", "fast-plate-ocr", "ONNX Runtime", "MediaPipe", "BoTSORT", "OSNet", "BDD100K", "Roboflow", "Docker", "FastAPI", "WebRTC"],
     paras: {
       tr: [
-        "TEKNOFEST 2026 5G ve Yapay Zekâ ile Akıllı Yol Güvenliği yarışması için Final Tasarım Raporu aşamasında geliştirilen çözüm. Verilen ya da canlı alınan video üzerinde araç tespiti, plaka tespiti, plaka OCR ve araç içi riskli nesne tespiti (telefon, sigara) yapılıyor; sürücü davranışı ve yorgunluk göstergeleri ayrı modüller olarak ekleniyor.",
-        "Çekirdek MVP, YOLO tabanlı nesne tespiti üzerine kurulu. OCR, nesne takibi ve yorgunluk analizi bağımsız bileşenler halinde pipeline'a bağlanıyor; çıktı, zaman damgalı işaretli video olarak üretiliyor.",
-        "Raporlanabilirlik projenin ayrılmaz parçası: her koşu için model güven skoru, FPS, uçtan uca gecikme ve doğruluk metrikleri veri seti split raporlarıyla birlikte üretiliyor. Repo; konfigürasyon, eğitim betikleri, model ağırlıkları ve metrik raporlarını tek pakette tutuyor."
+        "TEKNOFEST & Turkcell 5G ve Yapay Zeka ile Akıllı Yol Güvenliği Yarışması için ekiple geliştirilen proje. Finalden bir önceki yapay zeka geliştirme aşamasına kadar ilerledik ve FTR teslim dokümanı tamamlandı. Yarışma bağlamı, 5G network/API kabiliyetleriyle gerçek zamanlı yapay zeka uygulamalarını birleştiren yol güvenliği senaryolarına odaklanıyordu.",
+        "Sistem, dashcam video akışını uçtan uca işleyen çalışan bir inference pipeline olarak kuruldu: YOLOv8 ile araç tespiti, BoTSORT + OSNet ile çok araçlı takip, YOLO tabanlı plaka dedektörü, fast-plate-ocr / EasyOCR yedeği ve Türkiye plaka regex doğrulaması aynı hatta bağlandı. Araç tipi ve renk sınıflandırması ilk frame'lerde majority vote ile kilitlenerek JSON çıktısında tutarlı hale getirildi.",
+        "Kabin tarafında telefon, sigara, emniyet kemeri, su içme ve sürücü davranışı gibi risk sinyalleri ayrı uzman modeller ve MediaPipe FaceLandmarker ile analiz edildi. BDD100K, COCO, Roboflow, Kaggle StateFarm ve Teknofest örnek videoları üzerinden veri dönüştürme, annotation, domain-gap analizi ve robustness testleri yapıldı; 4K/50 FPS videoda tüm modeller dahil yaklaşık 2.5 FPS ölçüldü ve JSON üretimi 2 ms altına indirildi.",
+        "Ben özellikle Ultralytics YOLOv8, OpenCV, EasyOCR, MediaPipe, ONNX, domain-gap/robustness analizi, video inference, latency optimizasyonu ve Docker tabanlı deployment taraflarında çalıştım. Ürün çalışır haldeydi; ancak Docker paketleme tarafındaki hata nedeniyle final aşamasına geçemedik. Bu proje bana model doğruluğunun tek başına yetmediğini, containerization ve hedef ortamda sorunsuz çalışmanın ürünün ayrılmaz parçası olduğunu çok net gösterdi."
       ],
       en: [
-        "Built for the TEKNOFEST 2026 5G & AI Smart Road Safety competition during the Final Design Report stage. On recorded or live video the pipeline detects vehicles, license plates, reads plate text via OCR, and flags in-cabin risk objects such as phone and cigarette; driver behaviour and fatigue indicators come in as separate modules.",
-        "The core MVP is YOLO object detection. OCR, tracking and fatigue analysis attach as independent components, and the output is a timestamped annotated video.",
-        "Measurability is part of the deliverable: every run reports model confidence, FPS, end-to-end latency and accuracy alongside dataset split reports. The repository keeps configuration, training scripts, model weights and metric reports in one package."
+        "Built with my team for the TEKNOFEST & Turkcell 5G and AI Smart Road Safety Competition. We progressed to the AI development stage immediately before the final, and the FTR delivery document was completed. The competition context focused on road-safety scenarios combining 5G network/API capabilities with real-time AI applications.",
+        "The system was implemented as a working end-to-end inference pipeline over dashcam video: YOLOv8 vehicle detection, BoTSORT + OSNet multi-vehicle tracking, a YOLO-based license-plate detector, fast-plate-ocr / EasyOCR fallback and Turkish plate-regex validation were connected in one flow. Vehicle type and colour classification were locked through majority voting across early frames for consistent JSON output.",
+        "On the cabin side, risk signals such as phone, cigarette, seatbelt violation, drinking and driver behaviour were analyzed through specialist models and MediaPipe FaceLandmarker. Data conversion, annotation, domain-gap analysis and robustness testing used BDD100K, COCO, Roboflow, Kaggle StateFarm and Teknofest sample videos; the full model chain measured around 2.5 FPS on 4K/50 FPS videos, with JSON generation under 2 ms.",
+        "My work focused on Ultralytics YOLOv8, OpenCV, EasyOCR, MediaPipe, ONNX, domain-gap/robustness analysis, video inference, latency optimization and Docker-based deployment. The product was working, but a Docker packaging mistake prevented us from reaching the final stage. The project made the deployment lesson very concrete: a good AI model is not enough unless the containerized system runs reliably in the target environment."
       ]
     },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+    links: [
+      { label: { tr: "Yarışma sayfası", en: "Competition page" }, url: "https://teknofest.org/tr/yarismalar/5g-yapay-zeka-ile-akilli-yol-guvenligi-yarismasi/" },
+      { label: { tr: "GitHub reposu", en: "GitHub repository" }, url: "https://github.com/enestsc/UBEB-Teknofest-5G" },
+      { label: { tr: "FTR teslim PDF", en: "FTR delivery PDF" }, url: "uploads/ubeb-5g-road-safety-ftr-report.pdf" },
+      { label: { tr: "Kısa video", en: "Short video" }, url: "videos/ubeb-5g-road-safety.mp4" }
+    ]
+  },
+  {
+    slug: "values-career-vr-simulator", year: "2025–Present", kind: { tr: "VR / Milli Eğitim", en: "VR / Ministry of Education" },
+    name: { tr: "Values & Career Simulator", en: "Values & Career Simulator" },
+    one: {
+      tr: "Öğrencilerin kariyer farkındalığı ve karar verme süreçlerini destekleyen; ODTÜ Teknokent'te, TEDU Eğitim Dekanı liderliğinde geliştirilen Unity/OpenXR tabanlı immersive VR simülasyonu.",
+      en: "Unity/OpenXR immersive VR simulation for student career awareness and decision-making, built in ODTÜ Teknokent under the leadership of the TEDU Education Dean."
+    },
+    stack: ["Unity 6.1", "OpenXR", "C#", "XR Origin", "XR Interaction", "VR UX", "Simulation Design"],
+    paras: {
+      tr: [
+        "Türkiye Milli Eğitim Bakanlığı kapsamındaki Values & Career Simulator projesi, öğrencilerin değer farkındalığı, meslek keşfi ve karar verme süreçlerini deneyimleyerek öğrenmesini hedefleyen immersive VR simülasyonu olarak geliştiriliyor. Proje ODTÜ Teknokent ortamında, TEDU Eğitim Dekanı liderliğinde yürütülüyor.",
+        "Teknik tarafta Unity 6.1, OpenXR, C# ve XR Origin tabanlı cihaz bağımsız VR mimarisi kullanılıyor. Deneyim; öğrencinin farklı kariyer senaryolarında seçim yapabildiği, kararların sonuçlarını görebildiği ve rehberlik/öğrenme hedefleriyle uyumlu ilerleyen etkileşimli sahneler üzerine kuruluyor.",
+        "Çalışma; VR konforu, sahne geçişleri, etkileşim akışı, XR controller davranışları, kullanıcı yönlendirmeleri ve senaryo modülerliği gibi ürünleşme ayrıntılarını da kapsıyor. Amaç yalnızca görsel bir VR demo değil, eğitim ortamında kullanılabilecek anlaşılır ve sürdürülebilir bir kariyer farkındalığı deneyimi üretmek."
+      ],
+      en: [
+        "The Values & Career Simulator project, developed in the context of the Turkish Ministry of Education, is an immersive VR simulation designed to help students learn career awareness, values and decision-making through experience. The project is being built in ODTÜ Teknokent under the leadership of the TEDU Education Dean.",
+        "The technical stack uses Unity 6.1, OpenXR, C# and XR Origin for a device-independent VR architecture. The experience is built around interactive scenes where students make choices in different career scenarios, observe the consequences and progress through guidance-oriented learning objectives.",
+        "The work also covers product details such as VR comfort, scene transitions, interaction flow, XR controller behaviour, user guidance and modular scenario structure. The goal is not only a visual VR demo, but a clear and maintainable career-awareness experience usable in educational settings."
+      ]
+    },
+    links: []
   },
   {
     slug: "ulak101-rag", year: "2026", kind: { tr: "Kurumsal RAG", en: "Enterprise RAG" },
@@ -437,28 +468,6 @@ const DATA = [
     links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
   },
   {
-    slug: "pokemon-tcg-agent", year: "2026", kind: { tr: "Kaggle yarışması", en: "Kaggle competition" },
-    name: "Pokémon TCG AI Battle Agent",
-    one: {
-      tr: "Eksik bilgili kart oyununda karar veren, kural tabanlı temelin üzerine MCTS ve pekiştirmeli öğrenme koyan ajan.",
-      en: "An agent for an imperfect-information card game, layering MCTS and reinforcement learning over a rule-based core."
-    },
-    stack: ["Python", "MCTS", "Reinforcement Learning", "Kaggle SDK", "Jupyter"],
-    paras: {
-      tr: [
-        "The Pokémon Company'nin PTCG AI Battle Challenge simülasyon yarışması için geliştirilen ajan. Oyun eksik bilgili: rakibin eli bilinmiyor, kart çekimi ve yazı-tura ek rastlantısallık getiriyor, binlerce kart kombinasyonu farklı deste stratejileri üretiyor.",
-        "Kural tabanlı bir taban ajanla başlanıp üzerine arama ve öğrenme eklendi: Monte Carlo Tree Search ile hamle değerlendirme, pekiştirmeli öğrenme ile poliçe iyileştirme. Farklı destelere (Dragapult ex, Mega Lucario ex, Iono) karşı yerel maçlar JSON replay olarak kaydedilip karşılaştırmalı analiz edildi.",
-        "Değerlendirme, benzer seviyeli ajanlara karşı sürekli oynanan bölümler üzerinden Gaussian skill rating ile yapılıyor; bu nedenle geliştirme döngüsü yerel simülatörde toplu maç koşturma, submission paketleme ve leaderboard'daki iki aktif ajanı izleme üzerine kuruldu."
-      ],
-      en: [
-        "An agent for The Pokémon Company's PTCG AI Battle Challenge simulation competition. The game is imperfect-information: the opponent's hand is hidden, draws and coin flips add variance, and thousands of card combinations produce very different deck strategies.",
-        "Development started from a rule-based baseline and added search and learning on top: Monte Carlo Tree Search for move evaluation, reinforcement learning for policy improvement. Local matches against several decks (Dragapult ex, Mega Lucario ex, Iono) were logged as JSON replays and compared.",
-        "Scoring uses a Gaussian skill rating over episodes continuously played against similar-rated agents, so the development loop centred on batch local simulation, submission packaging, and tracking the two active ladder agents."
-      ]
-    },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
-  },
-  {
     slug: "trendyol-datathon", year: "2026", kind: { tr: "Kaggle yarışması", en: "Kaggle competition" },
     name: "Trendyol E-Ticaret Datathon",
     one: {
@@ -476,28 +485,6 @@ const DATA = [
         "Trendyol E-Commerce Competition 2026: predict whether a product is relevant to a given search term. Training data contains positive pairs only while the test set holds both relevant and irrelevant pairs — how to teach the model the negative case is left entirely to the participant.",
         "The solution combines search term, product title, category hierarchy and detailed attributes such as material, colour and style. Negatives were sampled with category and popularity balance, and the training setup was arranged to leak nothing into the public leaderboard (a leak-free submission is kept as a separate variant).",
         "The metric is macro-averaged F1, computed per class and averaged equally, so threshold choice and class balance mattered as much as the model. Experiments were versioned at notebook level and every submission archived with its score."
-      ]
-    },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
-  },
-  {
-    slug: "weapon-detection", year: "2026", kind: { tr: "Bitirme projesi", en: "Senior project" },
-    name: { tr: "Video Üzerinde Silah Tespiti", en: "Weapon Detection on Video" },
-    one: {
-      tr: "Seyrek etiketten tüm kareleri üreten yarı-otomatik etiketleme hattı ve üzerine kurulu silah tespiti modeli.",
-      en: "A semi-automatic labelling pipeline that propagates sparse labels to every frame, and the weapon detector trained on it."
-    },
-    stack: ["Python", "OpenCV", "YOLO", "NumPy"],
-    paras: {
-      tr: [
-        "Bitirme projesinin en maliyetli kısmı veri etiketlemeydi: video kareleri üzerinde kişi ve silah kutularının tek tek işaretlenmesi. Çözüm, seyrek olarak etiketlenmiş anahtar kareleri alıp aradaki tüm kareler için kutuları üreten bir yarı-otomatik etiketleme hattı oldu.",
-        "Hat, sekans bazlı kural desteğiyle çalışıyor: öznenin hareketsiz kaldığı aralıklarda kutu interpolasyon yerine sabit tutuluyor, böylece bekleme anlarında kayan kutular oluşmuyor. Üretilen etiketler hem YOLO formatında yazılıyor hem de görsel önizleme ve etiketli video olarak çıkarılıyor, yani her etiket gözle doğrulanabiliyor.",
-        "Ortaya çıkan veri seti üzerinde iki sınıflı (person, gun) tespit modeli eğitildi; çıktı, kutuların ve güven skorlarının basıldığı işaretli video."
-      ],
-      en: [
-        "The expensive part of this senior project was annotation: drawing person and weapon boxes frame by frame. The answer was a semi-automatic labelling pipeline that takes sparsely labelled key frames and generates boxes for every frame in between.",
-        "The pipeline is rule-aware per sequence: across intervals where the subject stands still, boxes are held rather than interpolated, so waiting moments don't produce drifting boxes. Generated labels are written in YOLO format and also rendered as image previews and labelled videos, so every label can be checked by eye.",
-        "A two-class detector (person, gun) was trained on the resulting dataset; the output is annotated video with boxes and confidence scores."
       ]
     },
     links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
@@ -672,46 +659,6 @@ const DATA = [
     links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
   },
   {
-    slug: "etkim-ai", year: "2026", kind: { tr: "Ürün / Web", en: "Product / Web" },
-    name: { tr: "Etkim AI", en: "Etkim AI" },
-    one: {
-      tr: "React ve Vite üzerine kurulu, yapay zekâ destekli etkinlik uygulaması arayüzü.",
-      en: "An AI-assisted event application interface built on React and Vite."
-    },
-    stack: ["React", "Vite", "JavaScript", "ESLint"],
-    paras: {
-      tr: [
-        "Yapay zekâ destekli etkinlik ürünü için kurulan ön yüz uygulaması: React 18 ve Vite tabanlı, hızlı yenileme ve lint kurallarıyla birlikte yapılandırıldı.",
-        "Aynı ürün ailesinin tanıtım sayfası ayrı bir projede (PDR360) yürüyor; bu repo uygulamanın kendisine odaklanıyor."
-      ],
-      en: [
-        "The front-end application for an AI-assisted event product: React 18 on Vite, configured with fast refresh and lint rules.",
-        "The marketing page for the same product family lives in a separate project (PDR360); this repo is the application itself."
-      ]
-    },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
-  },
-  {
-    slug: "pdr360-landing", year: "2026", kind: { tr: "Ürün / Web", en: "Product / Web" },
-    name: { tr: "PDR360 Tanıtım Sayfası", en: "PDR360 Landing Page" },
-    one: {
-      tr: "Eğitim odaklı, tek sayfalık tanıtım sitesi — React, Vite ve Tailwind ile.",
-      en: "An education-focused single-page marketing site built with React, Vite and Tailwind."
-    },
-    stack: ["React", "Vite", "Tailwind CSS", "PostCSS"],
-    paras: {
-      tr: [
-        "Rehberlik ve eğitim odaklı bir ürün için güven veren, tek sayfalık tanıtım sitesi. Bölümler tek akışta ilerliyor; mesaj sıralaması dönüşüm hedefine göre kuruldu.",
-        "React 18 + Vite üzerinde Tailwind ile yazıldı, statik olarak derlenip yayınlanıyor."
-      ],
-      en: [
-        "A single-page marketing site for a guidance and education product, built to read as trustworthy. Sections run in one flow, ordered around the conversion goal.",
-        "Written with Tailwind on React 18 + Vite, compiled statically for deployment."
-      ]
-    },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
-  },
-  {
     slug: "job-clinic-landing", year: "2026", kind: { tr: "Web / Statik", en: "Web / Static" },
     name: { tr: "Job Clinic Tanıtım Sayfası", en: "Job Clinic Landing Page" },
     one: {
@@ -831,26 +778,6 @@ const DATA = [
     },
     links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
   },
-  {
-    slug: "personal-cv-site", year: "2025", kind: { tr: "Web", en: "Web" },
-    name: { tr: "Kişisel CV Sitesi", en: "Personal CV Site" },
-    one: {
-      tr: "Özgeçmişin tek sayfada, derleme adımı olmadan yayınlanan HTML/CSS sürümü.",
-      en: "A single-page HTML/CSS version of the résumé, published with no build step."
-    },
-    stack: ["HTML", "CSS"],
-    paras: {
-      tr: [
-        "Özgeçmişin web sürümü: tek sayfa, harici bağımlılık yok, PDF sürümü de aynı klasörden indirilebiliyor.",
-        "Bu portfolyonun ilk hâli sayılabilir; buradaki içerik güncel portfolyoya taşındı."
-      ],
-      en: [
-        "The web version of the résumé: one page, no external dependencies, with the PDF downloadable from the same folder.",
-        "It can be read as the first version of this portfolio; its content moved into the current one."
-      ]
-    },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
-  }
 ];
 
 const CVDATA = {
