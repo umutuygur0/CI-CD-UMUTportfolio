@@ -200,6 +200,23 @@ a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
             </sc-for>
           </div>
         </div>
+        <sc-if value="{{ active.gallery }}" hint-placeholder-val="{{ false }}">
+          <div style="margin:44px 0 0;padding-top:24px;border-top:1px solid var(--rule);">
+            <div style="display:flex;align-items:end;justify-content:space-between;gap:14px;margin:0 0 14px;">
+              <div>
+                <p style="margin:0 0 8px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);">{{ active.gallery.title }}</p>
+                <h3 style="margin:0;font-family:var(--fh);font-size:24px;line-height:1.1;font-weight:700;color:var(--ink);">{{ active.gallery.name }}</h3>
+              </div>
+              <span style="font-size:11px;letter-spacing:.16em;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;">{{ active.gallery.count }}</span>
+            </div>
+            <div style="position:relative;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:#f5f7fb;box-shadow:0 18px 38px rgba(0,0,0,.08);">
+              <img src="{{ active.gallery.image }}" alt="{{ active.gallery.name }}" style="display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#f5f7fb;">
+              <button onClick="{{ active.gallery.prev }}" aria-label="Previous screenshot" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:38px;height:38px;border:1px solid var(--rule-strong);border-radius:999px;background:var(--bg);color:var(--ink);font-size:23px;line-height:1;cursor:pointer;box-shadow:0 10px 28px rgba(0,0,0,.14);" style-hover="background:var(--accent);border-color:var(--accent);color:#fff;text-decoration:none">‹</button>
+              <button onClick="{{ active.gallery.next }}" aria-label="Next screenshot" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:38px;height:38px;border:1px solid var(--rule-strong);border-radius:999px;background:var(--bg);color:var(--ink);font-size:23px;line-height:1;cursor:pointer;box-shadow:0 10px 28px rgba(0,0,0,.14);" style-hover="background:var(--accent);border-color:var(--accent);color:#fff;text-decoration:none">›</button>
+            </div>
+            <p style="margin:14px 0 0;font-size:14.5px;line-height:1.65;color:var(--muted);text-wrap:pretty;">{{ active.gallery.caption }}</p>
+          </div>
+        </sc-if>
       </article>
     </div>
   </sc-if>
@@ -293,6 +310,64 @@ const DATA = [
       { label: { tr: "Sistem mimarisi", en: "System architecture" }, url: "uploads/nurol-supplychain-architecture.docx" },
       { label: { tr: "EDA raporu", en: "EDA report" }, url: "uploads/nurol-supplychain-eda-report.docx" },
       { label: { tr: "ABC raporu", en: "ABC report" }, url: "uploads/nurol-supplychain-abc-report.docx" }
+    ],
+    gallery: [
+      {
+        src: "uploads/nurol-gallery-stock.svg",
+        name: { tr: "Stok optimizasyonu ve sipariş önerileri", en: "Stock optimization and reorder recommendations" },
+        caption: {
+          tr: "Ürün bazlı eldeki stok, yoldaki stok, net stok, safety stock, ROP ve EOQ değerlerini birlikte gösteren operasyon ekranı. ROP altındaki ürünler kırmızı durum satırı ve otomatik sipariş önerisiyle öne çıkarılıyor.",
+          en: "Operational screen combining on-hand stock, in-transit stock, net stock, safety stock, ROP and EOQ by product. Items below ROP are highlighted with red status rows and automatic reorder recommendations."
+        }
+      },
+      {
+        src: "uploads/nurol-gallery-risk.svg",
+        name: { tr: "Dış faktörler ve lojistik risk paneli", en: "External factors and logistics risk panel" },
+        caption: {
+          tr: "Bayram, tatil, lojistik kısıt ve fabrika kapanışı gibi olayların tedarik süresine etkisini izleyen panel. Riskli rotalarda düzeltilmiş süre ve risk seviyesi tablo halinde gösteriliyor.",
+          en: "Panel tracking how holidays, transport restrictions and factory closures affect lead times. Risky routes are summarized with adjusted delivery time and route-level risk."
+        }
+      },
+      {
+        src: "uploads/nurol-gallery-summary.svg",
+        name: { tr: "Yönetici özeti ve tahmin metriği", en: "Executive summary and forecast metrics" },
+        caption: {
+          tr: "MAPE, WAPE, stockout ve fazla stok oranlarını tek bakışta veren yönetici ekranı. Alt bölümde son 30 gün için gerçekleşen satış ve model tahmini birlikte karşılaştırılıyor.",
+          en: "Executive view presenting MAPE, WAPE, stockout and excess-inventory metrics at a glance. The lower chart compares actual sales and model forecasts over the last 30 days."
+        }
+      }
+    ]
+  },
+  {
+    slug: "gps-free-positioning", year: "2026", kind: { tr: "SSB / TEKNOFEST", en: "SSB / TEKNOFEST" },
+    name: { tr: "GPS Kullanmadan UAV Konum Tahmini", en: "GPS-Free UAV Position Estimation" },
+    one: {
+      tr: "GPS kesintisinde yalnızca IMU, manyetometre, barometre ve hava hızı sensörleriyle UAV konumunu tahmin eden; GRU ile 4.124 m ortalama HPE ve 10-30 sn kesintilerde 2-3x iyileşme sağlayan derin öğrenme sistemi.",
+      en: "Deep learning system estimating UAV position during GPS outages from IMU, magnetometer, barometer and airspeed only; GRU reached 4.124 m mean HPE and 2-3x gains over dead reckoning in 10-30s outages."
+    },
+    stack: ["Python", "PyTorch", "GRU", "LSTM", "AttentionGRU", "Dilated CNN", "PX4 uLog", "IMU", "Magnetometer", "Barometer", "Airspeed", "NumPy"],
+    paras: {
+      tr: [
+        "SSB TEKNOFEST GPS-free navigasyon problemi için tamamlanan proje: UAV'nin GPS sinyali kesildiğinde konumunu koruyabilmesi için yalnızca IMU, manyetometre, barometre ve hava hızı sensörlerinden ΔNorth, ΔEast, ΔUp NED yer değiştirmesi tahmin ediliyor. GPS/EKF konum kolonları modele girdi olarak verilmedi; yalnızca ground-truth etiket olarak kullanıldı.",
+        "Veri hattı Holybro Pixhawk PX4 uLog kayıtları üzerinde kuruldu: 120 uçuşun 118'i geçerli kabul edildi, yaklaşık 2 Hz örnekleme ve 250-360 saniyelik gerçek uçuşlar kullanıldı. PX4 topic instance kaymalarını yakalayan adaptif f-index eşleme, 12 sensör feature'ı, 40 adımlık yani 20 saniyelik pencereler, uçuş bazlı 80/16/22 train-val-test ayrımı ve mag/baro için per-window detrend normalizasyonu uygulandı.",
+        "Model tarafında GRU, LSTM, AttentionGRU, Dilated CNN ve Dead Reckoning baseline karşılaştırıldı. Ana model GRU oldu: test setinde 4.124 m ortalama HPE, 1.549 m medyan HPE ve 3.800 m RMSE 3D elde etti; Dead Reckoning ortalaması 8.551 m seviyesinde kaldı. CNN uç hatalarda daha düşük p95 üretse de genel ortalamada GRU en dengeli çözüm olarak seçildi.",
+        "GPS kesintisi simülasyonu projenin karar verici kısmıydı: 22 test uçuşunda 3 farklı başlangıç noktası ve 4 farklı süreyle toplam 264 senaryo koşuldu. GRU, %20 başlangıçta 10 saniyelik kesintide 51.1 m, 30 saniyelik kesintide 95.4 m final HPE verdi; aynı senaryolarda Dead Reckoning 152.3 m ve 437.7 m hata üretti. Sensör ablasyonunda manyetometrenin çıkarılması hatayı %31.2, barometrenin çıkarılması %26.3 artırdı; bu yüzden sensör füzyonu projenin kritik çıktısı oldu."
+      ],
+      en: [
+        "Completed for the SSB TEKNOFEST GPS-free navigation problem: when a UAV loses GPS, the system estimates ΔNorth, ΔEast and ΔUp NED displacement from IMU, magnetometer, barometer and airspeed sensors only. GPS/EKF position columns were never used as model inputs; they were kept strictly as ground-truth labels.",
+        "The pipeline was built on Holybro Pixhawk PX4 uLog recordings: 118 valid flights out of 120, around 2 Hz sampling and 250-360 second real flights. It includes adaptive f-index matching for PX4 topic shifts, a 12-feature sensor set, 40-step / 20-second windows, flight-level 80/16/22 train-val-test splitting and per-window detrending for magnetometer and barometer signals.",
+        "Modeling compared GRU, LSTM, AttentionGRU, Dilated CNN and a Dead Reckoning baseline. GRU became the main model, reaching 4.124 m mean HPE, 1.549 m median HPE and 3.800 m 3D RMSE on the test set, while Dead Reckoning stayed at 8.551 m mean HPE. CNN reduced some tail errors, but GRU was the most balanced real-time candidate overall.",
+        "The decisive experiment was GPS-outage simulation: 264 scenarios across 22 test flights, 3 outage start points and 4 outage durations. At the 20% flight start point, GRU produced 51.1 m final HPE for 10s outages and 95.4 m for 30s outages; Dead Reckoning produced 152.3 m and 437.7 m in the same cases. Sensor ablation showed magnetometer removal increased error by 31.2% and barometer removal by 26.3%, making sensor fusion one of the key project findings."
+      ]
+    },
+    links: [
+      { label: { tr: "GitHub reposu", en: "GitHub repository" }, url: "https://github.com/umutuygur0/SSB_KONUMTESP-T" },
+      { label: { tr: "Final teknik rapor", en: "Final technical report" }, url: "uploads/ssb-gps-free-final-report.md" },
+      { label: { tr: "Proje planı", en: "Project plan" }, url: "uploads/ssb-gps-free-project-plan.md" },
+      { label: { tr: "Model raporu", en: "Model report" }, url: "uploads/ssb-gps-free-phase2-model-report.md" },
+      { label: { tr: "GPS kesintisi raporu", en: "GPS outage report" }, url: "uploads/ssb-gps-free-phase3-outage-report.md" },
+      { label: { tr: "Sunum akışı", en: "Presentation outline" }, url: "uploads/ssb-gps-free-presentation-outline.md" },
+      { label: { tr: "Sunum metni", en: "Presentation script" }, url: "uploads/ssb-gps-free-presentation-script.md" }
     ]
   },
   {
@@ -445,28 +520,6 @@ const DATA = [
         "A pipeline that detects anomalies in infrared images and forwards the result to a local vision-language model. It runs on a single image or a directory, entirely locally, with no paid service.",
         "Flow: inference with custom YOLO weights; if a detection clears the confidence threshold, one of two routes — a text summary sent to an LLM, or the image (optionally with crops) sent to a VLM for richer analysis. The backend can be Ollama or llama.cpp's OpenAI-compatible server.",
         "All behaviour is set from a single config.yaml: weights path, threshold, backend and model name. A ground-truth whitelist plus an output validation script check detections against reference."
-      ]
-    },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
-  },
-  {
-    slug: "gps-free-positioning", year: "2026", kind: { tr: "Savunma / SSB", en: "Defence / SSB" },
-    name: { tr: "GPS Kullanmadan Konum Tahmini", en: "GPS-Free Position Estimation" },
-    one: {
-      tr: "Ham IMU, barometre ve hava hızı verisinden GPS olmadan konum tahmini — 120 gerçek uçuş üzerinde.",
-      en: "Estimating position without GPS from raw IMU, barometer and airspeed data across 120 real flights."
-    },
-    stack: ["Python", "Pandas", "Time-series ML", "Pixhawk logs"],
-    paras: {
-      tr: [
-        "GPS sinyali olmadığında konumu tahmin etme problemi. Ana veri seti Holybro Pixhawk kayıtları: 120 uçuş, uçuş başına 1046 sütun ham telemetri; dış doğrulama için ayrı bir Speedybee veri seti kullanıldı.",
-        "Veri seti seçimi projenin ilk kararıydı ve gerekçelendirildi: hazır Kaggle UAV veri seti sentetik, dakika aralıklı ve yalnızca görev seviyesinde tablosal olduğu için elendi — ihtiyaç, zamanla sıralanmış gerçek uçuşlar ve ham ivmeölçer/jiroskop/manyetometre/barometre/hava hızı sinyalleri ile GPS ground truth idi.",
-        "Çalışma iki fazlı: önce veri analizi ve sinyal kalitesi incelemesi, sonra GPS'i etiket olarak kullanan model eğitimi. Değerlendirme, GPS'in kesintiye uğradığı senaryolarda sapmanın zamanla nasıl büyüdüğü üzerinden yapılıyor."
-      ],
-      en: [
-        "The problem: estimate position when the GPS signal is gone. The primary dataset is Holybro Pixhawk logs — 120 flights, 1046 columns of raw telemetry per flight — with a separate Speedybee dataset used for external validation.",
-        "Dataset choice was the project's first decision and it was argued explicitly: an off-the-shelf Kaggle UAV set was rejected as synthetic, minute-interval and only mission-level tabular — what the work needed was time-ordered real flights with raw accelerometer, gyro, magnetometer, barometer and airspeed signals plus GPS ground truth.",
-        "The work runs in two phases: data analysis and signal quality review, then model training that uses GPS as the label. Evaluation looks at how drift grows over time in scenarios where GPS drops out."
       ]
     },
     links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
@@ -858,7 +911,7 @@ class Component extends DCLogic {
     this.state = {
       lang: (props.defaultLang === "Türkçe") ? "tr" : "en",
       theme: (props.defaultTheme === "Gece") ? "dark" : "light",
-      hover: null, open: null, tick: 0, tickOpacity: 1, media: {}, ready: {}
+      hover: null, open: null, tick: 0, tickOpacity: 1, media: {}, ready: {}, gallery: {}
     };
   }
 
@@ -913,6 +966,29 @@ class Component extends DCLogic {
     });
   }
 
+
+  galleryFor(p, lang) {
+    const items = p.gallery || [];
+    if (!items.length) return null;
+    const current = (this.state.gallery && this.state.gallery[p.slug]) || 0;
+    const idx = ((current % items.length) + items.length) % items.length;
+    const item = items[idx];
+    const move = (step) => this.setState(s => {
+      const gallery = Object.assign({}, s.gallery || {});
+      const now = gallery[p.slug] || 0;
+      gallery[p.slug] = (now + step + items.length) % items.length;
+      return { gallery };
+    });
+    return {
+      title: lang === "tr" ? "Arayüz ekranları" : "Interface screens",
+      count: String(idx + 1).padStart(2, "0") + " / " + String(items.length).padStart(2, "0"),
+      image: item.src,
+      name: this.loc(item.name, lang),
+      caption: this.loc(item.caption, lang),
+      prev: () => move(-1),
+      next: () => move(1)
+    };
+  }
   renderVals() {
     const lang = this.state.lang;
     const ui = Object.assign({}, UI[lang]);
@@ -957,7 +1033,8 @@ class Component extends DCLogic {
         motionLabel: UI[lang].motion + " — " + (typeof this.state.media[p.slug] === "string" ? this.state.media[p.slug] : "videos/" + p.slug + ".mp4"),
         paras: p.paras[lang],
         stack: p.stack,
-        links: p.links.map(l => ({ label: this.loc(l.label, lang), url: l.url }))
+        links: p.links.map(l => ({ label: this.loc(l.label, lang), url: l.url })),
+        gallery: this.galleryFor(p, lang)
       };
     }
 
