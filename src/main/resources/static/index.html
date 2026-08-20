@@ -210,6 +210,35 @@ const DATA = [
     ]
   },
   {
+    slug: "library-occupancy", year: "2025-2026", kind: { tr: "TED Üniversitesi / Computer Vision", en: "TED University / Computer Vision" },
+    name: { tr: "Library Occupancy Detection System", en: "Library Occupancy Detection System" },
+    one: {
+      tr: "TED Üniversitesi kütüphaneleri için 40+ kamera ve 400 koltuk ölçeğinde EMPTY/OCCUPIED/HOLD sınıflandırması yapan YOLOv8 + SSIM tabanlı doluluk izleme sistemi.",
+      en: "YOLOv8 + SSIM occupancy monitoring system for TED University libraries, designed around 40+ cameras and 400 seats with EMPTY/OCCUPIED/HOLD classification."
+    },
+    stack: ["Python", "OpenCV", "YOLOv8", "Ultralytics", "SSIM", "NumPy", "Polygon ROI", "Computer Vision"],
+    paras: {
+      tr: [
+        "TED Üniversitesi ile yapılan özel bir iş birliği kapsamında, üniversite kütüphanesindeki masa/koltuk doluluk durumunu bilgisayarlı görü ile izleyen bir sistem geliştirdim. Yaklaşık 105.000 TL onaylı kurumsal bütçeyle planlanan çözüm, 2 kütüphane, 40+ kamera ve 400 koltuk ölçeğinde EMPTY, OCCUPIED ve HOLD durumlarını izlemeyi hedefliyor.",
+        "Sistem, tavana yerleştirilen kameralardan periyodik görüntüler alıyor ve her koltuk alanını poligon bölge olarak değerlendiriyor. YOLOv8 (Ultralytics) ile nesne algılama, SSIM tabanlı referans görüntü benzerliğiyle birleştirilerek koltuğun boş, dolu ya da geçiş durumunda olup olmadığı çıkarılıyor.",
+        "Benim katkım; koltuk bölgelerini poligon olarak tanımlayan, baseline referans görüntülerini alan ve canlı izleme hattını çalıştıran modüler Python scriptlerini tasarlamak oldu. Mimari yeni kamera veya yeni kütüphane bölgesi eklendiğinde genişleyebilecek şekilde ayrık modüllerle kuruldu.",
+        "Proje yalnızca algoritma değil, gerçek kurulum planı da içeriyor: PoE kamera yerleşimi, donanım maliyeti, sistem testleri ve kütüphane operasyonlarında kaynak yönetimini iyileştirme hedefi birlikte ele alındı. Public GitHub reposundaki demo videosu kısaltılarak portfolyoya eklendi; sunum PDF'i ve kurulum dokümanı da proje bağlantılarında yer alıyor."
+      ],
+      en: [
+        "This project is a specialized collaboration with TED University to monitor library desk and seat occupancy using computer vision. With about 105,000 TRY of approved institutional funding, the system targets 2 university libraries, 40+ cameras and 400 seats, classifying each seat as EMPTY, OCCUPIED or HOLD.",
+        "Ceiling-mounted cameras capture periodic snapshots, and each seat is evaluated as a polygonal region. YOLOv8 (Ultralytics) object detection is combined with SSIM-based reference-image similarity to infer whether a seat is free, occupied or in a transitional hold state.",
+        "My work focused on designing modular Python scripts for polygon seat-area definition, baseline reference capture and the live monitoring pipeline. The architecture is split into reusable modules so additional cameras or library zones can be integrated without rewriting the whole system.",
+        "The project also includes a practical deployment plan: PoE camera placement, hardware cost, system testing and the operational goal of improving library resource management. The public GitHub demo video was shortened for the portfolio; the presentation PDF and setup document are included in the project links."
+      ]
+    },
+    links: [
+      { label: { tr: "GitHub reposu", en: "GitHub repository" }, url: "https://github.com/umutuygur0/Smart-Library-Monitoring-System" },
+      { label: { tr: "Kısa demo", en: "Short demo" }, url: "videos/library-occupancy.mp4" },
+      { label: { tr: "Sunum PDF", en: "Presentation PDF" }, url: "uploads/library-occupancy-presentation.pdf" },
+      { label: { tr: "Kurulum dokümanı", en: "Setup document" }, url: "uploads/library-occupancy-system-cost.docx" }
+    ]
+  },
+  {
     slug: "ubeb-5g-road-safety", year: "2026", kind: { tr: "Teknofest", en: "Teknofest" },
     name: "UBEB — 5G Road Safety AI",
     one: {
@@ -403,28 +432,6 @@ const DATA = [
         "A decision engine that scores asset classes and proposes portfolio weights per risk profile. It was corrected across six versions against real data, each version noting which behaviour changed and why.",
         "Notable design decisions: narrowing the neutral threshold so the engine can't get stuck in the undecided band; per-asset min/max bounds with re-normalisation after adjustment; and percentile ranking computed over a rolling 252-day window instead of full history.",
         "Crisis mode fires two ways: a composite risk-score threshold, or hard triggers such as VIX > 40 or CDS > 700. The engine runs from the CLI with a profile and date, and emits a statistical report plus a decision schema as PDF/PNG."
-      ]
-    },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
-  },
-  {
-    slug: "library-occupancy", year: "2025", kind: { tr: "Gömülü / IoT", en: "Embedded / IoT" },
-    name: { tr: "Kütüphane Masa Doluluk Takibi", en: "Library Desk Occupancy Tracking" },
-    one: {
-      tr: "Kütüphanedeki masaların anlık doluluk durumunu kameradan çıkarıp gösteren sistem tasarımı.",
-      en: "A system that reads live desk occupancy in a library from camera feeds and surfaces it."
-    },
-    stack: ["Python", "Computer Vision", "PoE kamera", "Sistem tasarımı"],
-    paras: {
-      tr: [
-        "Kütüphanede boş masa arayarak dolaşma problemini çözmeyi hedefleyen sistem: kameradan alınan görüntü üzerinde masa bölgeleri tanımlanıyor, her bölgenin dolu/boş durumu çıkarılıyor ve anlık doluluk kullanıcıya gösteriliyor.",
-        "Çalışma yalnızca modelden ibaret değil: PoE kamera yerleşimi, kablolama ve donanım maliyeti dahil kurulum planı da çıkarıldı — yani kampüste gerçekten kurulabilir bir teklif olarak sunuldu.",
-        "Sunum ve demo videosu ile birlikte teslim edildi."
-      ],
-      en: [
-        "A system aimed at the problem of wandering a library looking for a free desk: desk regions are defined on the camera view, each region is classified occupied or free, and live occupancy is surfaced to the user.",
-        "The work isn't only the model: an installation plan covering PoE camera placement, cabling and hardware cost was produced — presented as a proposal that could actually be deployed on campus.",
-        "Delivered with a presentation deck and a demo video."
       ]
     },
     links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
