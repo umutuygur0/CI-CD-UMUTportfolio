@@ -239,6 +239,35 @@ const DATA = [
     ]
   },
   {
+    slug: "nurol-supplychain-ai", year: "2026", kind: { tr: "Nurol / Teslim Edilen Sistem", en: "Nurol / Delivered System" },
+    name: { tr: "Nurol Supply Chain AI", en: "Nurol Supply Chain AI" },
+    one: {
+      tr: "Tamamlanıp teslim edilen; satış, stok, tedarik ve dış faktör verilerinden talep tahmini, stok optimizasyonu ve otomatik sipariş önerisi üreten supply chain AI sistemi.",
+      en: "Completed and delivered supply-chain AI system that turns sales, inventory, procurement and external-context data into demand forecasts, inventory optimization and automatic order recommendations."
+    },
+    stack: ["Python", "Pandas", "NumPy", "PostgreSQL", "SQL", "LightGBM", "Gradient Boosting", "Optuna", "FastAPI", "Streamlit", "Metabase", "Time Series", "ABC Analysis"],
+    paras: {
+      tr: [
+        "Nurol Supply Chain AI projesi, geçmiş satış, stok, satın alma, tedarik süresi, takvim, hava durumu ve özel olay verilerini tek bir analitik hatta birleştiren tamamlanmış bir karar destek sistemi olarak teslim edildi. Sistem; stok maliyetini azaltma, stockout riskini düşürme, fazla stok oranını kontrol etme ve sipariş planlamasını otomatik önerilerle destekleme hedefleriyle geliştirildi.",
+        "Veri tarafında 13 tabloluk PostgreSQL / star-schema mimarisi hayata geçirildi: URUN, TEDARIKCI, SATIS, SATIN_ALMA, STOKGUNLUK, TAKVIM, HAVA_DURUMU, OZEL_OLAYLAR, ABC_SEGMENT ve TEDARIK_YOLU gibi tablolar satış, satın alma, günlük stok snapshot'ı, rota/lead time ve dış faktörleri aynı veri modelinde topluyor. Gerçek veri erişimi kısıtlı olduğunda geliştirme ve test için Faker/NumPy tabanlı, mevsimsellik, kanal etkisi, kampanya, hava ve gürültü içeren sentetik veri üretim hattı kuruldu.",
+        "Modelleme öncesinde kapsamlı EDA tamamlandı: IQR ve Z-score ile aykırı değer capping, eksik veri kontrolü, fiyat/indirim/satış korelasyonları, haftalık döngüler, hava etkisi, özel olaylar, müşteri segmentleri, lead time dağılımı, tedarikçi performansı ve lojistik mod/maliyet analizi incelendi. Feature engineering hattında lag özellikleri (t-1, t-7, t-14, t-28), rolling mean/std, ABC segment kodlaması, takvim ve dış faktör sinyalleri modele hazır hale getirildi.",
+        "Tahmin katmanında LightGBM / Gradient Boosting yaklaşımı, walk-forward cross-validation ve Optuna ile hiperparametre optimizasyonu kullanıldı. ML çıktısı stok motoruna bağlanarak Safety Stock, Reorder Point ve EOQ hesaplarıyla otomatik sipariş önerisi üretti; FastAPI tabanlı tahmin/stok API'si, dashboard entegrasyonu, model monitoring ve drift detection yaklaşımıyla sistem raporlarıyla birlikte tamamlanıp teslim edildi. Genel plan, sistem mimarisi, EDA ve ABC raporları portfolyoda local dosya olarak yer alıyor."
+      ],
+      en: [
+        "The Nurol Supply Chain AI project was completed and delivered as a decision-support system that combines historical sales, inventory, procurement, lead time, calendar, weather and special-event data into a single analytical pipeline. The system was built to reduce inventory cost, lower stockout risk, control excess inventory and support order planning with automatic recommendations.",
+        "On the data side, a 13-table PostgreSQL / star-schema architecture was implemented. Tables such as PRODUCT, SUPPLIER, SALES, PURCHASE_ORDER, DAILY_STOCK, CALENDAR, WEATHER, SPECIAL_EVENTS, ABC_SEGMENT and SUPPLY_ROUTE connect sales, purchasing, daily stock snapshots, route/lead-time parameters and external context in one model. When real data access was limited, a Faker/NumPy synthetic-data pipeline was built with seasonality, channel effects, promotions, weather and controlled noise.",
+        "Before modelling, a broad EDA layer was completed: IQR and Z-score outlier capping, missing-value checks, price/discount/sales correlations, weekly cycles, weather effects, special events, customer segments, lead-time distribution, supplier performance and logistics mode/cost trade-offs. The feature pipeline prepares lag features (t-1, t-7, t-14, t-28), rolling mean/std values, ABC segment encodings, calendar fields and external-factor signals for the model.",
+        "The forecasting layer used LightGBM / Gradient Boosting, walk-forward cross-validation and Optuna hyperparameter optimization. Model output feeds an inventory engine that calculates Safety Stock, Reorder Point and EOQ to generate automatic order recommendations; FastAPI prediction/inventory APIs, dashboard integration, model monitoring and drift detection formed the delivered system package. The general plan, system architecture, EDA and ABC reports are included as local portfolio files."
+      ]
+    },
+    links: [
+      { label: { tr: "Genel plan PDF", en: "General plan PDF" }, url: "uploads/nurol-supplychain-project-overview.pdf" },
+      { label: { tr: "Sistem mimarisi", en: "System architecture" }, url: "uploads/nurol-supplychain-architecture.docx" },
+      { label: { tr: "EDA raporu", en: "EDA report" }, url: "uploads/nurol-supplychain-eda-report.docx" },
+      { label: { tr: "ABC raporu", en: "ABC report" }, url: "uploads/nurol-supplychain-abc-report.docx" }
+    ]
+  },
+  {
     slug: "ubeb-5g-road-safety", year: "2026", kind: { tr: "Teknofest", en: "Teknofest" },
     name: "UBEB — 5G Road Safety AI",
     one: {
@@ -557,26 +586,6 @@ const DATA = [
       en: [
         "Raw web traffic logs are cleaned and each row collapsed into a single text field; IP, timestamp, HTTP method, URL, status code and content size are indexed together.",
         "On the query side there is WordNet synonym expansion plus stop-word and lemma normalisation; vectors come from TF-IDF and search runs as approximate nearest-neighbour over hnswlib. A TensorFlow embedding variant and test scripts sit alongside for comparison."
-      ]
-    },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
-  },
-  {
-    slug: "retail-warehouse", year: "2025", kind: { tr: "Veri modelleme", en: "Data modelling" },
-    name: { tr: "Perakende Veri Modeli ve ABC Analizi", en: "Retail Data Model & ABC Analysis" },
-    one: {
-      tr: "On iki tablolu perakende şeması, otomatik üretilen ER diyagramı ve ürün segmentasyonu analizi.",
-      en: "A twelve-table retail schema, an auto-generated ER diagram and product segmentation analysis."
-    },
-    stack: ["Python", "Pandas", "Graphviz", "SQL", "Matplotlib"],
-    paras: {
-      tr: [
-        "Satış, satın alma, tedarikçi, ürün, kanal, takvim ve günlük stok tablolarından oluşan perakende veri modeli. Tablolar CSV olarak üretilip ilişkileriyle birlikte tutuluyor.",
-        "ER diyagramı elle çizilmiyor, koddan üretiliyor (Türkçe ve İngilizce iki sürüm). Model üzerinde ABC segmentasyonu ve özel gün etkisi gibi analizler çalıştırılıyor."
-      ],
-      en: [
-        "A retail data model of sales, purchasing, supplier, product, channel, calendar and daily stock tables, generated as CSVs and kept with their relationships.",
-        "The ER diagram isn't drawn by hand — it's generated from code, in Turkish and English versions. On top of the model, analyses such as ABC segmentation and special-day effects are run."
       ]
     },
     links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
