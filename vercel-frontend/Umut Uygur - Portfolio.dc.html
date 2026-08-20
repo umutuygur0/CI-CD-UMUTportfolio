@@ -211,6 +211,33 @@ const GH = "https://github.com/umutuygur0";
 
 const DATA = [
   {
+    slug: "multi-camera-reid-htr", year: "2025", kind: { tr: "Havelsan HTR / Ar-Ge", en: "Havelsan HTR / R&D" },
+    name: { tr: "Multi-Camera Real-Time Object Tracking & Re-ID - HTR", en: "Multi-Camera Real-Time Object Tracking & Re-ID - HTR" },
+    one: {
+      tr: "15 canlı kamerada hedefi 2 saniye içinde kameralar arasında yeniden tanımlayan, yüz görünmese bile takibi sürdüren ve 1 saniyenin altında sabotaj alarmı üreten gerçek zamanlı AI sistemi.",
+      en: "Real-time 15-camera AI system that re-identifies a target across cameras within 2 seconds even without visible faces, with sub-second sabotage alarms."
+    },
+    stack: ["Python", "YOLOv11s", "TorchReID", "OSNet", "BoT-SORT", "BoxMOT", "GStreamer", "Flask", "WebSocket", "Multi-Object Tracking", "Re-Identification", "Real-Time AI"],
+    paras: {
+      tr: [
+        "Bu proje, Havelsan Teknoloji Radar şirketindeki Ar-Ge Yazılım Stajım sırasında geliştirildi. Gerçek zamanlı çoklu kamera izleme, çoklu nesne takibi, kameralar arası kişi yeniden tanımlama, dinamik alarm yönetimi ve sabotaj algılamayı tek bir full-stack mimaride birleştiren operasyonel bir sistem kurdum.",
+        "Sistem 15 canlı kamera akışı üzerinde çalışacak şekilde tasarlandı. Bir kişi tanımlı alarm alanına girdiğinde canlı takip otomatik başlıyor; kullanıcı arayüzde aktif ID'leri görebiliyor ve istediği ID'yi manuel olarak takibe alabiliyor. Kişi kamera geçişi, kapanma ya da kısa süreli görünmezlik yüzünden kaybolursa arka plandaki general search mekanizması bütün kameralarda embedding benzerliği ile yeniden arama yapıp takibi devam ettiriyor.",
+        "Backend hattında YOLOv11s ile nesne algılama, TorchReID üzerinde OSNet ile embedding çıkarımı ve performans için özelleştirilmiş BoT-SORT / BoxMOT tabanlı takip kullandım. GStreamer gerçek zamanlı video girişini yönetiyor; Flask API kamera, alarm alanı ve geçiş çizgisi ayarlarını dinamik hale getiriyor; WebSocket ise işlenmiş görüntüleri ve takip sonuçlarını düşük gecikmeyle frontend tarafına aktarıyor.",
+        "Ek olarak kamera önü kapatma, lazer müdahalesi ve anormal dönme/eğilme durumlarını algılayan sabotaj modülü geliştirdim. Sistem çalışır halde HAVELSAN Ar-Ge mühendislerine sunuldu ve güçlü geri bildirim aldı. GitHub reposundaki sunum dosyasını da bu proje detayına ekledim; küçük önizleme videosu projedeki çoklu kamera takibi, ReID akışı ve sabotaj alarmını anlatan özel bir motion preview olarak hazırlandı."
+      ],
+      en: [
+        "This project was developed during my R&D Software Internship at Havelsan Teknoloji Radar. I built an operational full-stack computer vision system combining real-time multi-camera monitoring, multi-object tracking, cross-camera re-identification, dynamic alarm management and sabotage detection.",
+        "The system was designed for 15 live camera streams. When a person enters a predefined alarm zone, live tracking starts automatically; the frontend shows active IDs and lets the operator select any ID for manual tracking. If the target is lost due to camera transition, occlusion or temporary disappearance, a background general search scans all cameras using embedding similarity and resumes tracking when the person is found again.",
+        "The backend pipeline uses YOLOv11s for object detection, TorchReID with OSNet for embedding extraction, and a customized BoT-SORT / BoxMOT tracker for performance. GStreamer handles real-time video ingestion, a Flask API manages cameras, alarm zones and crossing lines dynamically, and WebSocket streams processed frames and tracking results to the frontend with low latency.",
+        "I also developed a sabotage module that detects camera blocking, laser interference and abnormal rotation or tilt changes. The system was presented as a working demo to HAVELSAN R&D engineers and received strong recognition. The original presentation deck from the GitHub repository is included in the project links, and the small preview video is a custom motion preview explaining multi-camera tracking, ReID flow and sabotage alerts."
+      ]
+    },
+    links: [
+      { label: { tr: "GitHub reposu", en: "GitHub repository" }, url: "https://github.com/umutuygur0/Real-Time-Multi-Camera-Object-Tracking-and-Re-Identification-System" },
+      { label: { tr: "Sunumu aç", en: "Open presentation" }, url: "uploads/htr-multi-camera-reid-presentation.pptx" }
+    ]
+  },
+  {
     slug: "ubeb-5g-road-safety", year: "2026", kind: { tr: "Teknofest", en: "Teknofest" },
     name: "UBEB — 5G Road Safety AI",
     one: {
