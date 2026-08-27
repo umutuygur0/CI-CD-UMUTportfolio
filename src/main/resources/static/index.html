@@ -141,6 +141,49 @@ a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
             </div>
           </div>
         </sc-for>
+        <sc-if value="{{ hasSmallProjects }}" hint-placeholder-val="{{ true }}">
+          <div style="margin:22px 0 0;padding-top:14px;border-top:1px solid var(--rule);">
+            <button type="button" onClick="{{ toggleSmallProjects }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:14px 18px;border:1px solid var(--rule-strong);border-radius:2px;background:transparent;color:var(--ink);cursor:pointer;font-family:var(--fb);" style-hover="border-color:var(--accent);background:var(--tint);text-decoration:none">
+              <span style="display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap;">
+                <span style="font-family:var(--fh);font-size:16px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;">{{ ui.smallProjects }}</span>
+                <span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);">{{ ui.smallProjectsHint }}</span>
+              </span>
+              <span style="display:flex;align-items:center;gap:10px;flex:0 0 auto;">
+                <span style="border:1px solid var(--rule);border-radius:999px;padding:5px 12px;font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--muted);font-variant-numeric:tabular-nums;">{{ smallProjectCount }}</span>
+                <span style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);">{{ smallProjectsToggleLabel }}</span>
+                <span style="width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--rule);border-radius:999px;font-size:16px;line-height:1;color:var(--accent-ink);">{{ smallProjectsCaret }}</span>
+              </span>
+            </button>
+            <sc-if value="{{ smallProjectsOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top:10px;animation:riseIn .26s ease both;">
+                <sc-for list="{{ smallProjects }}" as="p" hint-placeholder-count="4">
+          <div onClick="{{ p.open }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="position:relative;border:1px solid var(--rule);border-radius:22px;margin-bottom:9px;cursor:pointer;overflow:hidden;" style-hover="border-color:var(--accent)">
+            <sc-if value="{{ p.isHovered }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;background:var(--plate);overflow:hidden;">
+                <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 21px,var(--rule) 21px 22px);opacity:.6;"></div>
+                <div style="position:absolute;left:0;right:0;top:34%;height:1px;background:var(--accent);opacity:.6;animation:sweepX 3.4s linear infinite;"></div>
+                <div style="position:absolute;left:0;right:0;top:66%;height:1px;background:var(--accent);opacity:.35;animation:sweepX 4.8s linear infinite .7s;"></div>
+                <div style="position:absolute;top:0;bottom:0;left:41%;width:1px;background:var(--rule-strong);animation:sweepY 5.4s linear infinite;"></div>
+                <span style="position:absolute;right:26px;top:50%;transform:translateY(-50%);font-family:var(--fh);font-size:76px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;color:var(--accent);animation:ghostPulse 3.6s ease-in-out infinite alternate;">{{ p.no }}</span>
+                <span style="position:absolute;left:12px;bottom:9px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;letter-spacing:.06em;color:var(--muted);animation:markDrift 4.2s ease-in-out infinite;">{{ p.motionLabel }}</span>
+                {{ p.videoEl }}
+                <div style="position:absolute;inset:0;background:var(--bg);opacity:.7;"></div>
+              </div>
+            </sc-if>
+            <div style="position:relative;display:grid;grid-template-columns:42px minmax(0,1fr) minmax(0,34%);gap:8px 22px;align-items:center;padding:17px 24px;">
+              <span style="font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--accent-ink);font-variant-numeric:tabular-nums;">{{ p.no }}</span>
+              <div style="display:flex;flex-direction:column;gap:5px;min-width:0;">
+                <h3 style="font-family:var(--fh);font-weight:700;font-size:clamp(20px,2.3vw,31px);line-height:1.1;letter-spacing:-.015em;margin:0;transition:color .25s ease;color:{{ p.nameColor }};">{{ p.name }}</h3>
+                <span style="font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);">{{ p.meta }}</span>
+              </div>
+              <p style="margin:0;font-size:14px;font-weight:500;line-height:1.55;color:var(--muted);text-wrap:pretty;">{{ p.one }}</p>
+            </div>
+          </div>
+        </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
       </div>
     </section>
 
@@ -886,14 +929,14 @@ const UI = {
   tr: {
     role: "Bilgisayar Mühendisi", cv: "CV", cvLine: "CV'yi görüntüle",
     themeLabel: "Gece", themeLabelAlt: "Gündüz",
-    tickerLabel: "Seçilmiş çalışmalar", projects: "Projeler",
+    tickerLabel: "Seçilmiş çalışmalar", projects: "Projeler", smallProjects: "Smaller Projects", smallProjectsHint: "Küçük/öğrenme projeleri", openGroup: "Aç", closeGroup: "Kapat",
     close: "Kapat", stack: "Teknolojiler", links: "Bağlantılar", elsewhere: "İletişim",
     cvTitle: "Özgeçmiş", turkey: "Türkiye", motion: "hareket etüdü"
   },
   en: {
     role: "Computer Engineer", cv: "CV", cvLine: "View CV",
     themeLabel: "Dark", themeLabelAlt: "Light",
-    tickerLabel: "Selected work", projects: "Projects",
+    tickerLabel: "Selected work", projects: "Projects", smallProjects: "Smaller Projects", smallProjectsHint: "Focused learning projects", openGroup: "Open", closeGroup: "Close",
     close: "Close", stack: "Stack", links: "Links", elsewhere: "Contact",
     cvTitle: "Résumé", turkey: "Turkey", motion: "motion study"
   }
@@ -905,7 +948,7 @@ class Component extends DCLogic {
     this.state = {
       lang: (props.defaultLang === "Türkçe") ? "tr" : "en",
       theme: (props.defaultTheme === "Gece") ? "dark" : "light",
-      hover: null, open: null, report: null, tick: 0, tickOpacity: 1, media: {}, preview: {}, ready: {}, gallery: {}
+      hover: null, open: null, report: null, smallProjectsOpen: false, tick: 0, tickOpacity: 1, media: {}, preview: {}, ready: {}, gallery: {}
     };
   }
 
@@ -1189,7 +1232,10 @@ class Component extends DCLogic {
     const segOn = "font-family:var(--fb);font-size:11px;letter-spacing:.14em;padding:7px 13px;border:0;cursor:pointer;background:var(--accent);color:#f8f4f4;";
     const segOff = "font-family:var(--fb);font-size:11px;letter-spacing:.14em;padding:7px 13px;border:0;cursor:pointer;background:transparent;color:var(--muted);";
 
-    const projects = DATA.map((p, i) => {
+    const smallStart = DATA.findIndex(p => p.slug === "softmax-pipeline");
+    const mainData = smallStart >= 0 ? DATA.slice(0, smallStart) : DATA;
+    const smallData = smallStart >= 0 ? DATA.slice(smallStart) : [];
+    const makeProject = (p, i) => {
       const slug = p.slug;
       return {
         slug,
@@ -1209,8 +1255,9 @@ class Component extends DCLogic {
         enter: () => { this.ensureMedia(slug, "preview"); this.setState({ hover: slug }); },
         leave: () => this.setState(s => (s.hover === slug ? { hover: null } : null))
       };
-    });
-
+    };
+    const projects = mainData.map((p, i) => makeProject(p, i));
+    const smallProjects = smallData.map((p, i) => makeProject(p, smallStart + i));
     let active = null;
     if (this.state.open) {
       const i = DATA.findIndex(p => p.slug === this.state.open);
@@ -1232,12 +1279,17 @@ class Component extends DCLogic {
     }
 
     return {
-      ui, active, projects,
+      ui, active, projects, smallProjects,
       reportLayer: this.reportLayer(),
       theme: this.state.theme,
       typeVars: TYPE[this.props.typeface] || TYPE["Franklin"],
       cvUrl: CV,
       projectCount: String(DATA.length).padStart(2, "0"),
+      hasSmallProjects: smallProjects.length > 0,
+      smallProjectCount: String(smallProjects.length).padStart(2, "0"),
+      smallProjectsOpen: this.state.smallProjectsOpen,
+      smallProjectsToggleLabel: this.state.smallProjectsOpen ? UI[lang].closeGroup : UI[lang].openGroup,
+      smallProjectsCaret: this.state.smallProjectsOpen ? "-" : "+",
       tickerName: this.loc(DATA[this.state.tick].name, lang),
       tickerOpacity: this.state.tickOpacity,
       trBtn: lang === "tr" ? segOn : segOff,
@@ -1245,6 +1297,7 @@ class Component extends DCLogic {
       setTr: () => this.setState({ lang: "tr" }),
       setEn: () => this.setState({ lang: "en" }),
       toggleTheme: () => this.setState(s => ({ theme: s.theme === "dark" ? "light" : "dark" })),
+      toggleSmallProjects: () => this.setState(s => ({ smallProjectsOpen: !s.smallProjectsOpen, hover: s.smallProjectsOpen ? null : s.hover })),
       close: () => this.closeProject()
     };
   }
