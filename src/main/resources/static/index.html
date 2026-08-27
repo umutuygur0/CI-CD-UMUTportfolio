@@ -488,26 +488,71 @@ const DATA = [
     ]
   },
   {
-    slug: "trendyol-datathon", year: "2026", kind: { tr: "Kaggle yarışması", en: "Kaggle competition" },
-    name: "Trendyol E-Ticaret Datathon",
+    slug: "trendyol-ecommerce-search", year: "2026", kind: { tr: "TEKNOFEST & Trendyol / Data Science", en: "TEKNOFEST & Trendyol / Data Science" },
+    name: { tr: "TEKNOFEST & Trendyol E-Commerce Relevance System", en: "TEKNOFEST & Trendyol E-Commerce Relevance System" },
     one: {
-      tr: "Arama terimi ile ürün arasındaki alaka düzeyini tahmin eden, negatif örneklemesi sızıntısız kurulmuş ikili sınıflandırma modeli.",
-      en: "Binary relevance model for (search term, product) pairs, built on a leak-free negative sampling scheme."
+      tr: "377 ekip arasında 77. olan iki kişilik takım projesi; 962K+ ürünlük Türkçe katalogda sorgu-ürün alaka tahminini BERT, Cross-Encoder, FAISS ve LightGBM ile çözen hibrit NLP sistemi.",
+      en: "Two-person competition project ranked 77th among 377 teams; a hybrid NLP system for query-product relevance over a 962K+ Turkish e-commerce catalog using BERT, cross-encoders, FAISS and LightGBM."
     },
-    stack: ["Python", "Transformers", "LightGBM", "Pandas", "Kaggle"],
+    stack: ["Python", "Pandas", "NumPy", "Scikit-learn", "LightGBM", "BERT", "Cross-Encoder", "Sentence-Transformers", "FAISS", "TF-IDF", "BM25", "Pseudo-labeling", "Hard-negative Mining", "Feature Engineering", "Kaggle"],
     paras: {
       tr: [
-        "Trendyol E-Ticaret Yarışması 2026: verilen (arama terimi, ürün) çifti için ürünün terimle alakalı olup olmadığını tahmin etmek. Eğitim verisi yalnızca pozitif çiftlerden oluşuyor, test seti ise hem alakalı hem alakasız çiftleri içeriyor — negatif durumların modele nasıl öğretileceği tamamen katılımcıya bırakılmış.",
-        "Çözüm; arama terimi, ürün ismi, kategori hiyerarşisi ve materyal/renk/stil gibi detaylı ürün özniteliklerini birlikte kullanıyor. Negatif örnekler kategori ve popülerlik dengeli biçimde üretildi; eğitim kurgusu, public leaderboard'a sızıntı bırakmayacak şekilde kuruldu (leak-free submission ayrı bir varyant olarak tutuldu).",
-        "Metrik macro-averaged F1 — iki sınıf ayrı hesaplanıp eşit ağırlıkla ortalandığı için eşik seçimi ve sınıf dengesi modelin kendisi kadar belirleyici oldu. Deneyler notebook seviyesinde versiyonlandı, her submission skoruyla birlikte arşivlendi."
+        "TEKNOFEST & Trendyol E-Ticaret Yarışması 2026 kapsamında geliştirilen bu proje, e-ticaret arama deneyiminde kullanıcının sorgusu ile ürünün gerçekten alakalı olup olmadığını tahmin etmeye odaklandı. İki kişilik ekibimizle, danışman hocamız olmadan ve yarışmanın büyük bölümünde yurt dışında olmama rağmen 377 ekip arasında 77. olduk; süreç boyunca 35 submission gerçekleştirdim.",
+        "Problem, 962,873 ürünlük Türkçe katalog ve 3,359,679 test sorgu-ürün çifti üzerinde binary relevance tahminiydi. Eğitim verisi yalnızca pozitif çiftlerden oluştuğu için asıl zorluk doğru negatif örnekleri üretmek, veri sızıntısını engellemek ve macro F1 metriğine göre hem relevant hem irrelevant sınıfını dengeli iyileştirmekti. Ürün başlığı, kategori hiyerarşisi, marka, cinsiyet, yaş grubu ve attribute alanlarını birlikte kullandım.",
+        "İlk denemeler BM25/top-K retrieval gibi kuruldu; sonra raporlarda da görüldüğü gibi problemi verilen query-item çiftini sınıflandırma olarak yeniden çerçeveledim. Bu dönüşümle LightGBM feature seti, BERT semantic relevance skorları, TF-IDF cosine, fuzzy match, category/attribute overlap, head noun coverage ve Turkish e-commerce embedding sinyalleri aynı model hattında birleşti.",
+        "Modelleme tarafında query parser, pseudo-labeling, hard-negative mining ve leak-free GroupKFold(term_id) validasyonu kullandım. Same-brand-different-product, same-brand-different-subcategory, gender/age/color conflict gibi zor negatifler ürettim; BERT/ELECTRA tarzı cross-encoder skorlarını LightGBM ile birleştirerek hibrit NLP + gradient boosting yaklaşımı geliştirdim. Raporlara göre en güçlü denemelerde OOF macro F1 0.97+ bandına ulaştı; public skor denemeleri 0.84 seviyesine kadar çıktı.",
+        "Bu proje bana büyük ölçekli Türkçe e-ticaret verisinde model kurmanın yalnızca model seçmek olmadığını; problem çerçevesi, negatif örnek tasarımı, validation güvenilirliği, threshold kalibrasyonu, feature audit ve leaderboard gap analizinin aynı derecede kritik olduğunu gösterdi. Repo içindeki analiz raporları ve EDA grafikleri bu iteratif süreci belgeliyor."
       ],
       en: [
-        "Trendyol E-Commerce Competition 2026: predict whether a product is relevant to a given search term. Training data contains positive pairs only while the test set holds both relevant and irrelevant pairs — how to teach the model the negative case is left entirely to the participant.",
-        "The solution combines search term, product title, category hierarchy and detailed attributes such as material, colour and style. Negatives were sampled with category and popularity balance, and the training setup was arranged to leak nothing into the public leaderboard (a leak-free submission is kept as a separate variant).",
-        "The metric is macro-averaged F1, computed per class and averaged equally, so threshold choice and class balance mattered as much as the model. Experiments were versioned at notebook level and every submission archived with its score."
+        "Built for the TEKNOFEST & Trendyol E-Commerce Competition 2026, this project focused on predicting whether a product is truly relevant to a user's e-commerce search query. With a two-person team, no faculty advisor, and while I was abroad for much of the competition, we ranked 77th among 377 teams; I completed 35 submissions throughout the process.",
+        "The task was binary relevance prediction over a 962,873-product Turkish catalog and 3,359,679 test query-product pairs. Because the training set contained only positive pairs, the main challenge was designing reliable negative examples, preventing leakage and improving macro F1 for both relevant and irrelevant classes. I combined product titles, category hierarchy, brand, gender, age group and attribute fields.",
+        "The early attempts treated the task like BM25/top-K retrieval; the reports then reframed it correctly as classification over provided query-item pairs. That shift brought LightGBM features, BERT semantic relevance scores, TF-IDF cosine, fuzzy matching, category/attribute overlap, head-noun coverage and Turkish e-commerce embedding signals into one modeling pipeline.",
+        "On the modeling side, I used query parsing, pseudo-labeling, hard-negative mining and leak-free GroupKFold(term_id) validation. I generated hard negatives such as same-brand-different-product, same-brand-different-subcategory, gender/age/color conflicts, then combined BERT/ELECTRA-style cross-encoder scores with LightGBM for a hybrid NLP + gradient boosting approach. The strongest reported experiments reached 0.97+ OOF macro F1, with public-score trials up to the 0.84 range.",
+        "The project taught me that large-scale Turkish e-commerce modeling is not just about picking a model; problem framing, negative sampling, validation reliability, threshold calibration, feature auditing and leaderboard-gap analysis are equally critical. The repository reports and EDA figures document that iterative process."
       ]
     },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+    links: [
+      { label: { tr: "GitHub deposu", en: "GitHub repository" }, url: "https://github.com/umutuygur0/TEKNOFEST_TRENDYOL" },
+      { label: { tr: "Yarışma sayfası", en: "Competition page" }, url: "https://teknofest.org/tr/yarismalar/e-ticaret-yarismasi/" },
+      { label: { tr: "Durum raporu", en: "Status report" }, url: "uploads/trendyol-kaggle-status.md" },
+      { label: { tr: "Analiz raporu", en: "Analysis report" }, url: "uploads/trendyol-master-analysis-report.md" },
+      { label: { tr: "Veri incelemesi", en: "Data deep dive" }, url: "uploads/trendyol-data-deep-dive.md" },
+      { label: { tr: "Leak-free metrikler", en: "Leak-free metrics" }, url: "uploads/trendyol-leak-free-lgbm-metrics.json" }
+    ],
+    gallery: [
+      {
+        src: "uploads/trendyol-fig-query-tokens.png",
+        name: { tr: "Sorgu token analizi", en: "Query token analysis" },
+        caption: {
+          tr: "Türkçe arama terimlerinde tekrar eden kelimeleri ve query karakterini anlamak için kullanılan EDA grafiği.",
+          en: "EDA view used to understand repeated words and the shape of Turkish search queries."
+        }
+      },
+      {
+        src: "uploads/trendyol-fig-category-dist.png",
+        name: { tr: "Kategori dağılımı", en: "Category distribution" },
+        caption: {
+          tr: "962K+ ürün kataloğunda kategori yoğunluğunu gösteren grafik; feature engineering ve negatif örnekleme stratejisini yönlendirdi.",
+          en: "Distribution over the 962K+ product catalog; it guided feature engineering and negative-sampling strategy."
+        }
+      },
+      {
+        src: "uploads/trendyol-fig-token-overlap.png",
+        name: { tr: "Query-title örtüşmesi", en: "Query-title overlap" },
+        caption: {
+          tr: "Sorgu ile ürün başlığı arasındaki token örtüşmesini ölçen analiz; hard-negative gürültüsünü ve semantik model ihtiyacını görünür yaptı.",
+          en: "Analysis of token overlap between query and product title; it exposed hard-negative noise and the need for semantic modeling."
+        }
+      },
+      {
+        src: "uploads/trendyol-fig-test-diversity.png",
+        name: { tr: "Test sorgu çeşitliliği", en: "Test query diversity" },
+        caption: {
+          tr: "Test tarafındaki ürün aday çeşitliliğini gösteren grafik; retrieval yaklaşımından classification yaklaşımına geçiş kararını destekledi.",
+          en: "View of product-candidate diversity in the test set; it supported the shift from retrieval framing to classification framing."
+        }
+      }
+    ]
   },
   {
     slug: "portfolio-decision-engine", year: "2026", kind: { tr: "KPMG IxT Olympics / FinTech", en: "KPMG IxT Olympics / FinTech" },
