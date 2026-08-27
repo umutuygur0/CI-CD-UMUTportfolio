@@ -28,7 +28,7 @@
     "https://github.com/umutuygur0",
     "https://www.linkedin.com/in/umut-uygur-24b920249"
   ],
-  "knowsAbout": ["Computer Engineering", "Backend Development", "Artificial Intelligence", "DevOps", "CI/CD", "Cloud Computing"]
+  "knowsAbout": ["Computer Engineering", "Backend Development", "Artificial Intelligence", "Retrieval-Augmented Generation", "Data Science", "Finance", "DevOps", "CI/CD", "Cloud Computing"]
 }
 </script>
 <script src="./support.js"></script>
@@ -448,26 +448,44 @@ const DATA = [
     links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
   },
   {
-    slug: "local-rag-foundry", year: "2026", kind: { tr: "Offline yapay zekâ", en: "Offline AI" },
-    name: "Local RAG Foundry",
+    slug: "microsoft-ai-innovators-rag", year: "2026", kind: { tr: "Microsoft AI Innovators / RAG", en: "Microsoft AI Innovators / RAG" },
+    name: { tr: "Microsoft AI Innovators RAG Assistant", en: "Microsoft AI Innovators RAG Assistant" },
     one: {
-      tr: "Foundry Local üzerinde çalışan, dışarıya tek istek atmayan, diller arası arama yapabilen offline RAG asistanı.",
-      en: "Offline RAG assistant on Foundry Local — zero outbound calls, cross-lingual retrieval."
+      tr: "Microsoft AI Innovators Internship Program sürecinde geliştirilen; ChromaDB/SQLite tabanlı arama, çok dilli sorgu desteği ve kaynaklı cevap üretimi olan uçtan uca RAG sistemi.",
+      en: "End-to-end RAG system built during the Microsoft AI Innovators Internship Program, with vector search, multilingual querying and source-grounded answer generation."
     },
-    stack: ["Python", "Foundry Local", "Qwen2.5-7B", "TF-IDF", "SQLite", "Streamlit"],
+    stack: ["Python", "Streamlit", "ChromaDB", "SQLite", "Ollama", "llama3.1:8b", "bge-m3", "BM25", "TF-IDF", "Cross-Encoder Reranking", "NLLB-200", "Document Processing", "RAG", "Pytest"],
     paras: {
       tr: [
-        "Yerel bir doküman koleksiyonu üzerinde çalışan, model indirildikten sonra hiçbir ağ isteği yapmayan RAG asistanı. Model servisi Microsoft Foundry Local, cevap üreten model Qwen2.5-7B-Instruct.",
-        "Erişim katmanı TF-IDF ile başlıyor, opsiyonel semantik embedding'lerle güçleniyor; embedding modeli yoksa sistem sessizce TF-IDF'e düşüyor. Çok dilli embedding sayesinde İngilizce bir dokümana Türkçe soru sorulabiliyor, arada çeviri adımı yok. Markdown, txt, PDF ve DOCX dosyaları chunk'lanmadan önce düz metne çevriliyor; vektörler tek dosyalık SQLite'ta tutuluyor.",
-        "Arayüz Streamlit: sohbet, kaynak atıfları, dil seçimi ve doküman yükleme. Repo; proje planı, otomatik test raporu ve bilinen kısıtların dürüst listesini içeren bir kapanış raporu ile birlikte geliyor."
+        "Microsoft AI Innovators Internship Program kapsamında iki ay boyunca geliştirilen bu proje, doküman işleme, indeksleme, context retrieval ve LLM tabanlı cevap üretimini birleştiren tam fonksiyonel bir Retrieval-Augmented Generation sistemidir. Amaç; farklı dillerde gelen sorulara, doküman bağlamına sadık ve kaynak gösteren cevaplar üretmekti.",
+        "Sistem industrial oil & gas safety procedure dokümanlarından oluşan 40 dokümanlık bir bilgi tabanı üzerinde çalışır. Markdown, TXT, PDF ve DOCX dosyaları okunur, yapı farkındalıklı chunk'lara ayrılır, embedding ve lexical sinyallerle indekslenir. Streamlit arayüzü; sohbet, kaynak atıfları, dil seçimi, canlı doküman yükleme ve retrieval skor kırılımlarını gösterir.",
+        "Retrieval mimarisi hibrittir: Okapi BM25 ve TF-IDF tabanlı keyword sinyali, bge-m3 multilingual embedding cosine similarity ile birleştirilir; ayrıca pure-semantic backstop pool ve cross-encoder reranker kullanılır. Reranker güven skoru düşükse sistem hibrit sıralamaya geri döner. Bu tasarım özellikle Türkçe, İngilizce ve karışık dilli sorgularda doğru parçayı bulmak için kuruldu.",
+        "Cevap üretiminde llama3.1:8b/Ollama ve local model stack kullanıldı; kaynak atıfları modelden istenmedi, gerçek retrieval metadata'sından deterministik olarak üretildi. Türkçe cevap gerektiğinde NLLB-200 ile language-forced çeviri katmanı devreye girer. 98 soruluk şeffaf audit sonucunda 92/98 doğru cevap, 2 dürüst 'bilgi tabanında yok' reddi ve 0 halüsinasyon / yanlış citation / retrieval error / language drift sonucu raporlandı."
       ],
       en: [
-        "A RAG assistant over a local document collection that makes no network calls after the initial model download. Serving runs on Microsoft Foundry Local with Qwen2.5-7B-Instruct.",
-        "Retrieval starts at TF-IDF and improves with optional semantic embeddings, degrading gracefully to TF-IDF alone when the embedding model is absent. Multilingual embeddings let a Turkish question hit an English document with no translation step. Markdown, txt, PDF and DOCX are converted to plain text before chunking; vectors live in a single-file SQLite store.",
-        "The UI is Streamlit: chat, source citations, language selector and document upload. The repo ships with a design plan, an automated test report, and a closing report listing known limitations honestly."
+        "Developed over two months during the Microsoft AI Innovators Internship Program, this project is a fully functional Retrieval-Augmented Generation system combining document processing, indexing, context retrieval and LLM-based response generation. The core goal was to produce accurate, source-grounded answers across different languages.",
+        "The system runs over a 40-document industrial oil & gas safety-procedure knowledge base. Markdown, TXT, PDF and DOCX files are parsed, split into structure-aware chunks, then indexed with both embedding and lexical signals. The Streamlit UI provides chat, source citations, response-language control, live document upload and retrieval-score breakdowns.",
+        "Retrieval is hybrid: Okapi BM25 and TF-IDF keyword signals are blended with bge-m3 multilingual embedding cosine similarity, plus a pure-semantic backstop pool and cross-encoder reranking. If the reranker confidence is too low, the system falls back to the hybrid order. This was designed specifically to make Turkish, English and mixed-language queries land on the right evidence chunk.",
+        "Generation uses a local llama3.1:8b/Ollama stack; citations are not generated by the model, but appended deterministically from actual retrieval metadata. When Turkish output is required, an NLLB-200 language-forced translation layer is used. A transparent 98-question audit reported 92/98 correct answers, 2 honest 'not in knowledge base' refusals and 0 hallucinations / wrong citations / retrieval errors / language drift."
       ]
     },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
+    links: [
+      { label: { tr: "GitHub deposu", en: "GitHub repository" }, url: "https://github.com/umutuygur0/microsoft" },
+      { label: { tr: "Audit raporu", en: "Audit report" }, url: "uploads/microsoft-rag-audit-report.html" },
+      { label: { tr: "Final raporu", en: "Final report" }, url: "uploads/microsoft-rag-final-report.md" },
+      { label: { tr: "Test raporu", en: "Test report" }, url: "uploads/microsoft-rag-test-report.md" },
+      { label: { tr: "Proje planı", en: "Project plan" }, url: "uploads/microsoft-rag-project-plan.md" }
+    ],
+    gallery: [
+      {
+        src: "uploads/microsoft.png",
+        name: { tr: "Microsoft AI Innovators RAG arayüzü", en: "Microsoft AI Innovators RAG interface" },
+        caption: {
+          tr: "Doküman işleme, çok dilli retrieval, kaynaklı cevap üretimi ve audit sonucunu özetleyen proje görseli.",
+          en: "Project visual summarizing document processing, multilingual retrieval, source-grounded generation and audit results."
+        }
+      }
+    ]
   },
   {
     slug: "trendyol-datathon", year: "2026", kind: { tr: "Kaggle yarışması", en: "Kaggle competition" },
@@ -492,104 +510,57 @@ const DATA = [
     links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
   },
   {
-    slug: "portfolio-decision-engine", year: "2026", kind: { tr: "KPMG IxT Case Study / FinTech", en: "KPMG IxT Case Study / FinTech" },
+    slug: "portfolio-decision-engine", year: "2026", kind: { tr: "KPMG IxT Olympics / FinTech", en: "KPMG IxT Olympics / FinTech" },
     name: { tr: "Portfolio Decision Engine - KPMG IxT Case Study", en: "Portfolio Decision Engine - KPMG IxT Case Study" },
     one: {
-      tr: "Türkiye makro ve piyasa verisini birleştirip risk profiline göre dinamik varlık dağılımı öneren FastAPI destekli portföy karar motoru.",
-      en: "A FastAPI-backed portfolio decision engine that combines Turkish macro and market data to suggest dynamic asset allocations by risk profile."
+      tr: "KPMG IxT Olympics'te 955 başvuru arasından 3.lük alan; risk profiline göre dinamik varlık dağılımı öneren makro-veri tabanlı portföy karar motoru.",
+      en: "3rd-place KPMG IxT Olympics case-study project among 955 applicants: a macro-data-driven portfolio decision engine that suggests dynamic allocations by risk profile."
     },
     stack: ["Python", "Pandas", "NumPy", "FastAPI", "TCMB EVDS", "FRED", "Yahoo Finance", "Investing.com", "BeautifulSoup", "Selenium", "Matplotlib", "HTML", "JavaScript", "Pytest", "Backtesting"],
     paras: {
       tr: [
-        "2026 KPMG IxT Case Study kapsamında geliştirilen bu proje, Türkiye bireysel yatırımcısı için belirsizlik ortamında veriye dayalı portföy kararı üretmeyi hedefleyen istatistiksel bir karar motorudur. Sistem, 3-5 yıllık yatırım ufkunda sabit sepet mantığı yerine makro rejimi takip eden dinamik dağılım önerileri üretir.",
+        "2026 KPMG IxT Olympics sürecinde 955 başvuru arasından 3. olarak tamamladığım, final 34 Case Study katılımcısı arasına kaldığım ve 5.000 TL ödül aldığım bu proje; Türkiye bireysel yatırımcısı için belirsizlik ortamında veriye dayalı portföy kararı üretmeyi hedefleyen istatistiksel bir karar motorudur.",
+        "Sistem, 3-5 yıllık yatırım ufkunda sabit sepet mantığı yerine makro rejimi takip eden dinamik dağılım önerileri üretir. Yarışmanın final aşamasında çözümün sistem mimarisini, stratejik yaklaşımını ve karar üretim mantığını sunarak finance, data science, AI ve stratejik düşünmeyi aynı problemde birleştirme fırsatı buldum.",
         "Veri mimarisi TCMB politika faizi, EVDS kur/enflasyon/mevduat/rezerv serileri, FRED Fed Funds/ABD 10Y/VIX/dolar endeksi, Yahoo Finance altın-BIST100-BTC-Brent ve Investing.com Türkiye CDS verilerini aynı hatta toplar. Pipeline kaynakları çeker, temizler, günlük frekansta hizalar ve karar motorunun okuyacağı birleşik veri setini üretir.",
-        "Karar motoru ham veriden reel faiz, yıllık enflasyon, kur stresi, BIST momentum, altın reel getirisi ve bileşik risk skoru gibi değişkenler türetir. Rolling 252 günlük percentile scoring ile varlık cazibiyet skorları hesaplanır; az, orta ve yüksek risk profilleri bu sinyallere farklı hassasiyetle tepki verir. ASSET_BOUNDS mekanizması aşırı yoğunlaşmayı engellerken VIX > 40 veya CDS > 700 gibi hard trigger'lar kriz modunu devreye alır.",
+        "Karar motoru ham veriden reel faiz, yıllık enflasyon, kur stresi, BIST momentum, altın reel getirisi ve bileşik risk skoru gibi değişkenler türetir. Rolling 252 günlük percentile scoring ile varlık cazibiyet skorları hesaplanır; az, orta ve yüksek risk profilleri bu sinyallere farklı hassasiyetle tepki verir. ASSET_BOUNDS mekanizması aşırı yoğunlaşmayı engellerken VIX > 40 veya CDS > 700 gibi hard trigger'lar otomatik risk-off / kriz modunu devreye alır.",
         "Ürünleşme tarafında FastAPI backend, tek sayfalık dashboard, CLI kullanım akışı, backtest analizi, istatistiksel şeffaflık raporu ve karar şeması birlikte hazırlandı. Çalışma yatırım tavsiyesi değildir; amaç makro sinyallerin nasıl açıklanabilir, test edilebilir ve kullanıcı profiline uyarlanabilir bir portföy karar sistemine dönüştürülebileceğini göstermektir."
       ],
       en: [
-        "Built for the 2026 KPMG IxT Case Study, this project is a statistical decision engine designed to support Turkish retail investors with data-driven portfolio decisions under uncertainty. Instead of a fixed basket, it produces dynamic allocation suggestions that react to changing macro regimes over a 3-5 year investment horizon.",
+        "Built during the 2026 KPMG IxT Olympics, this project placed 3rd among 955 applicants, advanced to the final 34 Case Study participants and received a 5,000 TL award. It is a statistical decision engine designed to support Turkish retail investors with data-driven portfolio decisions under uncertainty.",
+        "Instead of a fixed basket, the system produces dynamic allocation suggestions that react to changing macro regimes over a 3-5 year investment horizon. Presenting the solution architecture, strategic approach and decision logic during the final stage brought finance, data science, AI and strategic thinking into one applied problem.",
         "The data architecture combines TCMB policy-rate data, EVDS FX/inflation/deposit/reserve series, FRED Fed Funds/US 10Y/VIX/dollar-index data, Yahoo Finance gold-BIST100-BTC-Brent data and Turkey CDS data from Investing.com. The pipeline fetches, cleans, aligns everything to daily frequency and emits the merged dataset used by the engine.",
-        "The engine derives real interest rate, CPI YoY, FX stress, BIST momentum, gold real return and a composite risk score from raw inputs. Rolling 252-day percentile scoring generates asset-attractiveness scores; low, medium and high risk profiles react to those signals with different sensitivity. ASSET_BOUNDS prevent excessive concentration, while hard triggers such as VIX > 40 or CDS > 700 activate crisis mode.",
+        "The engine derives real interest rate, CPI YoY, FX stress, BIST momentum, gold real return and a composite risk score from raw inputs. Rolling 252-day percentile scoring generates asset-attractiveness scores; low, medium and high risk profiles react to those signals with different sensitivity. ASSET_BOUNDS prevent excessive concentration, while hard triggers such as VIX > 40 or CDS > 700 activate automatic risk-off / crisis mode.",
         "On the product side, the project includes a FastAPI backend, single-page dashboard, CLI workflow, backtest analysis, statistical transparency reporting and a decision schema. It is not investment advice; the goal is to show how macro signals can be converted into an explainable, testable and profile-aware portfolio decision system."
       ]
     },
     links: [
       { label: { tr: "GitHub deposu", en: "GitHub repository" }, url: "https://github.com/umutuygur0/kpmg" },
       { label: { tr: "Case study raporu", en: "Case study report" }, url: "uploads/kpmg-case-study-report.docx" },
-      { label: { tr: "Sunum dosyası", en: "Presentation deck" }, url: "uploads/kpmg-presentation.pptx" },
-      { label: { tr: "Karar şeması", en: "Decision schema" }, url: "uploads/kpmg-decision-schema.png" }
+      { label: { tr: "Sunum dosyası", en: "Presentation deck" }, url: "uploads/kpmg-presentation.pptx" }
     ],
     gallery: [
       {
-        src: "uploads/kpmg-decision-schema.png",
-        name: { tr: "Karar motoru akış şeması", en: "Decision engine schema" },
+        src: "uploads/kpmg.png",
+        name: { tr: "KPMG portfolio dashboard", en: "KPMG portfolio dashboard" },
         caption: {
-          tr: "Veri toplama, türetilmiş değişkenler, percentile scoring, risk profili ayarlaması, kriz modu ve raporlama adımlarını tek şemada gösteren açıklanabilir sistem akışı.",
-          en: "Explainable system flow covering data ingestion, derived variables, percentile scoring, risk-profile adjustment, crisis mode and reporting."
+          tr: "Portfolio Decision Engine'in makro göstergeleri, risk profili ve önerilen portföy dağılımını birlikte gösteren ana ekranı.",
+          en: "Main screen showing macro indicators, risk profile and recommended allocation for the Portfolio Decision Engine."
         }
       },
       {
-        src: "uploads/kpmg-panel-low-risk.png",
-        name: { tr: "Az riskli profil dashboard'u", en: "Low-risk profile dashboard" },
+        src: "uploads/kpmg1.png",
+        name: { tr: "Risk profili ve dağılım görünümü", en: "Risk profile and allocation view" },
         caption: {
-          tr: "Düşük risk toleransı için daha savunmacı dağılım, güvenli varlık ağırlıkları ve karar gerekçeleri aynı ekranda gösteriliyor.",
-          en: "A defensive allocation for low risk tolerance, showing safe-asset weights and decision reasoning on the same screen."
+          tr: "Az, orta ve yüksek risk profillerine göre varlık sınıfı ağırlıklarının nasıl değiştiğini gösteren karar ekranı.",
+          en: "Decision view showing how asset-class weights shift across low, medium and high risk profiles."
         }
       },
       {
-        src: "uploads/kpmg-panel-medium-risk.png",
-        name: { tr: "Orta riskli profil dashboard'u", en: "Medium-risk profile dashboard" },
+        src: "uploads/kpmg2.png",
+        name: { tr: "Karar motoru çıktı ekranı", en: "Decision engine output screen" },
         caption: {
-          tr: "Korunma ve büyüme varlıklarını dengeleyen orta risk profili için önerilen portföy dağılımı ve makro sinyal özeti.",
-          en: "Suggested portfolio allocation and macro-signal summary for a balanced profile mixing protection and growth assets."
-        }
-      },
-      {
-        src: "uploads/kpmg-panel-high-risk.png",
-        name: { tr: "Yüksek riskli profil dashboard'u", en: "High-risk profile dashboard" },
-        caption: {
-          tr: "Fırsat odaklı profil için hisse, temettü, fon ve kripto ağırlıklarının nasıl büyütüldüğünü gösteren dashboard görünümü.",
-          en: "Dashboard view showing how equity, dividend, fund and crypto weights expand for a more opportunity-seeking profile."
-        }
-      },
-      {
-        src: "uploads/kpmg-risk-low.png",
-        name: { tr: "Az riskli portföy dağılımı", en: "Low-risk allocation" },
-        caption: {
-          tr: "Mevduat, döviz, altın ve kısa vadeli tahvil ağırlığının öne çıktığı düşük riskli dağılım çıktısı.",
-          en: "Low-risk allocation output emphasizing deposits, FX, gold and short-duration bonds."
-        }
-      },
-      {
-        src: "uploads/kpmg-risk-medium.png",
-        name: { tr: "Orta riskli portföy dağılımı", en: "Medium-risk allocation" },
-        caption: {
-          tr: "Hisse, altın, temettü hisseleri, fon ve mevduat arasında dengeli dağılım üreten orta profil sonucu.",
-          en: "Medium-profile result balancing equities, gold, dividend stocks, funds and deposits."
-        }
-      },
-      {
-        src: "uploads/kpmg-risk-high.png",
-        name: { tr: "Yüksek riskli portföy dağılımı", en: "High-risk allocation" },
-        caption: {
-          tr: "Daha agresif profil için büyüme varlıklarının ağırlığını artıran ama sınır mekanizmasıyla çeşitlendirmeyi koruyan dağılım.",
-          en: "Aggressive-profile allocation increasing growth assets while preserving diversification through bounds."
-        }
-      },
-      {
-        src: "uploads/kpmg-calculated-values.png",
-        name: { tr: "Hesaplanan makro değerler", en: "Calculated macro values" },
-        caption: {
-          tr: "Reel faiz, enflasyon, kur stresi, BIST momentum ve risk skoru gibi ara değişkenlerin karar öncesi hesaplandığı şeffaflık görünümü.",
-          en: "Transparency view of intermediate variables such as real interest, inflation, FX stress, BIST momentum and risk score."
-        }
-      },
-      {
-        src: "uploads/kpmg-asset-attractiveness.png",
-        name: { tr: "Varlık cazibiyet skorları", en: "Asset attractiveness scores" },
-        caption: {
-          tr: "Her varlık sınıfı için makro rejime göre üretilen 0-1 arası cazibiyet skorları ve dağılım kararının temel sinyalleri.",
-          en: "0-1 attractiveness scores generated for each asset class under the current macro regime, forming the core allocation signals."
+          tr: "Percentile scoring, risk-off mantığı ve portföy önerisi çıktılarının görselleştirildiği final arayüz ekranı.",
+          en: "Final interface screen visualizing percentile scoring, risk-off logic and portfolio recommendation outputs."
         }
       }
     ]
