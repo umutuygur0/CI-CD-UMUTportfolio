@@ -193,14 +193,16 @@ a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
           </div>
         </div>
 
-        <div style="margin:40px 0 0;padding-top:24px;border-top:1px solid var(--rule);">
-          <p style="margin:0 0 14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);">{{ ui.links }}</p>
-          <div style="display:flex;flex-wrap:wrap;gap:10px;">
-            <sc-for list="{{ active.links }}" as="l" hint-placeholder-count="2">
-              <button type="button" onClick="{{ l.open }}" style="font-family:var(--fb);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border:1px solid var(--accent);border-radius:2px;color:var(--accent-ink);background:transparent;cursor:pointer;" style-hover="background:var(--tint);text-decoration:none">{{ l.label }}</button>
-            </sc-for>
+        <sc-if value="{{ active.hasLinks }}" hint-placeholder-val="{{ true }}">
+          <div style="margin:40px 0 0;padding-top:24px;border-top:1px solid var(--rule);">
+            <p style="margin:0 0 14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);">{{ ui.links }}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+              <sc-for list="{{ active.links }}" as="l" hint-placeholder-count="2">
+                <button type="button" onClick="{{ l.open }}" style="font-family:var(--fb);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border:1px solid var(--accent);border-radius:2px;color:var(--accent-ink);background:transparent;cursor:pointer;" style-hover="background:var(--tint);text-decoration:none">{{ l.label }}</button>
+              </sc-for>
+            </div>
           </div>
-        </div>
+        </sc-if>
         <sc-if value="{{ active.gallery }}" hint-placeholder-val="{{ false }}">
           <div style="margin:44px 0 0;padding-top:24px;border-top:1px solid var(--rule);">
             <div style="display:flex;align-items:end;justify-content:space-between;gap:14px;margin:0 0 14px;">
@@ -341,6 +343,30 @@ const DATA = [
     ]
   },
   {
+    slug: "pile-load-capacity-tedu", year: "Nov 2025–Present", kind: { tr: "TED Üniversitesi / Geoteknik Veri Bilimi", en: "TED University / Geotechnical Data Science" },
+    name: { tr: "Real-World Pile Load Test Data Project", en: "Real-World Pile Load Test Data Project" },
+    one: {
+      tr: "Prof. Cem Akgüner ile gerçek kazık yükleme ve zemin verileri üzerinde; veri temizleme, stratigrafi modelleme, kapasite tahmini ve ML tabanlı doğrulama yapan geoteknik veri bilimi çalışması.",
+      en: "Geotechnical data-science project with Prof. Cem Akgüner on real pile load-test and soil-profile data, combining cleaning, stratigraphy modeling, capacity estimation and ML validation."
+    },
+    stack: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Scikit-learn", "Random Forest", "LightGBM", "CatBoost", "SHAP", "Optuna", "Robust Regression", "Geotechnical Data"],
+    paras: {
+      tr: [
+        "TED Üniversitesi'nde Prof. Cem Akgüner ile yürütülen bu çalışma, gerçek kazık yükleme deneyleri, zemin profili ve laboratuvar/arazi verilerini hesaplamalı bir analiz hattına dönüştürüyor. Çalışma yalnızca model eğitimi değil; geoteknik veri sözlüğünü, veri kalitesini ve mühendislik varsayımlarını birlikte ele alan akademik/uygulamalı bir proje.",
+        "Veri hattında birden fazla CSV kaynağı Türkçe karakter kodlamasıyla okunuyor, virgüllü sayısal alanlar normalize ediliyor, kategorik ve sayısal kolonlar uyumlandırılıyor ve domain-based eksik değer stratejileri kullanılıyor. Saha ve laboratuvar verilerinden kümülatif tabaka derinlikleri çıkarılarak gerçekçi stratigrafi, shaft/uç bölgesi özellikleri, SPT-N özetleri, zemin/geçiş/kaya kalınlıkları, sualtı uzunluğu ve kaya ucu flag gibi değişkenler üretiliyor.",
+        "Kapasite tarafında Chin-Kondner, Decourt ve ilgili klasik taşıma gücü yaklaşımları hedef değişkenlere dönüştürüldü; yük-deplasman eğrileri için robust regression, sliding-window mantığı, failure detection ve güvenlik filtreleriyle nihai kazık kapasitesi (Qu) tahmini çerçevelendi. Modelleme katmanında Random Forest, LightGBM, CatBoost ve küçük veri koşullarına göre kıyaslanan NN denemeleriyle TG_Ortalama, TG_Medyan, TG_Max ve TG_Chin_Kondner hedefleri test edildi.",
+        "Projenin önemli kısmı, modelin nerede güvenilir olduğunu dürüstçe test etmekti. Test-sonrası senaryoda yükleme deneyinden gelen maksimum yük/oturma bilgisiyle kapasite tahmini anlamlı sinyal üretirken; tasarım öncesi senaryoda yalnızca zemin ve geometri verisiyle genellemenin veri eksikliği nedeniyle zayıf kaldığı gösterildi. Bu yüzden çalışma, geoteknik teori ile veri temizleme, fiziksel feature engineering, regresyon analizi, SHAP/Optuna değerlendirmesi ve görselleştirmeyi birleştiren gerçek dünya mühendislik veri projesi olarak konumlandı."
+      ],
+      en: [
+        "Conducted at TED University with Prof. Cem Akgüner, this project turns real pile load-test records, soil profiles and field/laboratory data into a computational analysis pipeline. It is not only a model-training exercise; it connects the geotechnical data dictionary, data quality and engineering assumptions inside one academic/applied workflow.",
+        "The data pipeline loads multiple CSV sources with Turkish encoding support, normalizes comma-based numeric values, harmonizes categorical and numerical columns and applies domain-aware missing-value handling. Field and laboratory layers are converted into cumulative soil depths, realistic stratigraphy, shaft/tip-zone features, SPT-N summaries, soil/transition/rock thicknesses, submerged pile length and rock-tip flags.",
+        "For capacity estimation, Chin-Kondner, Decourt and related classical bearing-capacity methods were transformed into target variables. Load-displacement curves were framed through robust regression, sliding-window logic, failure detection and safety filters for ultimate pile capacity (Qu) prediction. The modeling layer compared Random Forest, LightGBM, CatBoost and small-data NN experiments across TG_Ortalama, TG_Medyan, TG_Max and TG_Chin_Kondner targets.",
+        "A central part of the project was honestly testing where the model is reliable. The post-test scenario, where maximum load/settlement from the pile test is available, produced meaningful predictive signal; the pre-design scenario, using only soil and geometry, showed weak generalization because of missing and noisy geotechnical measurements. The result is a real-world engineering data project bridging geotechnical theory with data cleaning, physical feature engineering, regression analysis, SHAP/Optuna evaluation and visualization."
+      ]
+    },
+    links: []
+  },
+  {
     slug: "gps-free-positioning", year: "2026", kind: { tr: "SSB / UAV Yapay Zekası", en: "SSB / UAV AI" },
     name: { tr: "GPS Kullanmadan UAV Konum Tahmini", en: "GPS-Free UAV Position Estimation" },
     one: {
@@ -433,28 +459,33 @@ const DATA = [
     ]
   },
   {
-    slug: "ulak101-rag", year: "2026", kind: { tr: "Kurumsal RAG", en: "Enterprise RAG" },
-    name: "ULAK101 RAG",
+    slug: "ulak101-rag", year: "2026", kind: { tr: "Yapay Zekâ ve Bilgi Sistemleri / Kurumsal RAG", en: "AI & Information Systems / Enterprise RAG" },
+    name: "ULAK101 Agentic RAG Assistant",
     one: {
-      tr: "Kurumsal telekom arşivi üzerinde tamamen local çalışan, hibrit aramalı Türkçe soru-cevap sistemi.",
-      en: "Fully local Turkish question-answering system over a corporate telecom archive, with hybrid retrieval."
+      tr: "ULAK101, kurumsal telekom arşivi üzerinde çalışan; yetki-farkında hibrit retrieval, Agentic RAG, Corrective RAG, Self-RAG, local LLM ve şifreli sohbet/doküman altyapısı olan kaynaklı bilgi asistanı.",
+      en: "A source-grounded enterprise telecom assistant with authorization-aware hybrid retrieval, Agentic RAG, Corrective RAG, Self-RAG, local LLMs and encrypted conversation/document infrastructure."
     },
-    stack: ["Python", "Flask", "ChromaDB", "BM25", "BAAI/bge-m3", "Ollama", "React"],
+    stack: ["Python", "FastAPI", "React", "TypeScript", "TanStack Start", "PostgreSQL", "SQLAlchemy", "Alembic", "ChromaDB", "Sentence Transformers", "Ollama", "Local LLMs", "BM25", "Dense Search", "RRF", "Cross-Encoder Reranking", "Agentic RAG", "Corrective RAG", "Self-RAG", "Query Rewriting", "Conversation Memory", "Document Processing", "OCR", "AES-256-GCM"],
     paras: {
       tr: [
-        "ULAK Haberleşme arşivi için kurulan RAG tabanlı Türkçe soru-cevap sistemi. Varsayılan kurulumda hiçbir veri dışarı çıkmıyor: embedding modeli, vektör veritabanı ve LLM aynı makinede çalışıyor.",
-        "Erişim katmanı hibrit: ChromaDB üzerinde dense arama (BAAI/bge-m3) ile BM25 lexical arama, Reciprocal Rank Fusion ile birleştiriliyor. Sorguda geçen kurum adına göre kapsam dışı kaynakları eleyen bir org-scoping filtresi ekleniyor. Konuşma hafızası ve query-rewriting katmanı, takip sorularını bağımsız sorgulara çeviriyor.",
-        "Halüsinasyonu engellemek kod seviyesinde ele alındı: sistem promptu modeli yalnızca verilen bağlama bağlıyor, üretim sonrası tekrar-döngü kesme ve \"bulamadım\" cevabını sabitleme adımları çalışıyor, kaynak dosya adları modelden değil gerçek metadata'dan ekleniyor. Backend NDJSON stream eden bir Flask API, arayüz ayrı bir React uygulaması."
+        "Yapay Zekâ ve Bilgi Sistemleri Direktörlüğü bağlamında geliştirilen ULAK101, ULAK Haberleşme'nin kurumsal ve telekom arşivi üzerinde çalışan kaynak gösteren bir yapay zekâ bilgi asistanı olarak tasarlandı. Varsayılan mimaride embedding modeli, ChromaDB, reranker ve Ollama tabanlı local LLM aynı makinede çalışır; kurum içi soru, cevap ve doküman içeriği dış servislere gönderilmez.",
+        "Güncel mimari Flask tabanlı prototipten tamamen FastAPI'ye taşındı. React 19, TanStack Start ve TypeScript ile kurulan frontend, /api/query üzerinden NDJSON stream alır; FastAPI backend ise RAG akışını, auth/session katmanını, doküman yüklemeyi, konuşma geçmişini ve PostgreSQL veri modelini yönetir.",
+        "Retrieval tarafı yetki-farkında hibrit bir hat olarak kuruldu. ChromaDB üzerinde dense vector search, izinli chunk havuzunda BM25 lexical search, Reciprocal Rank Fusion, cross-encoder reranking ve final context seçimi birlikte çalışır. Terim sorularında exact-match glossary shortcut kullanılır; takip soruları conversation memory ve query rewriting katmanıyla bağımsız sorgulara çevrilir.",
+        "Agentic RAG katmanı sorunun stratejisini planlama, sorgu iyileştirme, kaynak/kurum tespiti ve sentez adımlarına ayırır. Corrective RAG, bulunan chunk'ları local grader ile değerlendirip yeterli bağlam yoksa aynı yetki kapsamı içinde tek seferlik genişletilmiş arama yapar. Self-RAG output evaluator ise cevabı context'e karşı supported, contradicted veya insufficient-evidence gibi sınıflarla ölçer.",
+        "Güvenlik tarafında departman, rol ve access-level tabanlı retrieval zorunludur: model collection veya filtre seçemez; Dense, BM25, RRF, reranker ve CRAG adımları aynı immutable AuthorizedRetrievalContext ile çalışır ve sonuçlar izinli chunk listesine karşı ikinci kez doğrulanır. PostgreSQL tarafında kullanıcı, oturum, belge, chunk, sohbet ve mesaj tabloları; Argon2id parola hash'i, CSRF, rate limiting, AES-256-GCM alan bazlı şifreleme, HMAC e-posta lookup ve plaintext log yazmama ilkeleriyle tamamlandı.",
+        "Sistem PDF, DOCX, PPTX, TXT, web içeriği, Excel sözlük ve OCR ağırlıklı doküman akışları için uploader pipeline'larıyla genişletildi. Değerlendirme tarafında comprehensive QA, multilingual sorgu, conversation memory, cross-company karışma riski, retrieval latency ve agentic stage timing koşuları kullanılarak sistem davranışı ölçüldü."
       ],
       en: [
-        "A RAG-based Turkish QA system over the ULAK Haberleşme corporate archive. In the default configuration no data leaves the machine: embedding model, vector store and LLM all run locally.",
-        "Retrieval is hybrid — dense search over ChromaDB (BAAI/bge-m3) fused with BM25 lexical search via Reciprocal Rank Fusion, plus an org-scoping filter that drops out-of-scope sources based on the organisation named in the query. A conversation memory and query-rewriting layer turns follow-up questions into standalone queries.",
-        "Anti-hallucination is handled in code: the system prompt binds the model to the provided context only, post-generation steps cut repetition loops and pin a fixed \"not found\" answer, and citations are built from real metadata rather than model output. The backend is a Flask API streaming NDJSON; the front end is a separate React app."
+        "Developed in the context of the AI and Information Systems Directorate, ULAK101 is a source-grounded AI knowledge assistant for ULAK Haberleşme's corporate and telecom archive. In the default architecture, the embedding model, ChromaDB, reranker and Ollama-based local LLM run on the same machine, so internal questions, answers and document content are not sent to external services.",
+        "The current architecture was moved fully from the earlier Flask prototype to FastAPI. The React 19, TanStack Start and TypeScript frontend consumes NDJSON streams from /api/query, while the FastAPI backend manages the RAG flow, authentication/session layer, document upload, conversation history and PostgreSQL data model.",
+        "Retrieval is implemented as an authorization-aware hybrid pipeline. Dense vector search over ChromaDB, BM25 lexical search over the authorized chunk pool, Reciprocal Rank Fusion, cross-encoder reranking and final context selection work together. Exact-match glossary routing handles terminology questions, while conversation memory and query rewriting turn follow-up questions into standalone queries.",
+        "The Agentic RAG layer separates each request into strategy planning, query optimization, source/company identification and synthesis. Corrective RAG grades retrieved chunks with a local grader and, when context is insufficient, performs a single broadened retry under the same authorization scope. Self-RAG output evaluation checks the answer against context with classes such as supported, contradicted and insufficient evidence.",
+        "Security is a core part of the system: department, role and access-level retrieval is mandatory; the model cannot choose collections or filters; every Dense, BM25, RRF, reranker and CRAG step uses the same immutable AuthorizedRetrievalContext; and results are verified again against the allowed chunk list. PostgreSQL stores users, sessions, documents, chunks, conversations and messages, with Argon2id password hashing, CSRF, rate limiting, field-level AES-256-GCM encryption, HMAC email lookup and no plaintext question/answer logging.",
+        "The system was extended with uploader pipelines for PDF, DOCX, PPTX, TXT, web content, Excel glossary data and OCR-heavy documents. Evaluation suites cover comprehensive QA, multilingual querying, conversation memory, cross-company confusion risk, retrieval latency and agentic stage timing."
       ]
     },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
-  },
-  {
+    links: []
+  },  {
     slug: "microsoft-ai-innovators-rag", year: "2026", kind: { tr: "Microsoft AI Innovators / RAG", en: "Microsoft AI Innovators / RAG" },
     name: { tr: "Microsoft AI Innovators RAG Assistant", en: "Microsoft AI Innovators RAG Assistant" },
     one: {
@@ -1210,6 +1241,7 @@ class Component extends DCLogic {
         paras: p.paras[lang],
         stack: p.stack,
         links: (p.links || []).map(l => ({ label: this.loc(l.label, lang), url: l.url || "#", open: () => l.report ? this.openReport(l.report) : window.open(l.url, "_blank", "noopener") })),
+        hasLinks: (p.links || []).length > 0,
         gallery: this.galleryFor(p, lang)
       };
     }
