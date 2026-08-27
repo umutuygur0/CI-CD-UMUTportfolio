@@ -880,7 +880,7 @@ class Component extends DCLogic {
     this.state = {
       lang: (props.defaultLang === "Türkçe") ? "tr" : "en",
       theme: (props.defaultTheme === "Gece") ? "dark" : "light",
-      hover: null, open: null, report: null, tick: 0, tickOpacity: 1, media: {}, ready: {}, gallery: {}
+      hover: null, open: null, report: null, tick: 0, tickOpacity: 1, media: {}, preview: {}, ready: {}, gallery: {}
     };
   }
 
@@ -893,16 +893,19 @@ class Component extends DCLogic {
     window.addEventListener("keydown", this.onKey);
     this.onPopState = (e) => this.handlePopState(e);
     window.addEventListener("popstate", this.onPopState);
+    this.preloadTimer = window.setTimeout(() => this.preloadProjectVideos(), 650);
   }
   componentWillUnmount() {
     clearInterval(this.timer);
     window.removeEventListener("keydown", this.onKey);
     window.removeEventListener("popstate", this.onPopState);
+    if (this.preloadTimer) window.clearTimeout(this.preloadTimer);
+    (this.preloadEls || []).forEach(v => { try { v.pause(); v.removeAttribute("src"); v.load(); } catch (e) {} });
   }
 
   loc(v, lang) { return (v && typeof v === "object" && (v.tr || v.en)) ? v[lang] : v; }
   openProject(slug) {
-    this.ensureMedia(slug);
+    this.ensureMedia(slug, "full");
     if (window.history && window.history.pushState) {
       window.history.pushState({ portfolioLayer: "project", slug }, "", "#project-" + slug);
     }
@@ -928,12 +931,12 @@ class Component extends DCLogic {
   handlePopState(e) {
     const state = e.state || {};
     if (state.portfolioLayer === "project" && state.slug) {
-      this.ensureMedia(state.slug);
+      this.ensureMedia(state.slug, "full");
       this.setState({ open: state.slug, report: null });
       return;
     }
     if (state.portfolioLayer === "report" && state.slug && state.reportDoc) {
-      this.ensureMedia(state.slug);
+      this.ensureMedia(state.slug, "full");
       this.setState({ open: state.slug }, () => this.loadReport(state.reportDoc, false));
       return;
     }
@@ -1046,35 +1049,76 @@ class Component extends DCLogic {
     );
   }
 
-  ensureMedia(slug) {
-    if (this.state.media[slug] !== undefined) return;
-    const media = Object.assign({}, this.state.media); media[slug] = null;
-    this.setState({ media });
+  mediaStateKey(kind) { return kind === "preview" ? "preview" : "media"; }
+
+  mediaCandidates(slug, kind) {
+    const full = [".mp4", ".webm", ".mov"].map(ext => "videos/" + slug + ext);
+    if (kind === "preview") {
+      const preview = [".webm", ".mp4", ".mov"].map(ext => "videos/previews/" + slug + ext);
+      const lightFallback = [".webm", ".mp4", ".mov"].map(ext => "videos/" + slug + ext);
+      return preview.concat(lightFallback);
+    }
+    return full;
+  }
+
+  ensureMedia(slug, kind = "full") {
+    const stateKey = this.mediaStateKey(kind);
+    if (this.state[stateKey][slug] !== undefined) return;
+    this.setState(s => ({ [stateKey]: Object.assign({}, s[stateKey], { [slug]: null }) }));
     (async () => {
       let found = false;
-      for (const ext of [".mp4", ".webm", ".mov"]) {
-        const url = "videos/" + slug + ext;
+      for (const url of this.mediaCandidates(slug, kind)) {
         try {
           const r = await fetch(url, { method: "HEAD" });
           if (r.ok) { found = url; break; }
         } catch (e) { /* keep probing */ }
       }
-      this.setState(s => ({ media: Object.assign({}, s.media, { [slug]: found }) }));
+      this.setState(s => ({ [stateKey]: Object.assign({}, s[stateKey], { [slug]: found }) }), () => {
+        if (found && kind === "preview") this.preloadVideo(found);
+      });
     })();
   }
 
+  preloadVideo(url) {
+    if (!url || this.preloadedUrls?.has(url)) return;
+    if (!this.preloadedUrls) this.preloadedUrls = new Set();
+    if (!this.preloadEls) this.preloadEls = [];
+    this.preloadedUrls.add(url);
+    const v = document.createElement("video");
+    v.src = url;
+    v.preload = "auto";
+    v.muted = true;
+    v.playsInline = true;
+    v.load();
+    this.preloadEls.push(v);
+  }
+
+  preloadProjectVideos() {
+    const connection = navigator.connection || navigator.webkitConnection || navigator.mozConnection;
+    if (connection && connection.saveData) return;
+    const slowConnection = connection && /(^2g|slow-2g)$/i.test(connection.effectiveType || "");
+    const preloadCount = slowConnection ? 4 : DATA.length;
+    DATA.slice(0, preloadCount).forEach((p, i) => {
+      window.setTimeout(() => this.ensureMedia(p.slug, "preview"), i * 180);
+    });
+  }
+
   videoEl(slug, controls) {
-    const url = this.state.media[slug];
+    const kind = controls ? "full" : "preview";
+    const stateKey = this.mediaStateKey(kind);
+    const url = this.state[stateKey][slug] || (kind === "full" ? this.state.preview[slug] : null);
     if (!url) return null;
-    const ready = !!this.state.ready[slug];
-    const mark = () => { if (!this.state.ready[slug]) this.setState(s => ({ ready: Object.assign({}, s.ready, { [slug]: true }) })); };
+    const readyKey = slug + ":" + kind;
+    const ready = !!this.state.ready[readyKey];
+    const mark = () => { if (!this.state.ready[readyKey]) this.setState(s => ({ ready: Object.assign({}, s.ready, { [readyKey]: true }) })); };
     return React.createElement("video", {
-      key: slug + (controls ? "-full" : "-row"),
+      key: slug + (controls ? "-full" : "-row") + ":" + url,
       src: url,
+      preload: controls ? "metadata" : "auto",
       autoPlay: true, muted: true, loop: true, playsInline: true, controls: !!controls,
-      onLoadedData: mark, onPlaying: mark,
+      onLoadedData: mark, onCanPlay: mark, onPlaying: mark,
       ref: (el) => { if (el) { el.muted = true; const pr = el.play(); if (pr && pr.catch) pr.catch(() => {}); } },
-      onError: () => this.setState(s => ({ media: Object.assign({}, s.media, { [slug]: false }) })),
+      onError: () => this.setState(s => ({ [stateKey]: Object.assign({}, s[stateKey], { [slug]: false }) })),
       style: {
         position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover",
         opacity: ready ? 1 : 0, transition: "opacity .35s ease"
@@ -1127,10 +1171,10 @@ class Component extends DCLogic {
         just: i % 2 === 0 ? "flex-end" : "flex-start",
         isHovered: this.state.hover === slug,
         videoEl: this.state.hover === slug ? this.videoEl(slug, false) : null,
-        motionLabel: UI[lang].motion + " — " + (typeof this.state.media[slug] === "string" ? this.state.media[slug] : "videos/" + slug + ".mp4"),
+        motionLabel: UI[lang].motion + " — " + (typeof this.state.preview[slug] === "string" ? this.state.preview[slug] : "videos/previews/" + slug + ".webm"),
         nameColor: this.state.hover === slug ? "var(--accent-ink)" : "var(--ink)",
         open: () => this.openProject(slug),
-        enter: () => { this.ensureMedia(slug); this.setState({ hover: slug }); },
+        enter: () => { this.ensureMedia(slug, "preview"); this.setState({ hover: slug }); },
         leave: () => this.setState(s => (s.hover === slug ? { hover: null } : null))
       };
     });
