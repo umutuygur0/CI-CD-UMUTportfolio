@@ -70,6 +70,7 @@ a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 @keyframes sweepY{0%{transform:translateY(-115%)}100%{transform:translateY(115%)}}
 @keyframes ghostPulse{0%{opacity:.10;transform:scale(1)}100%{opacity:.22;transform:scale(1.06)}}
 @keyframes markDrift{0%{opacity:0;transform:translateY(10px)}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
+@keyframes projectTickerRight{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
 .report-body h1,.report-body h2,.report-body h3{line-height:1.14;margin:1.35em 0 .55em}.report-body h1{font-size:32px}.report-body h2{font-size:25px;border-top:1px solid var(--rule);padding-top:20px}.report-body h3{font-size:20px}.report-body p,.report-body li{font-size:15px;line-height:1.72}.report-body table{width:100%;border-collapse:collapse;margin:16px 0;display:block;overflow-x:auto;border:1px solid var(--rule);border-radius:8px}.report-body th,.report-body td{padding:9px 11px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top;font-size:13.5px;min-width:116px}.report-body th{background:var(--tint);font-weight:800}.report-body code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--bg);border:1px solid var(--rule);border-radius:4px;padding:1px 5px}.report-body pre{background:#201f1d;color:#f8f2e8;padding:16px;border-radius:8px;overflow:auto}.report-body pre code{background:transparent;border:0;color:inherit}.report-body blockquote{border-left:4px solid var(--accent);margin:16px 0;padding:10px 14px;background:var(--tint)}.report-body figure{margin:18px 0;border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--bg)}.report-body figure img{display:block;width:100%;height:auto}.report-body figcaption{padding:9px 11px;font-size:12px;color:var(--muted)}
 </style>
 </helmet>
@@ -105,9 +106,19 @@ a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
       </div>
     </section>
 
-    <section style="display:flex;align-items:center;gap:10px;padding:0 0 26px;">
-      <span style="width:7px;height:7px;border-radius:999px;background:var(--accent);flex:0 0 auto;"></span>
-      <span style="border:1px solid var(--rule-strong);border-radius:999px;padding:8px 18px;font-size:13.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:min(100%,540px);transition:opacity .3s ease;opacity:{{ tickerOpacity }};">{{ tickerName }}</span>
+    <section style="position:relative;left:50%;width:100vw;margin-left:-50vw;padding:0 0 28px;overflow:hidden;">
+      <div style="position:relative;height:58px;display:flex;align-items:center;overflow:hidden;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--surface);">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:min(16vw,150px);background:linear-gradient(90deg,var(--surface),rgba(0,0,0,0));z-index:2;pointer-events:none;"></div>
+        <div style="position:absolute;right:0;top:0;bottom:0;width:min(16vw,150px);background:linear-gradient(270deg,var(--surface),rgba(0,0,0,0));z-index:2;pointer-events:none;"></div>
+        <div style="display:flex;align-items:center;gap:14px;min-width:max-content;white-space:nowrap;animation:projectTickerRight 58s linear infinite;will-change:transform;padding:0 14px;">
+          <sc-for list="{{ tickerItems }}" as="item" hint-placeholder-count="16">
+            <span style="display:inline-flex;align-items:center;gap:9px;border:1px solid var(--rule-strong);border-radius:999px;background:var(--chip-bg);color:var(--ink);padding:8px 16px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 8px 20px rgba(0,0,0,.05);">
+              <span style="width:6px;height:6px;border-radius:999px;background:var(--accent);flex:0 0 auto;"></span>
+              <span>{{ item.name }}</span>
+            </span>
+          </sc-for>
+        </div>
+      </div>
     </section>
 
     <section style="padding:6px 0 0;">
@@ -948,15 +959,12 @@ class Component extends DCLogic {
     this.state = {
       lang: (props.defaultLang === "Türkçe") ? "tr" : "en",
       theme: (props.defaultTheme === "Gece") ? "dark" : "light",
-      hover: null, open: null, report: null, smallProjectsOpen: false, tick: 0, tickOpacity: 1, media: {}, preview: {}, ready: {}, gallery: {}
+      hover: null, open: null, report: null, smallProjectsOpen: false, media: {}, preview: {}, ready: {}, gallery: {}
     };
   }
 
   componentDidMount() {
-    this.timer = setInterval(() => {
-      this.setState({ tickOpacity: 0 });
-      setTimeout(() => this.setState(s => ({ tick: (s.tick + 1) % DATA.length, tickOpacity: 1 })), 330);
-    }, 2800);
+
     this.onKey = (e) => { if (e.key === "Escape") { if (this.state.report) this.closeReport(); else this.closeProject(); } };
     window.addEventListener("keydown", this.onKey);
     this.onPopState = (e) => this.handlePopState(e);
@@ -1258,6 +1266,7 @@ class Component extends DCLogic {
     };
     const projects = mainData.map((p, i) => makeProject(p, i));
     const smallProjects = smallData.map((p, i) => makeProject(p, smallStart + i));
+    const tickerItems = DATA.concat(DATA).map(p => ({ name: this.loc(p.name, lang) }));
     let active = null;
     if (this.state.open) {
       const i = DATA.findIndex(p => p.slug === this.state.open);
@@ -1279,7 +1288,7 @@ class Component extends DCLogic {
     }
 
     return {
-      ui, active, projects, smallProjects,
+      ui, active, projects, smallProjects, tickerItems,
       reportLayer: this.reportLayer(),
       theme: this.state.theme,
       typeVars: TYPE[this.props.typeface] || TYPE["Franklin"],
@@ -1290,8 +1299,6 @@ class Component extends DCLogic {
       smallProjectsOpen: this.state.smallProjectsOpen,
       smallProjectsToggleLabel: this.state.smallProjectsOpen ? UI[lang].closeGroup : UI[lang].openGroup,
       smallProjectsCaret: this.state.smallProjectsOpen ? "-" : "+",
-      tickerName: this.loc(DATA[this.state.tick].name, lang),
-      tickerOpacity: this.state.tickOpacity,
       trBtn: lang === "tr" ? segOn : segOff,
       enBtn: lang === "en" ? segOn : segOff,
       setTr: () => this.setState({ lang: "tr" }),
