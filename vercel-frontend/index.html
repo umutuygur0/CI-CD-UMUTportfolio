@@ -649,6 +649,31 @@ const DATA = [
     ]
   },
   {
+    slug: "lms-database", year: "2024", kind: { tr: "Java + MySQL / LMS", en: "Java + MySQL / LMS" },
+    name: { tr: "Learning Management System Database & Desktop App", en: "Learning Management System Database & Desktop App" },
+    one: {
+      tr: "Java Swing ve MySQL ile geliştirdiğim ilk kapsamlı projelerden biri: admin, eğitmen ve öğrenci rolleriyle ders, ödev, teslim, not, destek ve sertifika akışlarını yöneten LMS prototipi.",
+      en: "One of my first comprehensive projects: a Java Swing and MySQL LMS prototype managing admin, instructor and student flows for courses, assignments, submissions, grades, support and certificates."
+    },
+    stack: ["Java", "Java Swing", "MySQL", "JDBC", "SQL", "PreparedStatement", "Transactions", "Relational Modeling", "Views", "Triggers", "Role-Based Access", "CRUD"],
+    paras: {
+      tr: [
+        "2024'te geliştirdiğim bu proje, sadece SQL şeması değil; Java Swing arayüzü, JDBC veri erişim katmanı ve MySQL üzerinde çalışan uçtan uca bir Learning Management System prototipidir. Login/register ekranı, Account tablosundaki rol tipine göre kullanıcıyı Student, Instructor veya Admin paneline yönlendirir.",
+        "Veritabanı modeli Account, Student, Instructor, Administration, Support, Course, Course_Instructor, Assignment, Feedback ve Certificate tablolarından oluşur. Foreign key ilişkileri, ON DELETE CASCADE kuralları, CHECK constraint'leri, unique alanlar, indeksler ve course-instructor many-to-many bağlantısı ile gerçek bir üniversite/LMS veri akışı modellenmiştir.",
+        "Admin panelinde kullanıcı silme, ders oluşturma ve destek taleplerini görüntüleme; instructor panelinde ders seçme, ders içeriğini güncelleme, ödev oluşturma, teslimleri görme, not/feedback girme; student panelinde kayıtlı dersleri görme, ödev teslim etme, feedback/notları takip etme, destek talebi oluşturma ve sertifika ekranına erişme akışları bulunur.",
+        "Java tarafında DatabaseHandler sınıfı tüm veri erişimini PreparedStatement tabanlı metotlarla toplar: login, rol çözümleme, kullanıcı bilgisi çekme, course CRUD, assignment CRUD, submission update/insert, feedback update, support request ve admin delete işlemleri tek katmanda yönetilir. Ders oluşturma ve eğitmen eşleştirme gibi çok adımlı işlemlerde transaction mantığı kullanılır.",
+        "Bu proje, sonraki daha büyük backend ve veri projelerim için temel oluşturdu: ilişkisel modelleme, rol bazlı uygulama akışı, SQL constraint tasarımı, Java arayüz-programlama ve uygulama ile veritabanı arasındaki state senkronizasyonunu ilk kez kapsamlı şekilde birleştirdiğim çalışma oldu."
+      ],
+      en: [
+        "Built in 2024, this project is more than a SQL schema: it is an end-to-end Learning Management System prototype with a Java Swing interface, JDBC data-access layer and MySQL backend. The login/register screen routes users into Student, Instructor or Admin panels according to the role type stored in the Account table.",
+        "The database model includes Account, Student, Instructor, Administration, Support, Course, Course_Instructor, Assignment, Feedback and Certificate tables. Foreign-key relationships, ON DELETE CASCADE rules, CHECK constraints, unique fields, indexes and the many-to-many course-instructor relation model a realistic university/LMS workflow.",
+        "The Admin panel supports deleting users, creating courses and viewing support requests. The Instructor panel supports course selection, course-content updates, assignment creation, submission review and grade/feedback entry. The Student panel supports viewing enrolled courses, submitting assignments, checking feedback/grades, creating support requests and opening certificate information.",
+        "On the Java side, the DatabaseHandler class centralizes data access with PreparedStatement-based methods for login, role resolution, profile lookup, course CRUD, assignment CRUD, submission update/insert, feedback update, support requests and admin delete operations. Multi-step flows such as course creation plus instructor assignment use transaction handling.",
+        "This project became a foundation for my later backend and data systems: it was the first work where I combined relational modeling, role-based application flow, SQL constraint design, Java UI programming and application-database state synchronization in a broader system."
+      ]
+    },
+    links: [{ label: { tr: "GitHub reposu", en: "GitHub repository" }, url: "https://github.com/umutuygur0/lms" }]
+  },  {
     slug: "softmax-pipeline", year: "2025", kind: { tr: "Makine öğrenmesi", en: "Machine learning" },
     name: { tr: "Softmax Regresyon Hattı", en: "Softmax Regression Pipeline" },
     one: {
@@ -784,26 +809,6 @@ const DATA = [
       en: [
         "Several sorting algorithms were implemented and timed across growing input sizes, then reported against their theoretical complexity curves.",
         "The report shows at which input size each algorithm takes the lead, and why constant factors matter in practice."
-      ]
-    },
-    links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
-  },
-  {
-    slug: "lms-database", year: "2025", kind: { tr: "Veritabanı", en: "Database" },
-    name: { tr: "Öğrenme Yönetim Sistemi Veritabanı", en: "Learning Management System Database" },
-    one: {
-      tr: "Ders, öğrenci ve değerlendirme akışını taşıyan ilişkisel şema ve sorgu seti.",
-      en: "A relational schema and query set carrying course, student and assessment flows."
-    },
-    stack: ["SQL", "İlişkisel modelleme", "Java"],
-    paras: {
-      tr: [
-        "Bir öğrenme yönetim sistemi için ilişkisel şema: ders, kayıt, içerik ve değerlendirme tabloları normalize edilerek kuruldu.",
-        "Şemanın yanında raporlama sorguları yazıldı — ders bazlı ilerleme, teslim durumu ve not dağılımı gibi çıktılar doğrudan SQL ile alınıyor."
-      ],
-      en: [
-        "A relational schema for a learning management system: course, enrolment, content and assessment tables, normalised.",
-        "Reporting queries accompany the schema — per-course progress, submission state and grade distribution come straight out of SQL."
       ]
     },
     links: [{ label: { tr: "GitHub profili", en: "GitHub profile" }, url: GH }]
