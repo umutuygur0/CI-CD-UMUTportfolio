@@ -230,7 +230,7 @@ const GH = "https://github.com/umutuygur0";
 
 const DATA = [
   {
-    slug: "multi-camera-reid-htr", year: "2025", kind: { tr: "Havelsan HTR / Ar-Ge", en: "Havelsan HTR / R&D" },
+    slug: "multi-camera-reid-htr", year: "Jul 2025–Sep 2025", kind: { tr: "Havelsan HTR / Ar-Ge", en: "Havelsan HTR / R&D" },
     name: { tr: "Multi-Camera Real-Time Object Tracking & Re-ID - HTR", en: "Multi-Camera Real-Time Object Tracking & Re-ID - HTR" },
     one: {
       tr: "15 canlı kamerada hedefi 2 saniye içinde kameralar arasında yeniden tanımlayan, yüz görünmese bile takibi sürdüren ve 1 saniyenin altında sabotaj alarmı üreten gerçek zamanlı AI sistemi.",
@@ -257,7 +257,7 @@ const DATA = [
     ]
   },
   {
-    slug: "library-occupancy", year: "2025-2026", kind: { tr: "TED Üniversitesi / Computer Vision", en: "TED University / Computer Vision" },
+    slug: "library-occupancy", year: "Jan 2025–Jan 2026", kind: { tr: "TED Üniversitesi / Computer Vision", en: "TED University / Computer Vision" },
     name: { tr: "Library Occupancy Detection System", en: "Library Occupancy Detection System" },
     one: {
       tr: "TED Üniversitesi kütüphaneleri için 40+ kamera ve 400 koltuk ölçeğinde EMPTY/OCCUPIED/HOLD sınıflandırması yapan YOLOv8 + SSIM tabanlı doluluk izleme sistemi.",
@@ -286,7 +286,7 @@ const DATA = [
     ]
   },
   {
-    slug: "nurol-supplychain-ai", year: "2025", kind: { tr: "Nurol Teknoloji / Teslim Edilen Sistem", en: "Nurol Teknoloji / Delivered System" },
+    slug: "nurol-supplychain-ai", year: "Oct 2025", kind: { tr: "Nurol Teknoloji / Teslim Edilen Sistem", en: "Nurol Teknoloji / Delivered System" },
     name: { tr: "AI-Powered Demand Forecasting & Inventory Optimization System", en: "AI-Powered Demand Forecasting & Inventory Optimization System" },
     one: {
       tr: "Endüstriyel supply-chain verisiyle talep tahmini, stok optimizasyonu ve otomatik sipariş önerisi üreten; kıdemli AI ve yazılım mühendisliği mentorluğu altında geliştirilen kurumsal karar destek sistemi.",
@@ -404,26 +404,33 @@ const DATA = [
     ]
   },
   {
-    slug: "values-career-vr-simulator", year: "2025–Present", kind: { tr: "VR / Milli Eğitim", en: "VR / Ministry of Education" },
-    name: { tr: "Values & Career Simulator", en: "Values & Career Simulator" },
+    slug: "values-career-vr-simulator", year: "Aug 2025–Present", kind: { tr: "ETKİM / MEB VR Eğitimi", en: "ETKIM / Turkish MoE VR Education" },
+    name: { tr: "VR-Based Values & Career Simulator", en: "VR-Based Values & Career Simulator" },
     one: {
-      tr: "Öğrencilerin kariyer farkındalığı ve karar verme süreçlerini destekleyen; ODTÜ Teknokent'te, TEDU Eğitim Dekanı liderliğinde geliştirilen Unity/OpenXR tabanlı immersive VR simülasyonu.",
-      en: "Unity/OpenXR immersive VR simulation for student career awareness and decision-making, built in ODTÜ Teknokent under the leadership of the TEDU Education Dean."
+      tr: "ETKİM ve Türkiye Milli Eğitim Bakanlığı iş birliği bağlamında, ODTÜ Teknokent ortamında TEDU Eğitim Dekanı liderliğinde geliştirilen; etik ve sosyal seçimlerin sanal ortamda anlık sonuçlara dönüştüğü Unity 6.1 + OpenXR tabanlı karar odaklı VR senaryo simülatörü.",
+      en: "Unity 6.1 + OpenXR decision-driven VR scenario simulator built in ODTÜ Teknokent under the leadership of the TEDU Education Dean, in the context of ETKIM and the Turkish Ministry of Education."
     },
-    stack: ["Unity 6.1", "OpenXR", "C#", "XR Origin", "XR Interaction", "VR UX", "Simulation Design"],
+    stack: ["Unity 6.1", "OpenXR", "C#", "XR Origin", "XR Interaction Toolkit", "Unity Input System", "Event-driven interactions", "Branching UI", "Scenario progression", "PostgreSQL"],
     paras: {
       tr: [
-        "Türkiye Milli Eğitim Bakanlığı kapsamındaki Values & Career Simulator projesi, öğrencilerin değer farkındalığı, meslek keşfi ve karar verme süreçlerini deneyimleyerek öğrenmesini hedefleyen immersive VR simülasyonu olarak geliştiriliyor. Proje ODTÜ Teknokent ortamında, TEDU Eğitim Dekanı liderliğinde yürütülüyor.",
-        "Teknik tarafta Unity 6.1, OpenXR, C# ve XR Origin tabanlı cihaz bağımsız VR mimarisi kullanılıyor. Deneyim; öğrencinin farklı kariyer senaryolarında seçim yapabildiği, kararların sonuçlarını görebildiği ve rehberlik/öğrenme hedefleriyle uyumlu ilerleyen etkileşimli sahneler üzerine kuruluyor.",
-        "Çalışma; VR konforu, sahne geçişleri, etkileşim akışı, XR controller davranışları, kullanıcı yönlendirmeleri ve senaryo modülerliği gibi ürünleşme ayrıntılarını da kapsıyor. Amaç yalnızca görsel bir VR demo değil, eğitim ortamında kullanılabilecek anlaşılır ve sürdürülebilir bir kariyer farkındalığı deneyimi üretmek."
+        "ETKİM kapsamında yürüyen VR-Based Values & Career Simulator, öğrencilerin değerler eğitimi, sosyal davranış ve kariyer farkındalığı konularını deneyimleyerek öğrenmesini hedefleyen etkileşimli bir VR senaryo sistemi. Proje, ODTÜ Teknokent ortamında TEDU Eğitim Dekanı liderliğinde ve Türkiye Milli Eğitim Bakanlığı'nın eğitim odaklı VR kullanım senaryolarıyla hizalı şekilde geliştiriliyor.",
+        "Kullanıcı VR ortamında karar odaklı mini senaryolara giriyor: sosyal/etik bir durumla karşılaşıyor, UI üzerinden seçim yapıyor ve seçimin sonucu sahne içinde anında geri bildirim olarak gösteriliyor. Mevcut repo içeriğinde diyalog tabanlı zorbalık senaryosu, seçimlere göre feedback, polis gelişi gibi görsel anlatım adımları ve quiz akışı bulunuyor.",
+        "Benim katkım Unity XR Framework üzerinde C# ile event-driven etkileşimleri, trigger bölgelerini, popup/diyalog sıralamasını, UI tabanlı dallanma mantığını ve senaryo ilerleme mekaniklerini kurmaya odaklandı. XR Origin, OpenXR, XR Interaction Toolkit ve Unity Input System kullanılarak cihaz bağımsız bir VR etkileşim tabanı hedeflendi.",
+        "Proje yalnızca görsel bir VR demo değil; kararların kaydedilebildiği bir öğrenme altyapısı olarak düşünülüyor. README'de PostgreSQL üzerinde `user_choices` tablosu ve `api/Choices` endpoint'i ile kullanıcı seçimlerinin saklanması planı yer alıyor. Böylece senaryo çıktıları ileride ölçme-değerlendirme, rehberlik ve kişiselleştirilmiş geri bildirim için kullanılabilecek."
       ],
       en: [
-        "The Values & Career Simulator project, developed in the context of the Turkish Ministry of Education, is an immersive VR simulation designed to help students learn career awareness, values and decision-making through experience. The project is being built in ODTÜ Teknokent under the leadership of the TEDU Education Dean.",
-        "The technical stack uses Unity 6.1, OpenXR, C# and XR Origin for a device-independent VR architecture. The experience is built around interactive scenes where students make choices in different career scenarios, observe the consequences and progress through guidance-oriented learning objectives.",
-        "The work also covers product details such as VR comfort, scene transitions, interaction flow, XR controller behaviour, user guidance and modular scenario structure. The goal is not only a visual VR demo, but a clear and maintainable career-awareness experience usable in educational settings."
+        "VR-Based Values & Career Simulator is an ETKIM educational VR project designed to help students learn values education, social behaviour and career awareness through experience. It is being built in ODTÜ Teknokent under the leadership of the TEDU Education Dean, aligned with Turkish Ministry of Education use cases for immersive learning.",
+        "The user enters decision-driven mini-scenarios in VR: they face a social or ethical situation, choose an option through UI, and the consequence is reflected immediately inside the virtual scene. The current repository includes a dialogue-based bullying scenario, decision feedback, police-arrival style narrative events and a quiz flow.",
+        "My contribution focuses on building the simulation layer in Unity XR with C#: event-driven interactions, trigger zones, popup/dialogue sequencing, UI-based branching logic and scenario progression mechanics. XR Origin, OpenXR, XR Interaction Toolkit and the Unity Input System are used as the basis for device-independent VR interaction.",
+        "The project is designed as more than a visual VR demo; it also points toward a measurable learning system. The README defines a PostgreSQL `user_choices` table and an `api/Choices` endpoint for saving user decisions, making the scenario results usable later for assessment, guidance and personalized feedback."
       ]
     },
-    links: []
+    links: [
+      { label: { tr: "VR GitHub reposu", en: "VR GitHub repository" }, url: "https://github.com/umutuygur0/vr-meb-project" },
+      { label: { tr: "ETKİM AI reposu", en: "ETKIM AI repository" }, url: "https://github.com/umutuygur0/etkim-ai" },
+      { label: { tr: "Proje özeti", en: "Project overview" }, report: "etkimOverview" },
+      { label: { tr: "Kaynak README", en: "Source README" }, report: "etkimReadme" }
+    ]
   },
   {
     slug: "ulak101-rag", year: "2026", kind: { tr: "Kurumsal RAG", en: "Enterprise RAG" },
@@ -848,15 +855,17 @@ const TYPE = {
 };
 
 
-const SSB_REPORTS = {
-  final: { label: { tr: "Final teknik rapor", en: "Final technical report" }, file: "uploads/ssb-gps-free-final-report.md", base: "Phase4_Rapor/report" },
-  plan: { label: { tr: "Proje planı", en: "Project plan" }, file: "uploads/ssb-gps-free-project-plan.md", base: "" },
-  phase2: { label: { tr: "Model raporu", en: "Model report" }, file: "uploads/ssb-gps-free-phase2-model-report.md", base: "Phase2_Model/report" },
-  phase3: { label: { tr: "GPS kesintisi raporu", en: "GPS outage report" }, file: "uploads/ssb-gps-free-phase3-outage-report.md", base: "Phase3_GPS_Kesintisi/report" },
-  outline: { label: { tr: "Sunum akışı", en: "Presentation outline" }, file: "uploads/ssb-gps-free-presentation-outline.md", base: "Phase5_Sunum" },
-  script: { label: { tr: "Sunum metni", en: "Presentation script" }, file: "uploads/ssb-gps-free-presentation-script.md", base: "Phase5_Sunum" }
-};
 const SSB_RAW_BASE = "https://raw.githubusercontent.com/umutuygur0/SSB_KONUMTESP-T/main/";
+const REPORT_DOCS = {
+  final: { label: { tr: "Final teknik rapor", en: "Final technical report" }, file: "uploads/ssb-gps-free-final-report.md", base: "Phase4_Rapor/report", rawBase: SSB_RAW_BASE, eyebrow: { tr: "SSB / UAV AI", en: "SSB / UAV AI" }, stats: [["4.124 m", "GRU mean HPE"], ["118", "valid flights"], ["264", "outage scenarios"], ["2-3x", "10-30s improvement"]] },
+  plan: { label: { tr: "Proje planı", en: "Project plan" }, file: "uploads/ssb-gps-free-project-plan.md", base: "", rawBase: SSB_RAW_BASE, eyebrow: { tr: "SSB / UAV AI", en: "SSB / UAV AI" }, stats: [["4.124 m", "GRU mean HPE"], ["118", "valid flights"], ["264", "outage scenarios"], ["2-3x", "10-30s improvement"]] },
+  phase2: { label: { tr: "Model raporu", en: "Model report" }, file: "uploads/ssb-gps-free-phase2-model-report.md", base: "Phase2_Model/report", rawBase: SSB_RAW_BASE, eyebrow: { tr: "SSB / UAV AI", en: "SSB / UAV AI" }, stats: [["4.124 m", "GRU mean HPE"], ["118", "valid flights"], ["264", "outage scenarios"], ["2-3x", "10-30s improvement"]] },
+  phase3: { label: { tr: "GPS kesintisi raporu", en: "GPS outage report" }, file: "uploads/ssb-gps-free-phase3-outage-report.md", base: "Phase3_GPS_Kesintisi/report", rawBase: SSB_RAW_BASE, eyebrow: { tr: "SSB / UAV AI", en: "SSB / UAV AI" }, stats: [["4.124 m", "GRU mean HPE"], ["118", "valid flights"], ["264", "outage scenarios"], ["2-3x", "10-30s improvement"]] },
+  outline: { label: { tr: "Sunum akışı", en: "Presentation outline" }, file: "uploads/ssb-gps-free-presentation-outline.md", base: "Phase5_Sunum", rawBase: SSB_RAW_BASE, eyebrow: { tr: "SSB / UAV AI", en: "SSB / UAV AI" }, stats: [["4.124 m", "GRU mean HPE"], ["118", "valid flights"], ["264", "outage scenarios"], ["2-3x", "10-30s improvement"]] },
+  script: { label: { tr: "Sunum metni", en: "Presentation script" }, file: "uploads/ssb-gps-free-presentation-script.md", base: "Phase5_Sunum", rawBase: SSB_RAW_BASE, eyebrow: { tr: "SSB / UAV AI", en: "SSB / UAV AI" }, stats: [["4.124 m", "GRU mean HPE"], ["118", "valid flights"], ["264", "outage scenarios"], ["2-3x", "10-30s improvement"]] },
+  etkimOverview: { label: { tr: "Proje özeti", en: "Project overview" }, file: "uploads/etkim-vr-project-overview.md", base: "", rawBase: "", eyebrow: { tr: "ETKİM / MEB VR", en: "ETKIM / Turkish MoE VR" }, stats: [["Unity 6.1", "engine"], ["OpenXR", "XR runtime"], ["XRIT 3.1.2", "interaction toolkit"], ["PostgreSQL", "choice logging"]] },
+  etkimReadme: { label: { tr: "Kaynak README", en: "Source README" }, file: "uploads/etkim-vr-source-readme.md", base: "", rawBase: "", eyebrow: { tr: "ETKİM / MEB VR", en: "ETKIM / Turkish MoE VR" }, stats: [["Unity 6.1", "engine"], ["OpenXR", "XR runtime"], ["XRIT 3.1.2", "interaction toolkit"], ["PostgreSQL", "choice logging"]] }
+};
 const UI = {
   tr: {
     role: "Bilgisayar Mühendisi", cv: "CV", cvLine: "CV'yi görüntüle",
@@ -948,25 +957,26 @@ class Component extends DCLogic {
     if (pushHistory && window.history && window.history.pushState) {
       window.history.pushState({ portfolioLayer: "report", slug, reportDoc: docKey }, "", "#project-" + slug + "/report-" + docKey);
     }
-    this.loadReport(docKey, false);
+    this.loadReport(docKey);
   }
 
   loadReport(docKey) {
-    const doc = SSB_REPORTS[docKey];
+    const doc = REPORT_DOCS[docKey];
     if (!doc) return;
     const title = this.loc(doc.label, this.state.lang);
-    this.setState({ report: { key: docKey, title, html: "", loading: true } });
+    const slug = this.state.open;
+    this.setState({ report: { key: docKey, slug, title, html: "", loading: true } });
     fetch(doc.file)
       .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
-      .then(md => this.setState({ report: { key: docKey, title, html: this.renderMarkdown(md, doc.base), loading: false } }))
-      .catch(() => this.setState({ report: { key: docKey, title, html: "<p>Report could not be loaded.</p>", loading: false } }));
+      .then(md => this.setState({ report: { key: docKey, slug, title, html: this.renderMarkdown(md, doc.base, doc.rawBase), loading: false } }))
+      .catch(() => this.setState({ report: { key: docKey, slug, title, html: "<p>Report could not be loaded.</p>", loading: false } }));
   }
 
   esc(s) {
     return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
 
-  resolveReportAsset(src, base) {
+  resolveReportAsset(src, base, rawBase = "") {
     if (/^https?:\/\//i.test(src)) return src;
     const parts = (base ? base.split("/") : []).concat(src.split("/"));
     const stack = [];
@@ -974,25 +984,26 @@ class Component extends DCLogic {
       if (!p || p === ".") return;
       if (p === "..") stack.pop(); else stack.push(p);
     });
-    return SSB_RAW_BASE + stack.join("/");
+    const path = stack.join("/");
+    return rawBase ? rawBase + path : path;
   }
 
-  inlineMarkdown(s, base) {
+  inlineMarkdown(s, base, rawBase = "") {
     let out = this.esc(s);
     out = out.replace(/`([^`]+)`/g, "<code>$1</code>");
     out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-    out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, url) => `<a href="${this.esc(this.resolveReportAsset(url, base))}" target="_blank" rel="noopener">${label}</a>`);
+    out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, url) => `<a href="${this.esc(this.resolveReportAsset(url, base, rawBase))}" target="_blank" rel="noopener">${label}</a>`);
     return out;
   }
 
-  renderTable(lines, base) {
+  renderTable(lines, base, rawBase = "") {
     const rows = lines.map(l => l.trim().replace(/^\||\|$/g, "").split("|").map(c => c.trim()));
     const head = rows[0] || [];
     const body = rows.slice(2);
-    return "<table><thead><tr>" + head.map(c => "<th>" + this.inlineMarkdown(c, base) + "</th>").join("") + "</tr></thead><tbody>" + body.map(r => "<tr>" + r.map(c => "<td>" + this.inlineMarkdown(c, base) + "</td>").join("") + "</tr>").join("") + "</tbody></table>";
+    return "<table><thead><tr>" + head.map(c => "<th>" + this.inlineMarkdown(c, base, rawBase) + "</th>").join("") + "</tr></thead><tbody>" + body.map(r => "<tr>" + r.map(c => "<td>" + this.inlineMarkdown(c, base, rawBase) + "</td>").join("") + "</tr>").join("") + "</tbody></table>";
   }
 
-  renderMarkdown(md, base) {
+  renderMarkdown(md, base, rawBase = "") {
     const lines = md.replace(/\r\n/g, "\n").split("\n");
     let html = "", i = 0, list = false, code = false, codeLines = [];
     const closeList = () => { if (list) { html += "</ul>"; list = false; } };
@@ -1007,13 +1018,13 @@ class Component extends DCLogic {
       if (code) { codeLines.push(line); i++; continue; }
       if (!line.trim()) { closeList(); i++; continue; }
       const img = line.match(/^!\[([^\]]*)\]\(([^)]+)\)/);
-      if (img) { closeList(); const src = this.resolveReportAsset(img[2], base); html += `<figure><img src="${this.esc(src)}" alt="${this.esc(img[1])}"><figcaption>${this.esc(img[1] || "Project visual")}</figcaption></figure>`; i++; continue; }
-      if (/^\|.+\|\s*$/.test(line)) { closeList(); const group = []; while (i < lines.length && /^\|.+\|\s*$/.test(lines[i])) group.push(lines[i++]); html += this.renderTable(group, base); continue; }
+      if (img) { closeList(); const src = this.resolveReportAsset(img[2], base, rawBase); html += `<figure><img src="${this.esc(src)}" alt="${this.esc(img[1])}"><figcaption>${this.esc(img[1] || "Project visual")}</figcaption></figure>`; i++; continue; }
+      if (/^\|.+\|\s*$/.test(line)) { closeList(); const group = []; while (i < lines.length && /^\|.+\|\s*$/.test(lines[i])) group.push(lines[i++]); html += this.renderTable(group, base, rawBase); continue; }
       const h = line.match(/^(#{1,4})\s+(.+)$/);
-      if (h) { closeList(); const level = Math.min(h[1].length, 3); html += `<h${level}>${this.inlineMarkdown(h[2], base)}</h${level}>`; i++; continue; }
-      if (/^>\s?/.test(line)) { closeList(); html += "<blockquote>" + this.inlineMarkdown(line.replace(/^>\s?/, ""), base) + "</blockquote>"; i++; continue; }
-      if (/^[-*]\s+/.test(line)) { if (!list) { html += "<ul>"; list = true; } html += "<li>" + this.inlineMarkdown(line.replace(/^[-*]\s+/, ""), base) + "</li>"; i++; continue; }
-      closeList(); html += "<p>" + this.inlineMarkdown(line, base) + "</p>"; i++;
+      if (h) { closeList(); const level = Math.min(h[1].length, 3); html += `<h${level}>${this.inlineMarkdown(h[2], base, rawBase)}</h${level}>`; i++; continue; }
+      if (/^>\s?/.test(line)) { closeList(); html += "<blockquote>" + this.inlineMarkdown(line.replace(/^>\s?/, ""), base, rawBase) + "</blockquote>"; i++; continue; }
+      if (/^[-*]\s+/.test(line)) { if (!list) { html += "<ul>"; list = true; } html += "<li>" + this.inlineMarkdown(line.replace(/^[-*]\s+/, ""), base, rawBase) + "</li>"; i++; continue; }
+      closeList(); html += "<p>" + this.inlineMarkdown(line, base, rawBase) + "</p>"; i++;
     }
     closeList();
     return html;
@@ -1023,7 +1034,11 @@ class Component extends DCLogic {
     const report = this.state.report;
     if (!report) return null;
     const lang = this.state.lang;
-    const tabs = Object.keys(SSB_REPORTS).map(key => React.createElement("button", {
+    const doc = REPORT_DOCS[report.key] || {};
+    const project = DATA.find(p => p.slug === (report.slug || this.state.open)) || DATA.find(p => (p.links || []).some(l => l.report === report.key));
+    const docKeys = project ? (project.links || []).filter(l => l.report && REPORT_DOCS[l.report]).map(l => l.report) : Object.keys(REPORT_DOCS);
+    const uniqueDocKeys = docKeys.filter((key, idx, arr) => arr.indexOf(key) === idx);
+    const tabs = uniqueDocKeys.map(key => React.createElement("button", {
       key,
       onClick: () => this.openReport(key),
       style: {
@@ -1031,24 +1046,25 @@ class Component extends DCLogic {
         border: "1px solid " + (report.key === key ? "var(--accent)" : "var(--rule-strong)"), borderRadius: 999,
         padding: "8px 12px", background: report.key === key ? "var(--tint)" : "var(--bg)", color: report.key === key ? "var(--accent-ink)" : "var(--ink)"
       }
-    }, this.loc(SSB_REPORTS[key].label, lang)));
+    }, this.loc(REPORT_DOCS[key].label, lang)));
+    const metrics = doc.stats || [];
+    const eyebrow = this.loc(doc.eyebrow || (project && project.kind) || (project && project.name) || "Project document", lang);
     return React.createElement("div", { style: { position: "fixed", inset: 0, zIndex: 120, background: "var(--bg)", color: "var(--ink)", overflowY: "auto", animation: "riseIn .24s ease both" } },
       React.createElement("div", { style: { position: "sticky", top: 0, zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 14, padding: "14px 24px", background: "var(--bg)", borderBottom: "1px solid var(--rule)" } },
-        React.createElement("span", { style: { fontSize: 11, fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--muted)" } }, "SSB / UAV AI"),
+        React.createElement("span", { style: { fontSize: 11, fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--muted)" } }, eyebrow),
         React.createElement("button", { onClick: () => this.closeReport(), style: { fontFamily: "var(--fb)", fontSize: 11, letterSpacing: ".16em", textTransform: "uppercase", padding: "8px 16px", background: "transparent", color: "var(--ink)", border: "1px solid var(--rule-strong)", borderRadius: 2, cursor: "pointer" } }, UI[lang].close)
       ),
       React.createElement("article", { style: { maxWidth: 980, margin: "0 auto", padding: "42px 28px 92px" } },
-        React.createElement("p", { style: { margin: "0 0 10px", fontSize: 11, fontWeight: 800, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--accent-ink)" } }, "GPS-Free UAV Positioning"),
+        React.createElement("p", { style: { margin: "0 0 10px", fontSize: 11, fontWeight: 800, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--accent-ink)" } }, eyebrow),
         React.createElement("h2", { style: { margin: 0, fontFamily: "var(--fh)", fontSize: "clamp(34px,5vw,64px)", lineHeight: 1, letterSpacing: "-.015em" } }, report.title),
-        React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))", gap: 10, margin: "24px 0 18px" } },
-          [["4.124 m", "GRU mean HPE"], ["118", "valid flights"], ["264", "outage scenarios"], ["2-3x", "10-30s improvement"]].map(m => React.createElement("div", { key: m[0], style: { border: "1px solid var(--rule)", background: "var(--surface)", borderRadius: 8, padding: 14 } }, React.createElement("b", { style: { display: "block", fontSize: 22, color: "var(--accent-ink)", marginBottom: 6 } }, m[0]), React.createElement("span", { style: { fontSize: 12, color: "var(--muted)" } }, m[1])))
-        ),
-        React.createElement("div", { style: { display: "flex", flexWrap: "wrap", gap: 8, margin: "0 0 22px" } }, tabs),
+        metrics.length ? React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))", gap: 10, margin: "24px 0 18px" } },
+          metrics.map(m => React.createElement("div", { key: m[0] + m[1], style: { border: "1px solid var(--rule)", background: "var(--surface)", borderRadius: 8, padding: 14 } }, React.createElement("b", { style: { display: "block", fontSize: 22, color: "var(--accent-ink)", marginBottom: 6 } }, m[0]), React.createElement("span", { style: { fontSize: 12, color: "var(--muted)" } }, m[1])))
+        ) : null,
+        tabs.length ? React.createElement("div", { style: { display: "flex", flexWrap: "wrap", gap: 8, margin: "0 0 22px" } }, tabs) : null,
         React.createElement("div", { className: "report-body", style: { background: "var(--surface)", border: "1px solid var(--rule)", borderRadius: 10, padding: "24px", overflowX: "auto" }, dangerouslySetInnerHTML: { __html: report.loading ? "<p>Loading report...</p>" : report.html } })
       )
     );
   }
-
   mediaStateKey(kind) { return kind === "preview" ? "preview" : "media"; }
 
   mediaCandidates(slug, kind) {
