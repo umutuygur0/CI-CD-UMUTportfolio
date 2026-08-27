@@ -107,10 +107,10 @@ a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
     </section>
 
     <section style="position:relative;left:50%;width:100vw;margin-left:-50vw;padding:0 0 28px;overflow:hidden;">
-      <div style="position:relative;height:58px;display:flex;align-items:center;overflow:hidden;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--surface);">
-        <div style="position:absolute;left:0;top:0;bottom:0;width:min(16vw,150px);background:linear-gradient(90deg,var(--surface),rgba(0,0,0,0));z-index:2;pointer-events:none;"></div>
-        <div style="position:absolute;right:0;top:0;bottom:0;width:min(16vw,150px);background:linear-gradient(270deg,var(--surface),rgba(0,0,0,0));z-index:2;pointer-events:none;"></div>
-        <div style="display:flex;align-items:center;gap:14px;min-width:max-content;white-space:nowrap;animation:projectTickerRight 58s linear infinite;will-change:transform;padding:0 14px;">
+      <div style="position:relative;height:58px;display:flex;align-items:center;overflow:hidden;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--bg);">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:min(16vw,150px);background:linear-gradient(90deg,var(--bg),rgba(0,0,0,0));z-index:2;pointer-events:none;"></div>
+        <div style="position:absolute;right:0;top:0;bottom:0;width:min(16vw,150px);background:linear-gradient(270deg,var(--bg),rgba(0,0,0,0));z-index:2;pointer-events:none;"></div>
+        <div style="display:flex;align-items:center;gap:14px;min-width:max-content;white-space:nowrap;animation:projectTickerRight 86s linear infinite;will-change:transform;padding:0 14px;">
           <sc-for list="{{ tickerItems }}" as="item" hint-placeholder-count="16">
             <span style="display:inline-flex;align-items:center;gap:9px;border:1px solid var(--rule-strong);border-radius:999px;background:var(--chip-bg);color:var(--ink);padding:8px 16px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 8px 20px rgba(0,0,0,.05);">
               <span style="width:6px;height:6px;border-radius:999px;background:var(--accent);flex:0 0 auto;"></span>
@@ -727,7 +727,34 @@ const DATA = [
       ]
     },
     links: [{ label: { tr: "GitHub reposu", en: "GitHub repository" }, url: "https://github.com/umutuygur0/lms" }]
-  },  {
+  },
+  {
+    slug: "ci-cd-portfolio-pipeline", year: "2026", kind: { tr: "DevOps / AWS Backend", en: "DevOps / AWS Backend" },
+    name: { tr: "CI/CD Portfolio Deployment Pipeline", en: "CI/CD Portfolio Deployment Pipeline" },
+    one: {
+      tr: "Bu portfolio projesinin kendi CI/CD sistemi: GitHub Actions ile Docker image build/push, Amazon ECR, EC2 üzerinde Docker Compose deploy, Spring Boot backend ve Vercel frontend akışını birleştiren canlı deployment hattı.",
+      en: "The CI/CD system behind this portfolio: GitHub Actions builds and pushes Docker images, publishes through Amazon ECR, deploys to EC2 with Docker Compose, and keeps the Spring Boot backend plus Vercel frontend workflow connected."
+    },
+    stack: ["GitHub Actions", "CI/CD", "AWS", "Amazon ECR", "EC2", "IAM", "Security Groups", "SSH Deploy", "Docker", "Docker Compose", "Spring Boot", "Java 21", "Maven", "Vercel", "Linux"],
+    paras: {
+      tr: [
+        "Bu proje, portfolio sitesinin sadece frontend tasarımı değil; build, containerization, registry ve server deployment tarafını da kapsayan uçtan uca bir CI/CD çalışmasıdır. GitHub'a yapılan her push sonrası GitHub Actions pipeline'ı Spring Boot uygulamasını Maven ile paketler, Docker image üretir ve image'ı Amazon ECR repository'sine gönderir.",
+        "Backend tarafında Java 21 ve Spring Boot 3.4 kullanılır. Dockerfile iki aşamalı bir yapıdadır: ilk aşamada Maven image'ı ile jar build edilir, ikinci aşamada daha hafif Eclipse Temurin JRE image'ı üzerinde app.jar çalıştırılır. Docker Compose ise EC2 üzerinde container'ı 80:80 port mapping ile ayağa kaldırır.",
+        "Deploy job'u, build-push işi tamamlandıktan sonra çalışır. Pipeline AWS credentials'ı GitHub Secrets üzerinden alır, GitHub Actions runner IP'sini geçici olarak EC2 Security Group SSH inbound rule'una ekler, appleboy/ssh-action ile Ubuntu EC2 instance'a bağlanır, docker compose pull ve docker compose up -d --force-recreate komutlarıyla yeni image'ı canlıya alır.",
+        "Güvenlik tarafında AWS access key, ECR repo adresi, EC2 host, private SSH key ve security group id gibi bilgiler kodda tutulmaz; GitHub Secrets üzerinden yönetilir. Deploy tamamlandığında runner IP'si security group'tan geri kaldırılır, böylece SSH erişimi sürekli açık bırakılmaz.",
+        "Frontend tarafı Vercel'e bağlı static portfolio olarak yayınlanırken, backend tarafı AWS EC2 üzerinde Docker ile çalışır. Bu yapı bana CI/CD'nin sadece 'push atınca deploy olsun' olmadığını; Docker image, registry, cloud permission, SSH erişimi, disk temizliği, port mapping ve production deployment'ın birlikte düşünülmesi gerektiğini pratik olarak gösterdi."
+      ],
+      en: [
+        "This project is not only the frontend design of the portfolio; it is an end-to-end CI/CD setup covering build automation, containerization, image registry and server deployment. After every push to GitHub, the GitHub Actions pipeline packages the Spring Boot application with Maven, builds a Docker image and pushes it to Amazon ECR.",
+        "The backend uses Java 21 and Spring Boot 3.4. The Dockerfile follows a two-stage structure: the first stage builds the jar with a Maven image, and the second stage runs app.jar on an Eclipse Temurin JRE image. Docker Compose runs the container on EC2 with a 80:80 port mapping.",
+        "The deploy job runs after the build-push job succeeds. The workflow reads AWS credentials from GitHub Secrets, temporarily opens SSH access for the current GitHub Actions runner IP in the EC2 Security Group, connects to the Ubuntu EC2 instance through appleboy/ssh-action, then runs docker compose pull and docker compose up -d --force-recreate to bring the new image live.",
+        "Sensitive values such as AWS access keys, ECR repository URL, EC2 host, private SSH key and security group id are not stored in the codebase; they are managed through GitHub Secrets. After deployment, the runner IP is revoked from the security group so SSH access is not left permanently open.",
+        "The frontend is published as a static Vercel portfolio while the backend runs on AWS EC2 with Docker. This project taught me that CI/CD is not just 'push and deploy'; Docker images, registries, cloud permissions, SSH access, disk cleanup, port mapping and production deployment all have to work together."
+      ]
+    },
+    links: [{ label: { tr: "GitHub reposu", en: "GitHub repository" }, url: "https://github.com/umutuygur0/CI-CD-UMUTportfolio" }]
+  },
+  {
     slug: "softmax-pipeline", year: "2025", kind: { tr: "Makine öğrenmesi", en: "Machine learning" },
     name: { tr: "Softmax Regresyon Hattı", en: "Softmax Regression Pipeline" },
     one: {
