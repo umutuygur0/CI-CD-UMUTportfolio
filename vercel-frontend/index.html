@@ -130,7 +130,7 @@ a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 
       <div style="position:relative;">
         <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
-          <div onClick="{{ p.open }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="position:relative;border:1px solid var(--rule);border-radius:22px;margin-bottom:9px;cursor:pointer;overflow:hidden;" style-hover="border-color:var(--accent)">
+          <div data-preview-slug="{{ p.slug }}" onClick="{{ p.open }}" onTouchStart="{{ p.touch }}" onPointerDown="{{ p.pointer }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="position:relative;border:1px solid var(--rule);border-radius:22px;margin-bottom:9px;cursor:pointer;overflow:hidden;" style-hover="border-color:var(--accent)">
             <sc-if value="{{ p.isHovered }}" hint-placeholder-val="{{ false }}">
               <div style="position:absolute;inset:0;background:var(--plate);overflow:hidden;">
                 <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 21px,var(--rule) 21px 22px);opacity:.6;"></div>
@@ -169,7 +169,7 @@ a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
             <sc-if value="{{ smallProjectsOpen }}" hint-placeholder-val="{{ false }}">
               <div style="margin-top:10px;animation:riseIn .26s ease both;">
                 <sc-for list="{{ smallProjects }}" as="p" hint-placeholder-count="4">
-          <div onClick="{{ p.open }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="position:relative;border:1px solid var(--rule);border-radius:22px;margin-bottom:9px;cursor:pointer;overflow:hidden;" style-hover="border-color:var(--accent)">
+          <div data-preview-slug="{{ p.slug }}" onClick="{{ p.open }}" onTouchStart="{{ p.touch }}" onPointerDown="{{ p.pointer }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="position:relative;border:1px solid var(--rule);border-radius:22px;margin-bottom:9px;cursor:pointer;overflow:hidden;" style-hover="border-color:var(--accent)">
             <sc-if value="{{ p.isHovered }}" hint-placeholder-val="{{ false }}">
               <div style="position:absolute;inset:0;background:var(--plate);overflow:hidden;">
                 <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 21px,var(--rule) 21px 22px);opacity:.6;"></div>
@@ -1085,16 +1085,51 @@ class Component extends DCLogic {
     this.onPopState = (e) => this.handlePopState(e);
     window.addEventListener("popstate", this.onPopState);
     this.preloadTimer = window.setTimeout(() => this.preloadProjectVideos(), 650);
+    this.mobilePreviewTimer = window.setTimeout(() => this.setupMobilePreviewObserver(), 300);
+  }
+  componentDidUpdate() {
+    this.setupMobilePreviewObserver();
   }
   componentWillUnmount() {
     clearInterval(this.timer);
     window.removeEventListener("keydown", this.onKey);
     window.removeEventListener("popstate", this.onPopState);
     if (this.preloadTimer) window.clearTimeout(this.preloadTimer);
+    if (this.mobilePreviewTimer) window.clearTimeout(this.mobilePreviewTimer);
+    if (this.mobilePreviewObserver) this.mobilePreviewObserver.disconnect();
     (this.preloadEls || []).forEach(v => { try { v.pause(); v.removeAttribute("src"); v.load(); } catch (e) {} });
   }
 
   loc(v, lang) { return (v && typeof v === "object" && (v.tr || v.en)) ? v[lang] : v; }
+  isTouchPreviewDevice() {
+    return typeof window !== "undefined" && window.matchMedia && window.matchMedia("(hover: none), (pointer: coarse)").matches;
+  }
+
+
+  handleProjectTouch(slug) {
+    if (!this.isTouchPreviewDevice()) return;
+    const alreadyPreviewing = this.state.hover === slug;
+    this.ensureMedia(slug, "preview");
+    if (!alreadyPreviewing) {
+      this.touchPreviewBlock = { slug, time: Date.now() };
+      this.setState({ hover: slug });
+    }
+  }
+  handleProjectActivate(slug) {
+    if (this.isTouchPreviewDevice()) {
+      const block = this.touchPreviewBlock;
+      if (block && block.slug === slug && Date.now() - block.time < 900) {
+        this.touchPreviewBlock = null;
+        return;
+      }
+      if (this.state.hover !== slug) {
+        this.ensureMedia(slug, "preview");
+        this.setState({ hover: slug });
+        return;
+      }
+    }
+    this.openProject(slug);
+  }
   openProject(slug) {
     this.ensureMedia(slug, "full");
     if (window.history && window.history.pushState) {
@@ -1291,6 +1326,36 @@ class Component extends DCLogic {
     this.preloadEls.push(v);
   }
 
+  setupMobilePreviewObserver() {
+    if (!this.isTouchPreviewDevice() || typeof document === "undefined" || typeof window === "undefined" || !("IntersectionObserver" in window)) return;
+    if (!this.mobilePreviewRatios) this.mobilePreviewRatios = new Map();
+    if (!this.mobilePreviewObserver) {
+      this.mobilePreviewObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const slug = entry.target && entry.target.getAttribute("data-preview-slug");
+          if (!slug) return;
+          if (entry.isIntersecting) this.mobilePreviewRatios.set(slug, entry.intersectionRatio);
+          else this.mobilePreviewRatios.delete(slug);
+        });
+        if (this.state.open || this.state.report) return;
+        let bestSlug = null;
+        let bestRatio = 0;
+        this.mobilePreviewRatios.forEach((ratio, slug) => {
+          if (ratio > bestRatio) { bestRatio = ratio; bestSlug = slug; }
+        });
+        if (bestSlug && this.state.hover !== bestSlug) {
+          this.ensureMedia(bestSlug, "preview");
+          this.setState({ hover: bestSlug });
+        }
+      }, { root: null, rootMargin: "-16% 0px -36% 0px", threshold: [0, .2, .45, .65, .85] });
+    }
+    if (!this.mobilePreviewNodes) this.mobilePreviewNodes = new WeakSet();
+    document.querySelectorAll("[data-preview-slug]").forEach(node => {
+      if (this.mobilePreviewNodes.has(node)) return;
+      this.mobilePreviewNodes.add(node);
+      this.mobilePreviewObserver.observe(node);
+    });
+  }
   preloadProjectVideos() {
     const connection = navigator.connection || navigator.webkitConnection || navigator.mozConnection;
     if (connection && connection.saveData) return;
@@ -1374,8 +1439,10 @@ class Component extends DCLogic {
         videoEl: this.state.hover === slug ? this.videoEl(slug, false) : null,
         motionLabel: UI[lang].motion + " — " + (typeof this.state.preview[slug] === "string" ? this.state.preview[slug] : "videos/previews/" + slug + ".webm"),
         nameColor: this.state.hover === slug ? "var(--accent-ink)" : "var(--ink)",
-        open: () => this.openProject(slug),
+        open: () => this.handleProjectActivate(slug),
         enter: () => { this.ensureMedia(slug, "preview"); this.setState({ hover: slug }); },
+        touch: () => this.handleProjectTouch(slug),
+        pointer: (e) => { if (e && e.pointerType && e.pointerType !== "mouse") this.handleProjectTouch(slug); },
         leave: () => this.setState(s => (s.hover === slug ? { hover: null } : null))
       };
     };
