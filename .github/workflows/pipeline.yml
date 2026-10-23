@@ -73,6 +73,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY_EC2 }}
           script: |
+            docker image prune -af || true
             docker compose pull
             docker compose up -d --force-recreate
 
