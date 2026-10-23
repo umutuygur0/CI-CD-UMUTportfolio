@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ziyaretçi Logları</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --panel: #ffffff; --ink: #1c1b19; --muted: #6d6a63; --rule: #e3e0d8;
+    --accent: #8a5a2b; --tint: #f1e9df; --bar: #b98a5a; --danger: #b3261e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141312; --panel: #1d1c1a; --ink: #ece9e2; --muted: #9b978e; --rule: #2f2d29;
+      --accent: #d9a46c; --tint: #2a241d; --bar: #b98a5a; --danger: #f2b8b5;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141312; --panel: #1d1c1a; --ink: #ece9e2; --muted: #9b978e; --rule: #2f2d29;
+    --accent: #d9a46c; --tint: #2a241d; --bar: #b98a5a; --danger: #f2b8b5;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg); border-bottom: 1px solid var(--rule); }
+  h1 { margin: 0; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; }
+  h2 { margin: 0 0 10px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  main { max-width: 1240px; margin: 0 auto; padding: 18px 16px 80px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  input, select, button { font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 7px 10px; }
+  button { cursor: pointer; }
+  button:hover { background: var(--tint); }
+  label.check { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; }
+  .panel { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 16px; }
+  .login { max-width: 360px; margin: 12vh auto 0; display: grid; gap: 10px; }
+  .error { color: var(--danger); min-height: 1.4em; margin: 0; }
+  .status { color: var(--muted); font-size: 13px; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 14px; }
+  .kpi b { display: block; font-size: 26px; font-variant-numeric: tabular-nums; }
+  .kpi span { color: var(--muted); font-size: 12px; }
+  .chart { display: flex; align-items: flex-end; gap: 3px; height: 120px; }
+  .chart div { flex: 1; min-width: 2px; background: var(--bar); border-radius: 3px 3px 0 0; }
+  .chart-axis { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; margin-top: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin: 14px 0; }
+  .top { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
+  .top li { position: relative; display: flex; justify-content: space-between; gap: 10px; padding: 3px 6px; border-radius: 4px; overflow: hidden; }
+  .top li i { position: absolute; inset: 0 auto 0 0; background: var(--tint); z-index: 0; }
+  .top li span, .top li b { position: relative; z-index: 1; }
+  .top li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .top li b { font-variant-numeric: tabular-nums; }
+  .empty { color: var(--muted); font-size: 13px; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; white-space: nowrap; }
+  tr.session { cursor: pointer; }
+  tr.session:hover td { background: var(--tint); }
+  .tag { display: inline-block; padding: 1px 7px; border-radius: 999px; background: var(--tint); color: var(--accent); font-size: 12px; font-weight: 600; }
+  .sub { color: var(--muted); font-size: 12px; }
+  .detail td { background: var(--bg); }
+  .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 4px 16px; margin-bottom: 10px; word-break: break-all; }
+  .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; }
+  .timeline li { display: flex; gap: 10px; }
+  .timeline time { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 52px; }
+  .more { margin-top: 10px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ziyaretçi Logları</h1>
+  <div class="controls" id="controls" hidden>
+    <select id="range" aria-label="Zaman aralığı">
+      <option value="24">Son 24 saat</option>
+      <option value="168" selected>Son 7 gün</option>
+      <option value="720">Son 30 gün</option>
+      <option value="0">Tümü</option>
+    </select>
+    <input id="search" type="search" placeholder="Ara: ülke, şehir, kurum, ref, IP…" aria-label="Ara">
+    <button id="refresh" type="button">Yenile</button>
+    <label class="check"><input id="notrack" type="checkbox"> Bu cihazı sayma</label>
+    <button id="logout" type="button">Çıkış</button>
+  </div>
+</header>
+
+<main>
+  <form class="panel login" id="login" hidden>
+    <h2>Giriş</h2>
+    <input id="password" type="password" placeholder="Admin şifresi" autocomplete="current-password" required>
+    <button type="submit">Giriş yap</button>
+    <p class="error" id="loginError"></p>
+  </form>
+
+  <section id="dashboard" hidden>
+    <p class="status" id="status"></p>
+    <div class="kpis" id="kpis"></div>
+    <div class="panel">
+      <h2 id="chartTitle">Oturumlar</h2>
+      <div class="chart" id="chart"></div>
+      <div class="chart-axis" id="chartAxis"></div>
+    </div>
+    <div class="grid" id="tops"></div>
+    <div class="panel">
+      <h2>Oturumlar <span class="sub">— satıra tıklayınca adım adım ne yaptığı açılır</span></h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Zaman</th><th>Konum</th><th>Kurum / Ağ</th><th>Kaynak / Ref</th><th>Cihaz</th><th>Süre</th><th>Etkileşim</th></tr></thead>
+          <tbody id="sessions"></tbody>
+        </table>
+      </div>
+      <button class="more" id="more" type="button" hidden>Daha fazla göster</button>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var KEY = "uu_admin_key";
+  var PAGE_SIZE = 100;
+  var $ = function (id) { return document.getElementById(id); };
+  var events = [];
+  var total = 0;
+  var shown = PAGE_SIZE;
+  var openSessions = {};
+
+  function read(storage, key) { try { return window[storage].getItem(key); } catch (e) { return null; } }
+  function write(storage, key, value) {
+    try { value === null ? window[storage].removeItem(key) : window[storage].setItem(key, value); } catch (e) {}
+  }
+
+  function esc(value) {
+    return String(value == null ? "" : value).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  var regionNames = null;
+  try { regionNames = new Intl.DisplayNames(["tr"], { type: "region" }); } catch (e) {}
+  function countryName(code) {
+    if (!code) return "Bilinmiyor";
+    var flag = /^[A-Z]{2}$/.test(code) ? code.replace(/./g, function (c) { return String.fromCodePoint(127397 + c.charCodeAt(0)); }) + " " : "";
+    var name = code;
+    try { name = regionNames ? regionNames.of(code) : code; } catch (e) {}
+    return flag + name;
+  }
+
+  function device(ua) {
+    if (!ua) return "Bilinmiyor";
+    var os = /iPhone|iPad|iPod/.test(ua) ? "iOS" : /Android/.test(ua) ? "Android" : /Windows/.test(ua) ? "Windows"
+      : /Mac OS X/.test(ua) ? "macOS" : /Linux/.test(ua) ? "Linux" : "Diğer";
+    var browser = /Edg\//.test(ua) ? "Edge" : /OPR\//.test(ua) ? "Opera" : /SamsungBrowser/.test(ua) ? "Samsung"
+      : /Chrome\//.test(ua) ? "Chrome" : /Firefox\//.test(ua) ? "Firefox" : /Safari\//.test(ua) ? "Safari" : "Diğer";
+    var kind = /Mobi|iPhone|Android.*Mobile/.test(ua) ? "Mobil" : /iPad|Tablet|Android/.test(ua) ? "Tablet" : "Masaüstü";
+    return kind + " · " + os + " · " + browser;
+  }
+
+  function source(referrer) {
+    if (!referrer) return "Doğrudan";
+    try {
+      var host = new URL(referrer).hostname.replace(/^www\./, "");
+      return host === location.hostname.replace(/^www\./, "") ? "Doğrudan" : host;
+    } catch (e) { return "Doğrudan"; }
+  }
+
+  function duration(sec) {
+    if (!sec) return "—";
+    var m = Math.floor(sec / 60);
+    return m ? m + " dk " + (sec % 60) + " sn" : sec + " sn";
+  }
+
+  function viewTarget(hash) {
+    var match = /^#project-([^/]+)(?:\/report-(.+))?$/.exec(hash || "");
+    if (!match) return hash ? "Bölüm: " + hash : "";
+    return match[2] ? "Rapor: " + match[1] + " → " + match[2] : "Proje: " + match[1];
+  }
+
+  function describe(e) {
+    if (e.type === "pageview") return "Siteye girdi" + (e.hash ? " (" + viewTarget(e.hash) + ")" : "");
+    if (e.type === "view") return "Açtı → " + viewTarget(e.hash);
+    if (e.type === "click") {
+      var host = "";
+      try { host = e.href ? new URL(e.href).hostname : ""; } catch (err) {}
+      return "Tıkladı: " + (e.label || "(etiketsiz)") + (host && host !== location.hostname ? " → " + host : "");
+    }
+    if (e.type === "leave") return "Sekmeden çıktı (aktif " + duration(e.dur) + ", kaydırma %" + (e.scroll || 0) + ")";
+    return e.type;
+  }
+
+  function isCvDownload(e) { return e.type === "click" && /^download:/.test(e.label || "") && /cv|resume/i.test(e.label + " " + (e.href || "")); }
+
+  function buildSessions(list) {
+    var bySid = {};
+    list.forEach(function (e) {
+      var sid = e.sid || e.vid || "?";
+      (bySid[sid] = bySid[sid] || []).push(e);
+    });
+    return Object.keys(bySid).map(function (sid) {
+      var evs = bySid[sid].sort(function (a, b) { return a.t - b.t; });
+      var first = evs.filter(function (e) { return e.type === "pageview"; })[0] || evs[0];
+      var dur = 0;
+      evs.forEach(function (e) { if (e.type === "leave" && e.dur > dur) dur = e.dur; });
+      return {
+        sid: sid, vid: first.vid || "", start: evs[0].t, events: evs, first: first, dur: dur,
+        country: first.country || "", city: first.city || "", region: first.region || "",
+        org: first.org || "", ip: first.ip || "", ref: first.ref || "", source: source(first.referrer),
+        device: device(first.ua), isNew: !!first.isNew,
+        actions: evs.filter(function (e) { return e.type === "click" || e.type === "view"; }).length,
+        cv: evs.some(isCvDownload)
+      };
+    }).sort(function (a, b) { return b.start - a.start; });
+  }
+
+  function matches(session, query) {
+    if (!query) return true;
+    var haystack = [session.country, countryName(session.country), session.city, session.region, session.org, session.ip,
+      session.ref, session.source, session.device, session.vid].concat(session.events.map(describe)).join(" ").toLowerCase();
+    return haystack.indexOf(query) !== -1;
+  }
+
+  function topList(title, sessions, keyFn) {
+    var counts = {};
+    sessions.forEach(function (s) {
+      var keys = keyFn(s);
+      (Array.isArray(keys) ? keys : [keys]).filter(Boolean).forEach(function (k) { counts[k] = (counts[k] || 0) + 1; });
+    });
+    var rows = Object.keys(counts).map(function (k) { return [k, counts[k]]; })
+      .sort(function (a, b) { return b[1] - a[1]; }).slice(0, 10);
+    var max = rows.length ? rows[0][1] : 1;
+    var body = rows.length ? "<ul class=\"top\">" + rows.map(function (r) {
+      return "<li title=\"" + esc(r[0]) + "\"><i style=\"width:" + Math.round(r[1] / max * 100) + "%\"></i><span>" + esc(r[0]) + "</span><b>" + r[1] + "</b></li>";
+    }).join("") + "</ul>" : "<p class=\"empty\">Veri yok</p>";
+    return "<div class=\"panel\"><h2>" + esc(title) + "</h2>" + body + "</div>";
+  }
+
+  function unique(values) {
+    var seen = {};
+    return values.filter(function (v) { if (!v || seen[v]) return false; seen[v] = true; return true; });
+  }
+
+  function renderChart(sessions, hours) {
+    var hourly = hours === 24;
+    var buckets = hourly ? 24 : Math.min(hours ? hours / 24 : 30, 30);
+    var step = hourly ? 3600000 : 86400000;
+    var now = new Date();
+    var end = hourly ? new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours() + 1).getTime()
+      : new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1).getTime();
+    var start = end - buckets * step;
+    var counts = new Array(buckets).fill(0);
+    sessions.forEach(function (s) {
+      var i = Math.floor((s.start - start) / step);
+      if (i >= 0 && i < buckets) counts[i]++;
+    });
+    var max = Math.max.apply(null, counts.concat(1));
+    $("chartTitle").textContent = hourly ? "Saatlik oturumlar" : "Günlük oturumlar (son " + buckets + " gün)";
+    $("chart").innerHTML = counts.map(function (c, i) {
+      var label = new Date(start + i * step).toLocaleString("tr-TR", hourly ? { hour: "2-digit", minute: "2-digit" } : { day: "numeric", month: "short" });
+      return "<div title=\"" + esc(label + ": " + c + " oturum") + "\" style=\"height:" + Math.max(c / max * 100, c ? 4 : 1) + "%\"></div>";
+    }).join("");
+    var fmt = hourly ? { hour: "2-digit", minute: "2-digit" } : { day: "numeric", month: "short" };
+    $("chartAxis").innerHTML = "<span>" + esc(new Date(start).toLocaleString("tr-TR", fmt)) + "</span><span>" + esc(new Date(end - step).toLocaleString("tr-TR", fmt)) + "</span>";
+  }
+
+  function sessionRow(s, visitsByVid) {
+    var when = new Date(s.start).toLocaleString("tr-TR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
+    var visits = visitsByVid[s.vid] || 1;
+    var badges = (s.isNew ? "<span class=\"tag\">yeni</span> " : visits > 1 ? "<span class=\"tag\">" + visits + ". ziyaret</span> " : "") +
+      (s.cv ? "<span class=\"tag\">CV indirdi</span>" : "");
+    var row = "<tr class=\"session\" data-sid=\"" + esc(s.sid) + "\">" +
+      "<td>" + esc(when) + "<div>" + badges + "</div></td>" +
+      "<td>" + esc(countryName(s.country)) + "<div class=\"sub\">" + esc([s.city, s.region].filter(Boolean).join(", ")) + "</div></td>" +
+      "<td>" + esc(s.org || "—") + "</td>" +
+      "<td>" + esc(s.source) + (s.ref ? "<div><span class=\"tag\">ref: " + esc(s.ref) + "</span></div>" : "") + "</td>" +
+      "<td>" + esc(s.device) + "</td>" +
+      "<td>" + esc(duration(s.dur)) + "</td>" +
+      "<td>" + s.actions + "</td></tr>";
+    if (!openSessions[s.sid]) return row;
+    var f = s.first;
+    var meta = [["IP", s.ip], ["Ziyaretçi ID", s.vid], ["Dil", f.lang], ["Saat dilimi", f.tz], ["Ekran", f.screen],
+      ["Referrer", f.referrer], ["Tarayıcı", f.ua]].filter(function (m) { return m[1]; })
+      .map(function (m) { return "<div><span class=\"sub\">" + esc(m[0]) + ":</span> " + esc(m[1]) + "</div>"; }).join("");
+    var timeline = s.events.map(function (e) {
+      var offset = Math.round((e.t - s.start) / 1000);
+      return "<li><time>+" + esc(offset >= 60 ? Math.floor(offset / 60) + "dk" + (offset % 60) + "s" : offset + "s") + "</time><span>" + esc(describe(e)) + "</span></li>";
+    }).join("");
+    return row + "<tr class=\"detail\"><td colspan=\"7\"><div class=\"meta\">" + meta + "</div><ul class=\"timeline\">" + timeline + "</ul></td></tr>";
+  }
+
+  function render() {
+    var hours = Number($("range").value);
+    var cutoff = hours ? Date.now() - hours * 3600000 : 0;
+    var query = $("search").value.trim().toLowerCase();
+    var allSessions = buildSessions(events);
+    var visitsByVid = {};
+    allSessions.slice().reverse().forEach(function (s) { visitsByVid[s.vid] = (visitsByVid[s.vid] || 0) + 1; });
+    var sessions = buildSessions(events.filter(function (e) { return e.t >= cutoff; }))
+      .filter(function (s) { return matches(s, query); });
+
+    var visitors = unique(sessions.map(function (s) { return s.vid; })).length;
+    var views = sessions.reduce(function (n, s) { return n + s.events.filter(function (e) { return e.type === "pageview" || e.type === "view"; }).length; }, 0);
+    var timed = sessions.filter(function (s) { return s.dur; });
+    var avg = timed.length ? Math.round(timed.reduce(function (n, s) { return n + s.dur; }, 0) / timed.length) : 0;
+    var kpis = [
+      [visitors, "Tekil ziyaretçi"], [sessions.length, "Oturum"], [views, "Görüntüleme"],
+      [sessions.filter(function (s) { return s.cv; }).length, "CV indiren oturum"],
+      [duration(avg), "Ort. aktif süre"],
+      [unique(sessions.map(function (s) { return s.org; })).length, "Farklı kurum / ağ"]
+    ];
+    $("kpis").innerHTML = kpis.map(function (k) { return "<div class=\"panel kpi\"><b>" + esc(k[0]) + "</b><span>" + esc(k[1]) + "</span></div>"; }).join("");
+
+    renderChart(sessions, hours);
+
+    function eventsOf(s, type, fn) { return unique(s.events.filter(function (e) { return e.type === type; }).map(fn)); }
+    $("tops").innerHTML = [
+      topList("Ülkeler", sessions, function (s) { return countryName(s.country); }),
+      topList("Şehirler", sessions, function (s) { return s.city ? s.city + (s.country ? ", " + s.country : "") : ""; }),
+      topList("Kurum / Ağ", sessions, function (s) { return s.org; }),
+      topList("Kaynak siteler", sessions, function (s) { return s.source; }),
+      topList("Ref linkleri", sessions, function (s) { return s.ref; }),
+      topList("Açılan projeler / raporlar", sessions, function (s) { return eventsOf(s, "view", function (e) { return viewTarget(e.hash); }); }),
+      topList("Tıklamalar", sessions, function (s) { return eventsOf(s, "click", function (e) { return e.label; }); }),
+      topList("Cihazlar", sessions, function (s) { return s.device; })
+    ].join("");
+
+    $("sessions").innerHTML = sessions.length
+      ? sessions.slice(0, shown).map(function (s) { return sessionRow(s, visitsByVid); }).join("")
+      : "<tr><td colspan=\"7\" class=\"empty\">Bu aralıkta kayıt yok.</td></tr>";
+    $("more").hidden = sessions.length <= shown;
+    $("status").textContent = "Veritabanında toplam " + total + " olay var; " + events.length + " tanesi yüklendi. Son güncelleme: " +
+      new Date().toLocaleTimeString("tr-TR");
+  }
+
+  function showLogin(message) {
+    $("login").hidden = false;
+    $("dashboard").hidden = true;
+    $("controls").hidden = true;
+    $("loginError").textContent = message || "";
+    $("password").focus();
+  }
+
+  function load() {
+    var key = read("sessionStorage", KEY);
+    if (!key) return showLogin();
+    $("status").textContent = "Yükleniyor…";
+    fetch("/api/stats?limit=10000", { headers: { "x-admin-key": key }, cache: "no-store" })
+      .then(function (res) {
+        if (res.status === 401 || res.status === 429) {
+          write("sessionStorage", KEY, null);
+          showLogin(res.status === 401 ? "Şifre hatalı." : "Çok fazla hatalı deneme. 15 dakika sonra tekrar dene.");
+          return null;
+        }
+        if (res.status === 503) throw new Error("Vercel'de ADMIN_PASSWORD ortam değişkeni tanımlı değil.");
+        if (!res.ok) throw new Error("Loglar okunamadı (" + res.status + "). Redis bağlantısını kontrol et.");
+        return res.json();
+      })
+      .then(function (data) {
+        if (!data) return;
+        events = data.events || [];
+        total = data.total || 0;
+        $("login").hidden = true;
+        $("dashboard").hidden = false;
+        $("controls").hidden = false;
+        render();
+      })
+      .catch(function (err) {
+        $("login").hidden = true;
+        $("dashboard").hidden = false;
+        $("controls").hidden = false;
+        $("status").textContent = err.message;
+      });
+  }
+
+  $("login").addEventListener("submit", function (e) {
+    e.preventDefault();
+    write("sessionStorage", KEY, $("password").value);
+    write("localStorage", "uu_notrack", "1");
+    $("notrack").checked = true;
+    $("password").value = "";
+    load();
+  });
+  $("logout").addEventListener("click", function () { write("sessionStorage", KEY, null); showLogin(); });
+  $("refresh").addEventListener("click", load);
+  $("range").addEventListener("change", function () { shown = PAGE_SIZE; render(); });
+  $("search").addEventListener("input", function () { shown = PAGE_SIZE; render(); });
+  $("more").addEventListener("click", function () { shown += PAGE_SIZE; render(); });
+  $("notrack").checked = read("localStorage", "uu_notrack") === "1";
+  $("notrack").addEventListener("change", function () { write("localStorage", "uu_notrack", this.checked ? "1" : null); });
+  $("sessions").addEventListener("click", function (e) {
+    var row = e.target.closest("tr.session");
+    if (!row) return;
+    var sid = row.getAttribute("data-sid");
+    openSessions[sid] = !openSessions[sid];
+    render();
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>
